@@ -8,28 +8,35 @@ namespace TournamentAdjudicator
 {
     class SampleAI
     {
-        public object BLANK_LETTER = null;
-        
+        public int BLANK_LETTER = '_';
+        public int[,,] tilesc;
+        public SampleAI(Gameplay P)
+        {
+            tilesc = P.board();
+           
+        }
+
+
         private void FindNextMove() // This function finds the next possible move it can make, where a move is considered to be building an entirely new word off of an old one, rather than adding onto an old word or stacking letters to make a new word.
         { // CAP : The algorithms this function implements are literally the worst pieces of shit you have ever written and you should feel bad for writing them. You NEED to make them more efficient. You also need to FINISH this function so words can be placed in row 0 and column 0.
             List<PossibleWordPlacement> PossibleWordPlacements = new List<PossibleWordPlacement>();
             for (int r = 0; r < 9; r++) // Cycle through the rows, EXCEPT the last one. CAP : Requires special case checking.
                 for (int c = 0; c < 9; c++) // Cycle through the columns, EXCEPT the last one. Requires special case checking.
                 {
-                    if (tilesc[r, c] != BLANK_LETTER) // Only interested in tiles with a letter on them, so that we may build a word from them.
+                    if (tilesc[0,r, c] != BLANK_LETTER) // Only interested in tiles with a letter on them, so that we may build a word from them.
                     {
                         if (r != 0 && c != 0) // These rows and columns require special case checking, so we check them in their own section of the for brackets
                         {
-                            if (tilesc[r + 1, c] == BLANK_LETTER && tilesc[r - 1, c] == BLANK_LETTER) // Check if able to build an entirely new vertical word (rather than add onto an old one)
+                            if (tilesc[0,r + 1, c] == BLANK_LETTER && tilesc[0, r - 1, c] == BLANK_LETTER) // Check if able to build an entirely new vertical word (rather than add onto an old one)
                             { // If this is true, we must check how many tiles are blank and available for us to work with. This means we must search upward and downward until hitting a tile that isn't blank,
                               // and then saving the starting position of a blank tile that has at least 1 blank tile of space away from other tiles on all other sides.
                               // Eventually it can be further optimized to look and see if words can be played that will make multiple connections. This function exists currently to make one connection.
                                 int sr = -1, er = -1; // Starting row and ending row of the blank tiles
                                 for (int i = r - 1; i >= 0; i--) // Search upwards in the rows // CAP : The for loop WAS borked, fixed now. Was a problem. Check the other for loops to see if this is happening there too
                                 {
-                                    if (tilesc[i, c] == BLANK_LETTER)// Check the current row tile to see if it is blank
+                                    if (tilesc[0, i, c] == BLANK_LETTER)// Check the current row tile to see if it is blank
                                     {
-                                        if (tilesc[i, c + 1] == BLANK_LETTER && tilesc[i, c - 1] == BLANK_LETTER)// Check if the tiles to the sides are blank
+                                        if (tilesc[0, i, c + 1] == BLANK_LETTER && tilesc[0, i, c - 1] == BLANK_LETTER)// Check if the tiles to the sides are blank
                                         {
                                             sr = i;// Then we set this tile as the current best possible starting row
                                         }
@@ -43,9 +50,9 @@ namespace TournamentAdjudicator
                                 }
                                 for (int j = r + 1; j <= 9; j++) // Search downwards in the rows
                                 {
-                                    if (tilesc[j, c] == BLANK_LETTER) // Check the current tile to see if it is blank
+                                    if (tilesc[0, j, c] == BLANK_LETTER) // Check the current tile to see if it is blank
                                     {
-                                        if (tilesc[j, c + 1] == BLANK_LETTER && tilesc[j, c - 1] == BLANK_LETTER) // Check if the tiles to the sides are blank (if they're not we need a more complex algorithm to build word)
+                                        if (tilesc[0, j, c + 1] == BLANK_LETTER && tilesc[0, j, c - 1] == BLANK_LETTER) // Check if the tiles to the sides are blank (if they're not we need a more complex algorithm to build word)
                                         {
                                             er = j; // Then we set this tile as the current best possible ending row
                                         }
@@ -59,25 +66,25 @@ namespace TournamentAdjudicator
                                 }
 
                                 if (sr != -1 && er != -1) // CAP : This shouldn't be if BOTH didn't equal -1, it should be if one of them didn't equal -1 and then if one of them did adjust the sr/er
-                                    PossibleWordPlacements.Add(new PossibleWordPlacement(true, tilesc[r, c], r, c, sr, er));
-                                else if (er == -1 && tilesc[r + 1, c] == BLANK_LETTER && sr != -1) // If the tile next to the searched tile is blank but the ending column is set to -1
-                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[r, c], r, c, sr, r)); // Set the ending column to the current searched tile
-                                else if (sr == -1 && tilesc[r - 1, c] == BLANK_LETTER && er != -1) // If the tile before the searched tile is blank but the starting column is set to -1
-                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[r, c], r, c, r, er)); // Set the starting column to the current searched tile
+                                    PossibleWordPlacements.Add(new PossibleWordPlacement(true, tilesc[0, r, c], r, c, sr, er));
+                                else if (er == -1 && tilesc[0, r + 1, c] == BLANK_LETTER && sr != -1) // If the tile next to the searched tile is blank but the ending column is set to -1
+                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[0, r, c], r, c, sr, r)); // Set the ending column to the current searched tile
+                                else if (sr == -1 && tilesc[0, r - 1, c] == BLANK_LETTER && er != -1) // If the tile before the searched tile is blank but the starting column is set to -1
+                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[0, r, c], r, c, r, er)); // Set the starting column to the current searched tile
 
                                 //else if (sr != -1) // If one of them was -1 and sr isn't -1, then sr is the good value and er is the adjustment needed value
                                 //  ;//PossibleWordPlacements.Add(new PossibleWordPlacement(true, tilesc[r, c], r, c, sr, r)); // We set ending row to the row where the letter is because the word will above it
                                 //else if (er != -1) // If one of them was -1 and er isn't -1, then er is the good value and sr is the adjustment needed value.
                                 //  ;//PossibleWordPlacements.Add(new PossibleWordPlacement(true, tilesc[r, c], r, c, r, er)); // We set starting row to the row where letter is because the word will below it
                             }
-                            else if (tilesc[r, c + 1] == BLANK_LETTER && tilesc[r, c - 1] == BLANK_LETTER) // Check if able to build an entirely new horizontal word (rather than add onto an old one)
+                            else if (tilesc[0, r, c + 1] == BLANK_LETTER && tilesc[0, r, c - 1] == BLANK_LETTER) // Check if able to build an entirely new horizontal word (rather than add onto an old one)
                             { // If this is true we must check how many tiles are blank and available for us to work with.
                                 int sc = -1, ec = -1; // Starting column and ending column of the blank tiles
                                 for (int i = c - 1; i >= 0; i--) // Search leftwards in the columns
                                 {
-                                    if (tilesc[r, i] == BLANK_LETTER)// Check the current column tile to see if it is blank
+                                    if (tilesc[0, r, i] == BLANK_LETTER)// Check the current column tile to see if it is blank
                                     {
-                                        if (tilesc[r + 1, i] == BLANK_LETTER && tilesc[r - 1, i] == BLANK_LETTER)// Check if the tiles above and below are blank
+                                        if (tilesc[0, r + 1, i] == BLANK_LETTER && tilesc[0, r - 1, i] == BLANK_LETTER)// Check if the tiles above and below are blank
                                         {
                                             sc = i;// Then we set this tile as the current best possible starting column
                                         }
@@ -91,9 +98,9 @@ namespace TournamentAdjudicator
                                 }
                                 for (int j = c + 1; j <= 9; j++) // Search rightwards in the columns
                                 {
-                                    if (tilesc[r, j] == BLANK_LETTER) // Check the current tile to see if it is blank
+                                    if (tilesc[0, r, j] == BLANK_LETTER) // Check the current tile to see if it is blank
                                     {
-                                        if (tilesc[r + 1, j] == BLANK_LETTER && tilesc[r - 1, j] == BLANK_LETTER) // Check if the tiles above/below are blank (if they're not we need a more complex algorithm to build word)
+                                        if (tilesc[0,r + 1, j] == BLANK_LETTER && tilesc[0,r - 1, j] == BLANK_LETTER) // Check if the tiles above/below are blank (if they're not we need a more complex algorithm to build word)
                                         {
                                             ec = j; // Then we set this tile as the current best possible ending column
                                         }
@@ -107,24 +114,24 @@ namespace TournamentAdjudicator
                                 }
 
                                 if (sc != -1 && ec != -1)
-                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[r, c], r, c, sc, ec));
-                                else if (ec == -1 && tilesc[r, c + 1] == BLANK_LETTER && sc != -1) // If the tile next to the searched tile is blank but the ending column is set to -1
-                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[r, c], r, c, sc, c)); // Set the ending column to the current searched tile
-                                else if (sc == -1 && tilesc[r, c - 1] == BLANK_LETTER && ec != -1) // If the tile before the searched tile is blank but the starting column is set to -1
-                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[r, c], r, c, c, ec)); // Set the starting column to the current searched tile
+                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[0,r, c], r, c, sc, ec));
+                                else if (ec == -1 && tilesc[0,r, c + 1] == BLANK_LETTER && sc != -1) // If the tile next to the searched tile is blank but the ending column is set to -1
+                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[0,r, c], r, c, sc, c)); // Set the ending column to the current searched tile
+                                else if (sc == -1 && tilesc[0,r, c - 1] == BLANK_LETTER && ec != -1) // If the tile before the searched tile is blank but the starting column is set to -1
+                                    PossibleWordPlacements.Add(new PossibleWordPlacement(false, tilesc[0,r, c], r, c, c, ec)); // Set the starting column to the current searched tile
 
                             }
                         }
                         else if (r == 0) // Row 0 means we can only build a word downward. This means we don't have to check the tiles above us to ensure they're blank. If we tried, we'd get an exception thrown at us. :(
                         {
-                            if (tilesc[r + 1, c] == BLANK_LETTER) // If the tile below us contains a blank tile
+                            if (tilesc[0,r + 1, c] == BLANK_LETTER) // If the tile below us contains a blank tile
                             {
                                 // This if may be able to be replaced with a do while loop that increments some sort of value, and checks constantly if surrounding tiles are blank as well
                             }
                         }
                         else if (c == 0) // Column 0 means we can only build a word rightward. This means we don't have to check the tiles to the left of us to ensure they're blank.
                         {
-                            if (tilesc[r, c + 1] == BLANK_LETTER) // If the tile to the right of us contains a blank tile
+                            if (tilesc[0,r, c + 1] == BLANK_LETTER) // If the tile to the right of us contains a blank tile
                             {
                                 // This if may be able to be replaced with a do while loop that increments some sort of value, and checks constantly if surrounding tiles are blank as well.
                             }
@@ -188,7 +195,29 @@ namespace TournamentAdjudicator
     }
     class PossibleWordPlacement
     {
+        // r, c, sc, ec
+        private int r; //row
+        private int c; //column
+        private int s; //start
+        private int e; //end
 
+        private bool v; //vertical
+        private int tile; //board
+
+        public PossibleWordPlacement(bool v, int tile, int r, int c, int s, int e)
+        {
+            this.v = v;
+            this.tile = tile;
+            this.r = r;
+            this.c = c;
+            this.s = s;
+            this.e = e;
+        }
+
+        PossibleWordPlacement()
+        {
+
+        }
     }
 
 }

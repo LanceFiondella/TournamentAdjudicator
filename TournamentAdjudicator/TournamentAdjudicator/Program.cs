@@ -13,6 +13,7 @@ namespace TournamentAdjudicator
             Gameplay P = new Gameplay();
             P.initalize_bag();
             P.initial_draw();
+            P.board();
 
 
 
