@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace test
+namespace TournamentAdjudicator
 {
-    class Program
+    class Gameplay
     {
         int[,,] board_status = new int[2, 10, 10]; // [letter assigned(1)/count ,x,y]
         public static List<string> bag = new List<string>();
@@ -16,18 +16,9 @@ namespace test
         private static List<string> p4 = new List<string>();
 
 
-        static void Main(string[] args)
-        {
-            Program P = new Program();
-            P.initalize_bag();
-            P.initial_draw();
+      
 
-
-
-
-        }
-
-        void initalize_bag()
+        public void initalize_bag()
         {
             int temp = 0;
             bag.Add("V");
@@ -93,7 +84,7 @@ namespace test
             }
         }
 
-        void initial_draw()
+        public void initial_draw()
         {
             Random rnd = new Random();
 
@@ -112,7 +103,7 @@ namespace test
             Console.WriteLine("p4: " + p4[0]);
         }
 
-        int[,,] board()
+        public int[,,] board()
         {
             return board_status;
         }

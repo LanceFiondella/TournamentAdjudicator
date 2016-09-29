@@ -10,6 +10,13 @@ namespace TournamentAdjudicator
     {
         static void Main(string[] args)
         {
+            Gameplay P = new Gameplay();
+            P.initalize_bag();
+            P.initial_draw();
+
+
+
+
         }
     }
 }
