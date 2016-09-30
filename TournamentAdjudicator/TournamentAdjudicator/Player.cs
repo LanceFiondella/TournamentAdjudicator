@@ -50,12 +50,20 @@ namespace TournamentAdjudicator
 
 
         //intialize when user connects
-        Player(int id, string hash, List<string> letters)
+        public Player(int id, string hash, List<string> letters)
         {
 
             this.ID = id;
             this.Hash = hash;
             this.Letters = letters;
+
+        }
+        public Player()
+        {
+
+            this.ID = 1;
+            this.Hash = "";
+            this.Letters = new List<string>();
 
         }
 
@@ -64,7 +72,10 @@ namespace TournamentAdjudicator
         {
             this.letters.AddRange(newletters);
         }
-
+        public void addSingleLetter(string newletter)
+        {
+            this.letters.Add(newletter);
+        }
 
     }
 }

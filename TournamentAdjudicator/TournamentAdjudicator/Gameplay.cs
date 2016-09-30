@@ -10,13 +10,16 @@ namespace TournamentAdjudicator
     {
         int[,,] board_status = new int[2, 10, 10]; // [letter assigned(1)/count ,x,y]
         public static List<string> bag = new List<string>();
+        /*
         private static List<string> p1 = new List<string>();
         private static List<string> p2 = new List<string>();
         private static List<string> p3 = new List<string>();
         private static List<string> p4 = new List<string>();
-
-
-      
+        */
+        public Player p1 = new Player();
+        public Player p2 = new Player();
+        public Player p3 = new Player();
+        public Player p4 = new Player();
 
         public void initalize_bag()
         {
@@ -84,23 +87,26 @@ namespace TournamentAdjudicator
             }
         }
 
+
+        //George: does this remove the used letters frfom the bag? RFD
         public void initial_draw()
         {
             Random rnd = new Random();
 
             int start2 = rnd.Next(0, bag.Count);
-            p1.Add(bag[start2]);
+            p1.addSingleLetter(bag[start2]);
             start2 = rnd.Next(0, bag.Count);
-            p2.Add(bag[start2]);
+            p2.addSingleLetter(bag[start2]);
             start2 = rnd.Next(0, bag.Count);
-            p3.Add(bag[start2]);
+            p3.addSingleLetter(bag[start2]);
             start2 = rnd.Next(0, bag.Count);
-            p4.Add(bag[start2]);
+            p4.addSingleLetter(bag[start2]);
 
-            Console.WriteLine("p1: " + p1[0]);
-            Console.WriteLine("p2: " + p2[0]);
-            Console.WriteLine("p3: " + p3[0]);
-            Console.WriteLine("p4: " + p4[0]);
+            Console.WriteLine("p1: " + p1.Letters[0]);
+            Console.WriteLine("p2: " + p2.Letters[0]);
+            Console.WriteLine("p3: " + p3.Letters[0]);
+            Console.WriteLine("p4: " + p4.Letters[0]);
+
         }
 
         public int[,,] board()
