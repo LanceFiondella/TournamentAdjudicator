@@ -14,7 +14,8 @@ namespace TournamentAdjudicator
             P.initalize_bag();
             P.initial_draw();
             P.board();
-
+            Console.WriteLine("{0}", P.board().ToString());
+            Console.ReadKey();
 
 
 

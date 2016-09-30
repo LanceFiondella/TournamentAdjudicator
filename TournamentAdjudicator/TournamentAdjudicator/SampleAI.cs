@@ -16,7 +16,7 @@ namespace TournamentAdjudicator
            
         }
 
-
+        /*
         private void FindNextMove() // This function finds the next possible move it can make, where a move is considered to be building an entirely new word off of an old one, rather than adding onto an old word or stacking letters to make a new word.
         { // CAP : The algorithms this function implements are literally the worst pieces of shit you have ever written and you should feel bad for writing them. You NEED to make them more efficient. You also need to FINISH this function so words can be placed in row 0 and column 0.
             List<PossibleWordPlacement> PossibleWordPlacements = new List<PossibleWordPlacement>();
@@ -158,7 +158,7 @@ namespace TournamentAdjudicator
                 * x.IndexOf(p.letter) <= lpos - p.start : Does the same thing as above, but with the tiles before the letter rather than after.
                 * It then sorts these words with the largest ones coming first, as we always want to make the largest play we can for maximum points. This may change if we implement war gaming. */
 
-                foreach (string w in words)
+                /*foreach (string w in words)
                 {
                     if (HasTilesForWord(w, p.letter)) // If the AI has tiles to play the word
                         p.playablewords.Add(w); // Save the word as playable word
@@ -187,7 +187,7 @@ namespace TournamentAdjudicator
         }
 
 
-
+        */
 
         // don't give to any other teams
 
@@ -203,6 +203,9 @@ namespace TournamentAdjudicator
 
         private bool v; //vertical
         private int tile; //board
+        public string[] playablewords;
+
+
 
         public PossibleWordPlacement(bool v, int tile, int r, int c, int s, int e)
         {
@@ -212,12 +215,12 @@ namespace TournamentAdjudicator
             this.c = c;
             this.s = s;
             this.e = e;
+            
         }
 
-        PossibleWordPlacement()
-        {
+       
 
-        }
+      
     }
 
 }
