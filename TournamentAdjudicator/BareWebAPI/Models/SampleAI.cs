@@ -10,11 +10,11 @@ namespace TournamentAdjudicator.Models
     {
         public int BLANK_LETTER = '_';
         public int[,,] tiles;
-        public SampleAI(Gameplay P)
-        {
+        //public SampleAI(Gameplay P)
+       // {
             //tilesc = P.board();
            
-        }
+       // }
 
         /*
         private void FindNextMove() // This function finds the next possible move it can make, where a move is considered to be building an entirely new word off of an old one, rather than adding onto an old word or stacking letters to make a new word.
