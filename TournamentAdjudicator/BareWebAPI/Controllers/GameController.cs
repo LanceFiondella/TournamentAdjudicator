@@ -27,7 +27,7 @@ namespace TournamentAdjudicator.Controllers
             {
                 if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
                 {
-                    return Ok(UserController.Players[0]);
+                    return Ok(Gameplay.Board);
 
                     //Add code to return Game data and Player data
                 }
