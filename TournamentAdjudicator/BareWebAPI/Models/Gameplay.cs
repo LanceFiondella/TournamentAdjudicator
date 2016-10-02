@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TournamentAdjudicator.Controllers;
 
 namespace TournamentAdjudicator.Models
 {
@@ -16,10 +17,7 @@ namespace TournamentAdjudicator.Models
         private static List<string> p3 = new List<string>();
         private static List<string> p4 = new List<string>();
         */
-        static public Player first = new Player();
-        static public Player second = new Player();
-        static public Player third = new Player();
-        static public Player fourth = new Player();
+        
        
 
 
@@ -110,9 +108,13 @@ namespace TournamentAdjudicator.Models
        
         public static void initial_draw()
         {
-            Random rnd = new Random();
-          
-                first.ID = rnd.Next(1, 4);
+            foreach (Player p in UserController.Players)
+            {
+                give_letters(p, 7);
+            }
+
+            
+            
             
 
             /*     int start2 = rnd.Next(0, bag.Count);
