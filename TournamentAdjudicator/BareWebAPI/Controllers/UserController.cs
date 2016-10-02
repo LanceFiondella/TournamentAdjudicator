@@ -14,13 +14,13 @@ namespace TournamentAdjudicator.Controllers
 
         public static List<Player> Players { get; set; }
         public static int players = 0;
-        public static Gameplay Board;
+        public static System.Timers.Timer UserTimer = new System.Timers.Timer(10000);
 
         [HttpGet]
         public IHttpActionResult GetUser()
         {
             if (players < 4) { 
-
+               
                 //Secure hash
                 byte[] randBytes;
                 randBytes = new byte[100];
@@ -52,6 +52,11 @@ namespace TournamentAdjudicator.Controllers
                     Players = tempList;
                 }
                 catch { }
+                if (newid >= 4)
+                {
+                    Gameplay.initalize_bag();
+                    Gameplay.initial_draw();
+                }
                 return Ok(Players);
             }else{
                 return NotFound();
