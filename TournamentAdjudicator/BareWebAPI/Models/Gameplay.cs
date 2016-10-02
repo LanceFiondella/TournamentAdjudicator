@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TournamentAdjudicator.Controllers;
 
 namespace TournamentAdjudicator.Models
 {
-    public class Gameplay
+    class Gameplay
     {
         string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/count ,x,y]
         public static List<string> bag = new List<string>();
-        
-        
+        /*
+        private static List<string> p1 = new List<string>();
+        private static List<string> p2 = new List<string>();
+        private static List<string> p3 = new List<string>();
+        private static List<string> p4 = new List<string>();
+        */
+        public Player p1 = new Player();
+        public Player p2 = new Player();
+        public Player p3 = new Player();
+        public Player p4 = new Player();
+
 
         public string[,,] Board
         {
@@ -25,6 +33,8 @@ namespace TournamentAdjudicator.Models
                 board = value;
             }
         }
+
+
 
         public void initalize_bag()
         {
@@ -94,25 +104,45 @@ namespace TournamentAdjudicator.Models
 
 
         //George: does this remove the used letters frfom the bag? RFD
+        //no, they go back in bag
+
         public void initial_draw()
         {
             Random rnd = new Random();
 
             int start2 = rnd.Next(0, bag.Count);
-            /*p1.addSingleLetter(bag[start2]);
+            p1.addSingleLetter(bag[start2]);
             start2 = rnd.Next(0, bag.Count);
             p2.addSingleLetter(bag[start2]);
             start2 = rnd.Next(0, bag.Count);
             p3.addSingleLetter(bag[start2]);
             start2 = rnd.Next(0, bag.Count);
-            p4.addSingleLetter(bag[start2]);*/
+            p4.addSingleLetter(bag[start2]);
 
-            /*Console.WriteLine("p1: " + p1.Letters[0]);
-            Console.WriteLine("p2: " + p2.Letters[0]);
-            Console.WriteLine("p3: " + p3.Letters[0]);
-            Console.WriteLine("p4: " + p4.Letters[0]);*/
+            // Console.WriteLine("p1: " + p1.Letters[0]);
+            //Console.WriteLine("p2: " + p2.Letters[0]);
+            //Console.WriteLine("p3: " + p3.Letters[0]);
+            //Console.WriteLine("p4: " + p4.Letters[0]);
 
         }
+
+        public void give_letters(Player p, int needed)
+        {
+            Random rnd = new Random();
+            int start2;
+            int i = 0;
+
+            while (i < needed)
+            {
+                start2 = rnd.Next(0, bag.Count);
+                p.addSingleLetter(bag[start2]);
+                Console.WriteLine("p: " + p.Letters[i]);
+                bag.Remove(p.Letters[i]);
+                i++;
+
+            }
+        }
+
 
     }
 }
