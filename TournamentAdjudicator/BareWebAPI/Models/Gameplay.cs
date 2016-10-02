@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TournamentAdjudicator.Models
 {
-    public class Gameplay
+    public static class Gameplay
     {
-        string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/count ,x,y]
+        static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/count ,x,y]
         public static List<string> bag = new List<string>();
         /*
         private static List<string> p1 = new List<string>();
@@ -16,13 +16,14 @@ namespace TournamentAdjudicator.Models
         private static List<string> p3 = new List<string>();
         private static List<string> p4 = new List<string>();
         */
-        public Player p1 = new Player();
-        public Player p2 = new Player();
-        public Player p3 = new Player();
-        public Player p4 = new Player();
+        static public Player first = new Player();
+        static public Player second = new Player();
+        static public Player third = new Player();
+        static public Player fourth = new Player();
+       
 
 
-        public string[,,] Board
+        public static string[,,] Board
         {
             get
             {
@@ -36,7 +37,7 @@ namespace TournamentAdjudicator.Models
 
 
 
-        public void initalize_bag()
+        public static void initalize_bag()
         {
             int temp = 0;
             bag.Add("V");
@@ -106,18 +107,24 @@ namespace TournamentAdjudicator.Models
         //George: does this remove the used letters frfom the bag? RFD
         //no, they go back in bag
 
-        public void initial_draw()
+       
+        public static void initial_draw()
         {
             Random rnd = new Random();
+          
+                first.ID = rnd.Next(1, 4);
+            
 
-            int start2 = rnd.Next(0, bag.Count);
-            p1.addSingleLetter(bag[start2]);
-            start2 = rnd.Next(0, bag.Count);
-            p2.addSingleLetter(bag[start2]);
-            start2 = rnd.Next(0, bag.Count);
-            p3.addSingleLetter(bag[start2]);
-            start2 = rnd.Next(0, bag.Count);
-            p4.addSingleLetter(bag[start2]);
+            /*     int start2 = rnd.Next(0, bag.Count);
+                 p1.addSingleLetter(bag[start2]);
+                 start2 = rnd.Next(0, bag.Count);
+                p2.addSingleLetter(bag[start2]);
+                 start2 = rnd.Next(0, bag.Count);
+                 p3.addSingleLetter(bag[start2]);
+                 start2 = rnd.Next(0, bag.Count);
+                 p4.addSingleLetter(bag[start2]);*/
+
+
 
             // Console.WriteLine("p1: " + p1.Letters[0]);
             //Console.WriteLine("p2: " + p2.Letters[0]);
@@ -126,7 +133,7 @@ namespace TournamentAdjudicator.Models
 
         }
 
-        public void give_letters(Player p, int needed)
+        public static void give_letters(Player p, int needed)
         {
             Random rnd = new Random();
             int start2;
