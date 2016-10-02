@@ -22,16 +22,50 @@ namespace TournamentAdjudicator.Controllers
             {
                 return NotFound();
             }
-           
-            if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
-            {
-                return Ok(UserController.Players[0]);
 
-                //Add code to return Game data and Player data
+            try
+            {
+                if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
+                {
+                    return Ok(UserController.Players[0]);
+
+                    //Add code to return Game data and Player data
+                }
+            }
+            catch
+            {
+                Ok("User Auth Failed");
             }
 
             return Ok("User Auth Failed");
         }
+
+        [HttpPost]
+        public IHttpActionResult PostGame(int id)
+        {
+            var user = UserController.Players.FirstOrDefault((p) => p.ID == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
+                {
+                    return Ok(Request.Content);
+
+                    //Add code to return Game data and Player data
+                }
+            }
+            catch 
+            {
+                Ok("User Auth Failed");
+            }
+
+            return Ok("User Auth Failed");
+        }
+        
 
     }
 }
