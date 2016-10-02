@@ -40,8 +40,6 @@ namespace TournamentAdjudicator.Controllers
 
                 int newid = ++players;
                 Player newplayer = new Player { ID = newid, Hash = stringhash };
-                newplayer.addSingleLetter("A");
-                newplayer.addSingleLetter("B");
                 try
                 {
                     List<Player> tempList = new List<Player>();
