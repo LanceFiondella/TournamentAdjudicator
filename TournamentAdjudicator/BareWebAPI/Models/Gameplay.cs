@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TournamentAdjudicator.Controllers;
 
 namespace TournamentAdjudicator.Models
 {
     public static class Gameplay
     {
-        static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/count ,x,y]
+        static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
         public static List<string> bag = new List<string>();
         /*
         private static List<string> p1 = new List<string>();
@@ -16,13 +17,7 @@ namespace TournamentAdjudicator.Models
         private static List<string> p3 = new List<string>();
         private static List<string> p4 = new List<string>();
         */
-        static public Player first = new Player();
-        static public Player second = new Player();
-        static public Player third = new Player();
-        static public Player fourth = new Player();
-       
-
-
+        
         public static string[,,] Board
         {
             get
@@ -35,6 +30,28 @@ namespace TournamentAdjudicator.Models
             }
         }
 
+        public static void example_board()
+        {
+
+            board[1, 5, 5] = "h";
+            board[1, 6, 5] = "a";
+            board[1, 7, 5] = "t";
+            board[1, 5, 4] = "e";
+            board[1, 5, 3] = "a";
+            board[1, 6, 2] = "r";
+            board[1, 5, 1] = "t";
+            board[1, 7, 5] = "d";
+
+            board[2, 5, 5] = "1";
+            board[2, 6, 5] = "1";
+            board[2, 7, 5] = "1";
+            board[2, 5, 4] = "1";
+            board[2, 5, 3] = "1";
+            board[2, 6, 2] = "1";
+            board[2, 5, 1] = "1";
+            board[2, 7, 5] = "2";
+
+        }
 
 
         public static void initalize_bag()
@@ -110,9 +127,13 @@ namespace TournamentAdjudicator.Models
        
         public static void initial_draw()
         {
-            Random rnd = new Random();
-          
-                first.ID = rnd.Next(1, 4);
+            foreach (Player p in UserController.Players)
+            {
+                give_letters(p, 7);
+            }
+
+            
+            
             
 
             /*     int start2 = rnd.Next(0, bag.Count);
@@ -137,16 +158,14 @@ namespace TournamentAdjudicator.Models
         {
             Random rnd = new Random();
             int start2;
-            int i = 0;
 
-            while (i < needed)
+
+            for(int i = 0;  i < needed; i++)
             {
                 start2 = rnd.Next(0, bag.Count);
                 p.addSingleLetter(bag[start2]);
                 Console.WriteLine("p: " + p.Letters[i]);
                 bag.Remove(p.Letters[i]);
-                i++;
-
             }
         }
 

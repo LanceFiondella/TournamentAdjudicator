@@ -9,7 +9,7 @@ namespace TournamentAdjudicator.Models
     class SampleAI
     {
         public int BLANK_LETTER = '_';
-        public int[,,] tilesc;
+        public int[,,] tiles;
         public SampleAI(Gameplay P)
         {
             //tilesc = P.board();
