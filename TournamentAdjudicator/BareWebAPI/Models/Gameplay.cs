@@ -34,23 +34,23 @@ namespace TournamentAdjudicator.Models
         public static void example_board()
         {
 
-            board[1, 5, 5] = "h";
-            board[1, 6, 5] = "a";
-            board[1, 7, 5] = "t";
-            board[1, 5, 4] = "e";
-            board[1, 5, 3] = "a";
-            board[1, 6, 2] = "r";
-            board[1, 5, 1] = "t";
-            board[1, 7, 5] = "d";
+            board[0, 5, 5] = "h";
+            board[0, 6, 5] = "a";
+            board[0, 7, 5] = "t";
+            board[0, 5, 4] = "e";
+            board[0, 5, 3] = "a";
+            board[0, 6, 2] = "r";
+            board[0, 5, 1] = "t";
+            board[0, 7, 5] = "d";
 
-            board[2, 5, 5] = "1";
-            board[2, 6, 5] = "1";
-            board[2, 7, 5] = "1";
-            board[2, 5, 4] = "1";
-            board[2, 5, 3] = "1";
-            board[2, 6, 2] = "1";
-            board[2, 5, 1] = "1";
-            board[2, 7, 5] = "2";
+            board[1, 5, 5] = "1";
+            board[1, 6, 5] = "1";
+            board[1, 7, 5] = "1";
+            board[1, 5, 4] = "1";
+            board[1, 5, 3] = "1";
+            board[1, 6, 2] = "1";
+            board[1, 5, 1] = "1";
+            board[1, 7, 5] = "2";
 
         }
 
@@ -58,11 +58,11 @@ namespace TournamentAdjudicator.Models
         public static void initalize_bag()
         {
 
-            for(int i = 1; i <= 10; i++)
+            for(int i = 0; i <= 9; i++)
             {
-                for (int j = 1; j <= 10; j++)
+                for (int j = 0; j <= 9; j++)
                 {
-                    board[2, i, j] = "0";
+                    board[1, i, j] = "0";
                 }
             }
 
