@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TournamentAdjudicator
+namespace TournamentAdjudicator.Models
 {
     class SampleAI
     {
@@ -12,7 +12,7 @@ namespace TournamentAdjudicator
         public int[,,] tilesc;
         public SampleAI(Gameplay P)
         {
-            tilesc = P.board();
+            //tilesc = P.board();
            
         }
 
