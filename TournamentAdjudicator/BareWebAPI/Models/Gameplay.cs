@@ -158,16 +158,14 @@ namespace TournamentAdjudicator.Models
         {
             Random rnd = new Random();
             int start2;
-            int i = 0;
 
-            while (i < needed)
+
+            for(int i = 0;  i < needed; i++)
             {
                 start2 = rnd.Next(0, bag.Count);
                 p.addSingleLetter(bag[start2]);
                 Console.WriteLine("p: " + p.Letters[i]);
                 bag.Remove(p.Letters[i]);
-                i++;
-
             }
         }
 
