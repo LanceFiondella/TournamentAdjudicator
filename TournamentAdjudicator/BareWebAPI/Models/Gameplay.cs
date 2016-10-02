@@ -11,6 +11,7 @@ namespace TournamentAdjudicator.Models
     {
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
         public static List<string> bag = new List<string>();
+       
         /*
         private static List<string> p1 = new List<string>();
         private static List<string> p2 = new List<string>();
@@ -56,6 +57,16 @@ namespace TournamentAdjudicator.Models
 
         public static void initalize_bag()
         {
+
+            for(int i = 1; i <= 10; i++)
+            {
+                for (int j = 1; j <= 10; j++)
+                {
+                    board[2, i, j] = "0";
+                }
+            }
+
+
             int temp = 0;
             bag.Add("V");
             bag.Add("Qu");
