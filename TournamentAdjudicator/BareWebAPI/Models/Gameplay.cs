@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TournamentAdjudicator.Models
 {
-    class Gameplay
+    public class Gameplay
     {
         string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/count ,x,y]
         public static List<string> bag = new List<string>();
