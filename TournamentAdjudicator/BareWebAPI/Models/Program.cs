@@ -10,9 +10,9 @@ namespace TournamentAdjudicator.Models
     {
         static void Main(string[] args)
         {
-            Gameplay P = new Gameplay();
-            P.initalize_bag();
-            P.initial_draw();
+          //  Gameplay P = new Gameplay();
+           // P.initalize_bag();
+           // P.initial_draw();
 
             //P.board();
             //Console.WriteLine("{0}", P.board().ToString());
