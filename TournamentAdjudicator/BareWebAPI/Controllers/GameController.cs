@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 
 namespace TournamentAdjudicator.Controllers
@@ -56,7 +58,27 @@ namespace TournamentAdjudicator.Controllers
             {
                 if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
                 {
-                    return Ok(Request.Headers.GetValues("Move").ElementAt(0).ToString());
+                    JToken RequestValue = JObject.Parse(Request.Headers.GetValues("Move").ElementAt(0).ToString());
+
+                    JToken move = RequestValue.SelectToken("Board");
+
+                    if (move != null)
+                    {
+                        var dict = JsonConvert.DeserializeObject<string[, ,]>(move.ToString());
+                        if (dict != null)
+                        {
+                            //Send the data to the move checkers
+                            return Ok(dict[0,0,3]);
+                        }
+                        else
+                        {
+                            return Ok("Something went wrong in deserializing");
+                        }
+
+                    }
+                    
+                    
+                    return Ok("Something went wrong in selecting the move");
 
                     //Add code to return Game data and Player data
                 }
