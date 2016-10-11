@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentAdjudicator", "BareWebAPI\TournamentAdjudicator.csproj", "{053163DB-19CA-4D74-A94B-19226C524BBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{249EF0B3-2166-4503-B2C9-08B0DCBDFFD6}"
+	ProjectSection(SolutionItems) = preProject
+		temp\ScoreKeeping.cs = temp\ScoreKeeping.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
