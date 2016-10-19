@@ -51,6 +51,27 @@ namespace TournamentAdjudicator.Models
             
         }
 
+        public static bool exchange_move(Player p)
+        {
+            if (p.Letters.Contains(p.ExchangeLetter))
+            {
+                p.Letters.Remove(p.ExchangeLetter);
+                bag.Add(p.ExchangeLetter);
+                Random rnd = new Random();
+                int start2;
+
+
+
+                start2 = rnd.Next(0, bag.Count);
+                p.addSingleLetter(bag[start2]);
+
+                bag.Remove(bag[start2]);
+                return true;
+
+            }
+
+            else return false;
+        }
         public static void example_board()
         {
 
