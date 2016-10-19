@@ -46,9 +46,16 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-        public static bool except_move(string[,,])
+        public static void accept_or_reject_move()
         {
-            
+            Validity moveChecker = new Validity();
+            moveChecker.NewBoard = board_temp;
+            moveChecker.OldBoard = board;
+
+            if(moveChecker.CheckMoveValidity())
+            {
+                board = board_temp;
+            }
         }
 
         public static bool exchange_move(Player p)
