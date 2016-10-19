@@ -55,7 +55,7 @@ namespace TournamentAdjudicator.Controllers
                     Gameplay.initalize_bag();
                     Gameplay.initial_draw();
                 }
-                return Ok(Players);
+                return Ok(newplayer);
             }else{
                 return NotFound();
             }
