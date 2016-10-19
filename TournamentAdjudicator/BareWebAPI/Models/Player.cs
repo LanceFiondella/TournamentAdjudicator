@@ -11,6 +11,7 @@ namespace TournamentAdjudicator.Models
         private List<string> letters;
         private int id;
         private string hash;
+        private string exchangeletter;
 
             public List<string> Letters
             {
@@ -46,7 +47,18 @@ namespace TournamentAdjudicator.Models
                 hash = value;
             }
         }
-        
+        public string ExchangeLetter
+        {
+            get
+            {
+                return exchangeletter;
+            }
+            set
+            {
+                exchangeletter = value;
+            }
+        }
+
 
 
         //intialize when user connects
@@ -82,6 +94,10 @@ namespace TournamentAdjudicator.Models
         public void addSingleLetter(string newletter)
         {
             this.letters.Add(newletter);
+        }
+        public void removeSingleLetter(string removeletter)
+        {
+            this.letters.Remove(removeletter);
         }
 
     }
