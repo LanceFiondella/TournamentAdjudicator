@@ -10,6 +10,8 @@ namespace TournamentAdjudicator.Models
     public static class Gameplay
     {
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
+        static string[,,] board_temp = new string[2, 10, 10];
+
         public static List<string> bag = new List<string>();
        
         /*
@@ -30,6 +32,19 @@ namespace TournamentAdjudicator.Models
                 board = value;
             }
         }
+
+        public static string[,,] Board_temp
+        {
+            get
+            {
+                return board_temp;
+            }
+            set
+            {
+                board_temp = value;
+            }
+        }
+
 
         public static void example_board()
         {

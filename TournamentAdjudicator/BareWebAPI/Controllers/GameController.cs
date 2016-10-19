@@ -68,7 +68,8 @@ namespace TournamentAdjudicator.Controllers
                         if (dict != null)
                         {
                             //Send the data to the move checkers
-                            return Ok(dict[0,0,3]);
+                            Gameplay.Board_temp = dict;
+                            return Ok();
                         }
                         else
                         {
