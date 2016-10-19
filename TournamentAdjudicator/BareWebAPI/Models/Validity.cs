@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoveAnalysis
+namespace TournamentAdjudicator.Models
 {
-    class Validity
+    public class Validity
     {
         //---------------------------fields--------------------------
         //-----------------------------------------------------------

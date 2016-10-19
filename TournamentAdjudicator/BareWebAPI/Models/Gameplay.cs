@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TournamentAdjudicator.Controllers;
+using TournamentAdjudicator.Models;
 
 namespace TournamentAdjudicator.Models
 {
@@ -13,14 +14,14 @@ namespace TournamentAdjudicator.Models
         static string[,,] board_temp = new string[2, 10, 10];
 
         public static List<string> bag = new List<string>();
-       
+
         /*
         private static List<string> p1 = new List<string>();
         private static List<string> p2 = new List<string>();
         private static List<string> p3 = new List<string>();
         private static List<string> p4 = new List<string>();
         */
-        
+
         public static string[,,] Board
         {
             get
@@ -45,6 +46,10 @@ namespace TournamentAdjudicator.Models
             }
         }
 
+        public static bool except_move(string[,,])
+        {
+            
+        }
 
         public static void example_board()
         {
