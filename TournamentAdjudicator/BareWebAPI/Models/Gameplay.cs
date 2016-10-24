@@ -8,8 +8,12 @@ using TournamentAdjudicator.Models;
 
 namespace TournamentAdjudicator.Models
 {
-    public static class Gameplay
+    public class Gameplay
     {
+        // define the board dimensions
+        static int Board_Height = 10;
+        static int Board_Width = 10;
+
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
         static string[,,] board_temp = new string[2, 10, 10];
 
@@ -22,7 +26,7 @@ namespace TournamentAdjudicator.Models
         private static List<string> p4 = new List<string>();
         */
 
-        public static string[,,] Board
+        public string[,,] Board
         {
             get
             {
@@ -34,7 +38,7 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-        public static string[,,] Board_temp
+        public string[,,] Board_temp
         {
             get
             {
@@ -46,11 +50,13 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-        public static void accept_or_reject_move()
+        public static void accept_or_reject_move(Player p, Validity moveChecker)
         {
-            Validity moveChecker = new Validity();
+            // see where this hsould be done so that
+            // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
+            //pass in the letters that the current player has
 
             if(moveChecker.CheckMoveValidity())
             {
@@ -79,29 +85,89 @@ namespace TournamentAdjudicator.Models
 
             else return false;
         }
-        public static void example_board()
+
+        public void example_board()
         {
 
             board[0, 5, 5] = "h";
             board[0, 6, 5] = "a";
             board[0, 7, 5] = "t";
-            board[0, 5, 4] = "e";
-            board[0, 5, 3] = "a";
-            board[0, 6, 2] = "r";
-            board[0, 5, 1] = "t";
+            board[0, 5, 6] = "r";
+            board[0, 5, 7] = "e";
+            board[0, 5, 8] = "a";
+            board[0, 5, 9] = "t";
             board[0, 7, 5] = "d";
 
-            board[1, 5, 5] = "1";
+            board[1, 5, 5] = "5";
             board[1, 6, 5] = "1";
             board[1, 7, 5] = "1";
-            board[1, 5, 4] = "1";
-            board[1, 5, 3] = "1";
-            board[1, 6, 2] = "1";
-            board[1, 5, 1] = "1";
+            board[1, 5, 6] = "1";
+            board[1, 5, 7] = "1";
+            board[1, 5, 8] = "1";
+            board[1, 5, 9] = "1";
             board[1, 7, 5] = "2";
 
         }
 
+        // Initialize all game squares to "-"
+        // Initialize heights to "0"
+        public void init_board()
+        {
+            for(int i = 0; i < Board_Height; i++)
+            {
+                for(int j = 0; j < Board_Width; j++)
+                {
+                    board[0, i, j] = "-";
+                    board[1, i, j] = "0";
+                }
+            }
+        }
+
+        public void Print_Board(string[, ,] myBoard, int level)
+        {
+            Console.Write(" ");
+            Console.Write(" ");
+            Console.Write(" ");
+            Console.Write(" ");
+            Console.Write(" ");
+            for (int i = 0; i < Board_Height+1; i++)
+            {
+                for (int j = 0; j < Board_Width+1; j++)
+                {
+                    if (i == 0)
+                    {
+                        if(!(j.Equals(10)))
+                        {
+                            Console.Write(" ");
+                            Console.Write(" ");
+                            Console.Write(j);
+                            Console.Write(" ");
+                            Console.Write(" ");
+                        }
+                    }
+                    else if (j == 0)
+                    {
+                        Console.Write(" ");
+                        Console.Write(" ");
+                        Console.Write(i-1);
+                        Console.Write(" ");
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                        Console.Write(" ");
+                        Console.Write(myBoard[level, i-1, j-1]);
+                        Console.Write(" ");
+                        Console.Write(" ");
+                    }
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+        }
 
         public static void initalize_bag()
         {
