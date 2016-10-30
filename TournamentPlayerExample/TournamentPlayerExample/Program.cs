@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
+using System.Threading;
 using System.Threading.Tasks; 
 using Newtonsoft.Json;
 
@@ -14,6 +15,7 @@ namespace TournamentPlayerExample
         public string Hash { get; set; }
         public string[] Letters { get; set; }
         public string[,,] Board { get; set; }
+        public int Turn { get; set; }
     }
     public static class GameNetworkCommuncation
     {
@@ -51,10 +53,9 @@ namespace TournamentPlayerExample
                 RequestUri = new Uri(client.BaseAddress.AbsoluteUri+$"api/game/{myPayload.ID}"),
                 Method = HttpMethod.Get,
             };
-            //request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("Hash"));
+
             client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
-            //client.DefaultRequestHeaders["Hash"] = myPayload.Hash;
-            //client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
+
 
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
@@ -64,14 +65,30 @@ namespace TournamentPlayerExample
             return myPayload;
         }
 
-        static async Task<Payload> UpdatePayloadAsync(Payload payload)
+        static async Task<Payload> SendMove()
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync($"api/game/{payload.ID}", payload);
-            response.EnsureSuccessStatusCode();
+            var request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(client.BaseAddress.AbsoluteUri + $"api/game/{myPayload.ID}"),
+                Method = HttpMethod.Get,
+            };
+            
+            client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
+            client.DefaultRequestHeaders.Add("Board", myPayload.Board.ToString());
+
+
+            HttpResponseMessage response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                myPayload = await response.Content.ReadAsAsync<Payload>();
+            }
+            return myPayload;
+
+
+            
 
             // Deserialize the updated product from the response body.
-            payload = await response.Content.ReadAsAsync<Payload>();
-            return payload;
+
         }
 
         static async Task<HttpStatusCode> DeleteProductAsync(string id)
@@ -92,8 +109,12 @@ namespace TournamentPlayerExample
                 Console.WriteLine("I am user number {0} with hash code {1}", myPayload.ID, myPayload.Hash);
                 await GetGamestate();
                 Console.WriteLine("I got the board state and letters");
-
-
+                while (myPayload.Turn != myPayload.ID)
+                {
+                    await GetGamestate();
+                    Thread.Sleep(100);
+                }
+                await SendMove();
 
                 // Get the product
                 //payload = await GetPayloadAsync(url.PathAndQuery);
