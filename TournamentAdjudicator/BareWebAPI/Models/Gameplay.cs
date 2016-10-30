@@ -8,7 +8,7 @@ using TournamentAdjudicator.Models;
 
 namespace TournamentAdjudicator.Models
 {
-    public class Gameplay
+    public static class Gameplay
     {
         // define the board dimensions
         static int Board_Height = 10;
@@ -26,7 +26,7 @@ namespace TournamentAdjudicator.Models
         private static List<string> p4 = new List<string>();
         */
 
-        public string[,,] Board
+        public static string[,,] Board
         {
             get
             {
@@ -38,7 +38,7 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-        public string[,,] Board_temp
+        public static string[,,] Board_temp
         {
             get
             {
@@ -86,7 +86,7 @@ namespace TournamentAdjudicator.Models
             else return false;
         }
 
-        public void example_board()
+        public static void example_board()
         {
 
             board[0, 5, 5] = "h";
@@ -111,7 +111,7 @@ namespace TournamentAdjudicator.Models
 
         // Initialize all game squares to "-"
         // Initialize heights to "0"
-        public void init_board()
+        public static void init_board()
         {
             for(int i = 0; i < Board_Height; i++)
             {
@@ -123,7 +123,7 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-        public void Print_Board(string[, ,] myBoard, int level)
+        public static void Print_Board(string[, ,] myBoard, int level)
         {
             Console.Write(" ");
             Console.Write(" ");
