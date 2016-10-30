@@ -68,6 +68,7 @@ namespace TournamentAdjudicator.Controllers
                         if (dict != null)
                         {
                             //Send the data to the move checkers
+                            Models.Gameplay.accept_or_reject_move(Player,dict); //Fill in player 
                             Gameplay.Board_temp = dict;
                             return Ok();
                         }
