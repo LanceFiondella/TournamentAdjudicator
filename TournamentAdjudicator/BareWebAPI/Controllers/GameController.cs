@@ -68,9 +68,17 @@ namespace TournamentAdjudicator.Controllers
                         if (dict != null)
                         {
                             //Send the data to the move checkers
-                            Models.Gameplay.accept_or_reject_move(Player,dict); //Fill in player 
+                            
                             Gameplay.Board_temp = dict;
-                            return Ok();
+                            var valid = Models.Gameplay.accept_or_reject_move(user); //Fill in player 
+                            if (valid)
+                            {
+                                Ok("Move Valid");
+                            }
+                            else
+                            {
+                                Ok("Invalid Move");
+                            }
                         }
                         else
                         {

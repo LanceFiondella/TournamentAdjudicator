@@ -50,8 +50,9 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-        public static void accept_or_reject_move(Player p, Validity moveChecker)
+        public static bool accept_or_reject_move(Player p)
         {
+            Validity moveChecker = new Validity();
             // see where this hsould be done so that
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
@@ -61,6 +62,11 @@ namespace TournamentAdjudicator.Models
             if(moveChecker.CheckMoveValidity())
             {
                 board = board_temp;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
