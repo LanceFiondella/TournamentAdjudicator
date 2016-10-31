@@ -182,6 +182,8 @@ namespace TournamentAdjudicator.Models
                     board[1, i, j] = "0";
                 }
             }
+
+            Player_Turn = 1;
         }
 
         public static void Print_Board(string[, ,] myBoard, int level)
