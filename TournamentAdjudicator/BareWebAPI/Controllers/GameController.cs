@@ -54,8 +54,8 @@ namespace TournamentAdjudicator.Controllers
                 return NotFound();
             }
 
-            //try
-            //{
+            try
+            {
                 if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
                 {
                     JToken move;
@@ -125,11 +125,11 @@ namespace TournamentAdjudicator.Controllers
                 {
                     return Ok("User Auth Failed");
                 }
-            //}
-            /*catch
+            }
+            catch
             {
                 return Ok("Caught");
-            }*/
+            }
 
            
         }
@@ -141,6 +141,8 @@ namespace TournamentAdjudicator.Controllers
     {
         public string[,,] Board = Gameplay.Board;
         public List<string> Letters { get; set; }
+
+        public int Turn = Gameplay.Player_Turn;
 
     }
 }
