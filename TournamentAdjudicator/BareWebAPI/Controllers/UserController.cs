@@ -19,7 +19,8 @@ namespace TournamentAdjudicator.Controllers
         [HttpGet]
         public IHttpActionResult GetUser()
         {
-            if (players < 4) { 
+            if (players < 4 && !Gameplay.Game_Started)
+            { 
                
                 //Secure hash
                 byte[] randBytes;
@@ -50,7 +51,7 @@ namespace TournamentAdjudicator.Controllers
                     Players = tempList;
                 }
                 catch { }
-                if (newid >= 4)
+                if (newid >= 4 && !Gameplay.Game_Started)
                 {
                     Gameplay.initalize_bag();
                     Gameplay.initial_draw();
