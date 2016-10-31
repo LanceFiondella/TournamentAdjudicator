@@ -63,6 +63,18 @@ namespace TournamentAdjudicator.Models
             }
         }
 
+        public static void pass()
+        {
+            if (Player_Turn == 4)
+            {
+                Player_Turn = 1;
+            }
+            else
+            {
+                Player_Turn++;
+            }
+        }
+
 
         public static bool accept_or_reject_move(Player p)
         {
@@ -78,12 +90,26 @@ namespace TournamentAdjudicator.Models
             if(moveChecker.CheckMoveValidity())
             {
                 board = board_temp;
-                Player_Turn++;
+                if (Player_Turn == 4)
+                {
+                    Player_Turn = 1;
+                }
+                else
+                {
+                    Player_Turn++;
+                }
                 return true;
             }
             else
             {
-                Player_Turn++;
+                if (Player_Turn == 4)
+                {
+                    Player_Turn = 1;
+                }
+                else
+                {
+                    Player_Turn++;
+                }
 
                 return false;
             }
@@ -107,7 +133,7 @@ namespace TournamentAdjudicator.Models
 
                 if(Player_Turn == 4)
                 {
-                    Player_Turn = 0;
+                    Player_Turn = 1;
                 }
                 else
                 {
