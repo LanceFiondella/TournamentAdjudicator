@@ -54,13 +54,23 @@ namespace TournamentAdjudicator.Controllers
                 return NotFound();
             }
 
-            try
-            {
+            //try
+            //{
                 if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
                 {
-                    JToken RequestValue = JObject.Parse(Request.Headers.GetValues("Move").ElementAt(0).ToString());
-
-                    JToken move = RequestValue.SelectToken("Board");
+                    JToken move;
+                    JToken exchange;
+                    try
+                    {
+                        JToken RequestValue = JObject.Parse(Request.Headers.GetValues("Move").ElementAt(0).ToString());
+                        move = RequestValue.SelectToken("Board");
+                        exchange = RequestValue.SelectToken("Letters");
+                    }
+                    catch
+                    {
+                        move = null;
+                        exchange = null;
+                    }
 
                     if (move != null)
                     {
@@ -68,16 +78,16 @@ namespace TournamentAdjudicator.Controllers
                         if (dict != null)
                         {
                             //Send the data to the move checkers
-                            
+
                             Gameplay.Board_temp = dict;
                             var valid = Models.Gameplay.accept_or_reject_move(user); //Fill in player 
                             if (valid)
                             {
-                                Ok("Move Valid");
+                                return Ok("Move Valid");
                             }
                             else
                             {
-                                Ok("Invalid Move");
+                                return Ok("Invalid Move");
                             }
                         }
                         else
@@ -86,19 +96,42 @@ namespace TournamentAdjudicator.Controllers
                         }
 
                     }
-                    
-                    
-                    return Ok("Something went wrong in selecting the move");
+                    else if (exchange != null)
+                    {
+                        //The user has chosen to pass
+                        var letter = JsonConvert.DeserializeObject<string[]>(exchange.ToString());
+                        if (letter != null)
+                        {
+                            //letters stuff here
+                            return Ok("You decided to turn in: "+string.Join("",letter));
+                        }
+                        else
+                        {
+                            return Ok("Something went wrong in deserializing");
+                        }
+
+                    }
+                    else
+                    {
+                        return Ok("You have passed.");
+                    }
+
+
+                   
 
                     //Add code to return Game data and Player data
                 }
-            }
-            catch 
+                else
+                {
+                    return Ok("User Auth Failed");
+                }
+            //}
+            /*catch
             {
-                Ok("Caught");
-            }
+                return Ok("Caught");
+            }*/
 
-            return Ok("User Auth Failed");
+           
         }
         
 
