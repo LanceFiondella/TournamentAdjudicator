@@ -17,6 +17,17 @@ namespace TournamentPlayerExample
         public string[,,] Board { get; set; }
         public int Turn { get; set; }
     }
+    public class Move
+    {
+        public string Board { get; set; }
+        public string Letters { get; set; }
+        public Move(string board,string letters)
+        {
+            Board = board;
+            Letters = letters;
+
+        }
+    }
     public static class GameNetworkCommuncation
     {
         static HttpClient client = new HttpClient();
@@ -84,6 +95,7 @@ namespace TournamentPlayerExample
         //will send the move to the server
         static async Task<Payload> SendMove()
         {
+            //initialization
             Payload tempPayload = new Payload();
             client.DefaultRequestHeaders.Clear();
             var request = new HttpRequestMessage()
@@ -92,28 +104,28 @@ namespace TournamentPlayerExample
                 Method = HttpMethod.Post,
             };
 
-            string Move = JsonConvert.SerializeObject(myPayload.Board);
+            //adds data to header
+            string board = JsonConvert.SerializeObject(myPayload.Board);
+            string letters = JsonConvert.SerializeObject(myPayload.Letters);
+            Move move = new Move(board, letters);
+            string jmove = JsonConvert.SerializeObject(move);
             client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
-            client.DefaultRequestHeaders.Add("Move", Move);
+            client.DefaultRequestHeaders.Add("Move", jmove);
 
-
+            //sends data to server
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 tempPayload = await response.Content.ReadAsAsync<Payload>();
             }
 
+            //update the payload variable
             updatePayload(tempPayload, myPayload);
-
             return myPayload;
-
-
-            
-
-            // Deserialize the updated product from the response body.
 
         }
 
+        //send letter exchange to server 
         static async Task<Payload> SendExchangeLetters()
         {
             Payload tempPayload = new Payload();
@@ -171,6 +183,9 @@ namespace TournamentPlayerExample
                 }
                 Console.WriteLine("I got the board state and letters");
 
+                myPayload.Board[0, 1, 0] = "C";
+                myPayload.Board[0, 2, 0] = "A";
+                myPayload.Board[0, 3, 0] = "T";
                 //make a move
                 await SendMove();
 
