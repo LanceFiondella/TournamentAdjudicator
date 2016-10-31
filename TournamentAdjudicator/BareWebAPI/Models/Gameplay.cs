@@ -13,6 +13,7 @@ namespace TournamentAdjudicator.Models
         // define the board dimensions
         static int Board_Height = 10;
         static int Board_Width = 10;
+        static int Player_Turn;
 
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
         static string[,,] board_temp = new string[2, 10, 10];
@@ -50,6 +51,19 @@ namespace TournamentAdjudicator.Models
             }
         }
 
+        public static bool turn(int id)
+        {
+            if(Player_Turn == id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
         public static bool accept_or_reject_move(Player p)
         {
             Validity moveChecker = new Validity();
@@ -57,15 +71,20 @@ namespace TournamentAdjudicator.Models
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
+            moveChecker.Letters = p.Letters;
+
             //pass in the letters that the current player has
 
             if(moveChecker.CheckMoveValidity())
             {
                 board = board_temp;
+                Player_Turn++;
                 return true;
             }
             else
             {
+                Player_Turn++;
+
                 return false;
             }
         }
@@ -85,6 +104,16 @@ namespace TournamentAdjudicator.Models
                 p.addSingleLetter(bag[start2]);
 
                 bag.Remove(bag[start2]);
+
+                if(Player_Turn == 4)
+                {
+                    Player_Turn = 0;
+                }
+                else
+                {
+                    Player_Turn++;
+                }
+
                 return true;
 
             }
