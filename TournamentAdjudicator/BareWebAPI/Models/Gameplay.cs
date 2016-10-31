@@ -319,6 +319,7 @@ namespace TournamentAdjudicator.Models
             {
                 give_letters(p, 7);
             }
+            Player_Turn = 1;
 
             
             
