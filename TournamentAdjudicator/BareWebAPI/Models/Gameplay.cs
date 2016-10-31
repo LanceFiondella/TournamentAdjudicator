@@ -13,7 +13,7 @@ namespace TournamentAdjudicator.Models
         // define the board dimensions
         static int Board_Height = 10;
         static int Board_Width = 10;
-        static int Player_Turn;
+        public static int Player_Turn;
 
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
         static string[,,] board_temp = new string[2, 10, 10];
