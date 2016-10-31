@@ -59,7 +59,7 @@ namespace TournamentPlayerExample
             client.DefaultRequestHeaders.Clear();
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri(client.BaseAddress.AbsoluteUri+$"api/game/{myPayload.ID}"),
+                RequestUri = new Uri(client.BaseAddress.AbsoluteUri+"api/game/"+myPayload.ID),
                 Method = HttpMethod.Get,
             };
 
@@ -100,7 +100,7 @@ namespace TournamentPlayerExample
             client.DefaultRequestHeaders.Clear();
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri(client.BaseAddress.AbsoluteUri + $"api/game/{myPayload.ID}"),
+                RequestUri = new Uri(client.BaseAddress.AbsoluteUri + "api/game/" + myPayload.ID),
                 Method = HttpMethod.Post,
             };
 
