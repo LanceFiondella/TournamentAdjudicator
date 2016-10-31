@@ -24,12 +24,12 @@ namespace TournamentAdjudicator
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             //Starts the game after 10 seconds if 2 or more players in game.
-            if (!Gameplay.Game_Started && UserController.Players.Count > 1)
+            /*if (!Gameplay.Game_Started && UserController.Players.Count > 1)
             {
                 Gameplay.initalize_bag();
                 Gameplay.initial_draw();
                 Gameplay.Game_Started = true;
-            }
+            }*/
         }
     }
 }
