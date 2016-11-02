@@ -195,7 +195,7 @@ namespace TournamentPlayerExample
                 foreach (char letter in move)
                 {
                     myPayload.Board[0, 4, i] = letter.ToString();
-                    myPayload.Board[1, 4, i] = "1";
+                    myPayload.Board[1, 4, i] = (Int32.Parse(myPayload.Board[1, 4, i].ToString())+1).ToString();//I AM REFUSING TO COMMENT THIS LINE
                     i++;
                 }
                 /*
