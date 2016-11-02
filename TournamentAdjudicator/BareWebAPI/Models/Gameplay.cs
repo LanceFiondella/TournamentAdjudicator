@@ -21,12 +21,6 @@ namespace TournamentAdjudicator.Models
 
         public static List<string> bag = new List<string>();
 
-        /*
-        private static List<string> p1 = new List<string>();
-        private static List<string> p2 = new List<string>();
-        private static List<string> p3 = new List<string>();
-        private static List<string> p4 = new List<string>();
-        */
 
         public static string[,,] Board
         {
@@ -64,58 +58,41 @@ namespace TournamentAdjudicator.Models
             }
         }
 
+        //only increment playerturn. should we keep track of if players have passed?
         public static void pass()
         {
-            if (Player_Turn == 4)
-            {
-                Player_Turn = 1;
-            }
-            else
-            {
-                Player_Turn++;
-            }
+            Player_Turn = Player_Turn % 4 + 1;
         }
 
 
         public static bool accept_or_reject_move(Player p)
         {
             Validity moveChecker = new Validity();
-            // see where this hsould be done so that
+            // see where this should be done so that
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
-         //   moveChecker.Letters = p.Letters;
 
             //pass in the letters that the current player has
 
             if(moveChecker.CheckMoveValidity())
             {
                 board = board_temp;
-                if (Player_Turn == 4)
-                {
-                    Player_Turn = 1;
-                }
-                else
-                {
-                    Player_Turn++;
-                }
+                Player_Turn = Player_Turn % 4 + 1;
+
+                //is a valid movee
                 return true;
             }
             else
             {
-                if (Player_Turn == 4)
-                {
-                    Player_Turn = 1;
-                }
-                else
-                {
-                    Player_Turn++;
-                }
+                Player_Turn = Player_Turn % 4 + 1;
 
+                //not a valid move, they pass their turn
                 return false;
             }
         }
 
+        //exchange a single letter instead of a move
         public static bool exchange_move(Player p)
         {
             if (p.Letters.Contains(p.ExchangeLetter))
@@ -132,14 +109,7 @@ namespace TournamentAdjudicator.Models
 
                 bag.Remove(bag[start2]);
 
-                if(Player_Turn == 4)
-                {
-                    Player_Turn = 1;
-                }
-                else
-                {
-                    Player_Turn++;
-                }
+                Player_Turn = Player_Turn % 4 + 1;
 
                 return true;
 
@@ -309,39 +279,19 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-
-        //George: does this remove the used letters frfom the bag? RFD
-        //no, they go back in bag
-
-       
+     
         public static void initial_draw()
         {
+            //give all players 7 tiles
             foreach (Player p in UserController.Players)
             {
                 give_letters(p, 7);
             }
+
+            //start game
             Player_Turn = 1;
 
-            
-            
-            
-
-            /*     int start2 = rnd.Next(0, bag.Count);
-                 p1.addSingleLetter(bag[start2]);
-                 start2 = rnd.Next(0, bag.Count);
-                p2.addSingleLetter(bag[start2]);
-                 start2 = rnd.Next(0, bag.Count);
-                 p3.addSingleLetter(bag[start2]);
-                 start2 = rnd.Next(0, bag.Count);
-                 p4.addSingleLetter(bag[start2]);*/
-
-
-
-            // Console.WriteLine("p1: " + p1.Letters[0]);
-            //Console.WriteLine("p2: " + p2.Letters[0]);
-            //Console.WriteLine("p3: " + p3.Letters[0]);
-            //Console.WriteLine("p4: " + p4.Letters[0]);
-
+ 
         }
 
         public static void give_letters(Player p, int needed)
