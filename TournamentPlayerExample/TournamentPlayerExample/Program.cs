@@ -132,7 +132,7 @@ namespace TournamentPlayerExample
 
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri(client.BaseAddress.AbsoluteUri + $"api/game/{myPayload.ID}"),
+                RequestUri = new Uri(client.BaseAddress.AbsoluteUri + "api/game/"+ myPayload.ID),
                 Method = HttpMethod.Post,
             };
 
@@ -181,11 +181,27 @@ namespace TournamentPlayerExample
                     await GetGamestate();
                     Thread.Sleep(100);
                 }
-                Console.WriteLine("I got the board state and letters");
+                string lettersString = "";
+                foreach (string letter in myPayload.Letters)
+                {
+                    lettersString += letter;
+                }
+                Console.WriteLine("I got the board state and letters: "+ lettersString);
 
+
+                Console.Write("Enter move: ");
+                string move = Console.ReadLine();
+                int i = 4;
+                foreach (char letter in move)
+                {
+                    myPayload.Board[0, 4, i] = letter.ToString();
+                    myPayload.Board[1, 4, i] = "1";
+                    i++;
+                }
+                /*
                 myPayload.Board[0, 1, 0] = "C";
                 myPayload.Board[0, 2, 0] = "A";
-                myPayload.Board[0, 3, 0] = "T";
+                myPayload.Board[0, 3, 0] = "T";*/
                 //make a move
                 await SendMove();
 
