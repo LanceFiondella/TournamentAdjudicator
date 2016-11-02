@@ -9,14 +9,16 @@ using Newtonsoft.Json;
 
 namespace TournamentPlayerExample
 {
+    //Payload class contains all data sent to and received from the server
     public class Payload
     {
         public int ID { get; set; }
         public string Hash { get; set; }
         public string[] Letters { get; set; }
         public string[,,] Board { get; set; }
-        public int Turn { get; set; }
+        public int Turn { get; set; }//1,2,3,4
     }
+    //Move class is only used for packaging a move command to send to the server
     public class Move
     {
         public string Board { get; set; }
@@ -28,6 +30,8 @@ namespace TournamentPlayerExample
 
         }
     }
+
+    //primary class used for communication with the server
     public static class GameNetworkCommuncation
     {
         static HttpClient client = new HttpClient();
@@ -55,6 +59,7 @@ namespace TournamentPlayerExample
         //gets the updated game state from the server and will update the board, letters, and turn
         static async Task<Payload> GetGamestate()
         {
+            //initializing the variables to be sent to derver
             Payload tempPayload = new Payload();
             client.DefaultRequestHeaders.Clear();
             var request = new HttpRequestMessage()
@@ -63,21 +68,24 @@ namespace TournamentPlayerExample
                 Method = HttpMethod.Get,
             };
 
+            //only header needed to be added is the hash
             client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
 
+            //sending the get message
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
-            {
+            {//if the message response was a success
                 tempPayload = await response.Content.ReadAsAsync<Payload>();
             }
 
-
+            //safely update the payload
             updatePayload(tempPayload, myPayload);
 
             return myPayload;
         }
 
         //helper function to update the payload variable if the data exists
+        //otherwise if data does not exist, it will overwrite it with 0.
         static void updatePayload(Payload a, Payload b)
         {
             if (a.ID != 0)
@@ -106,8 +114,8 @@ namespace TournamentPlayerExample
 
             //adds data to header
             string board = JsonConvert.SerializeObject(myPayload.Board);
-            string letters = JsonConvert.SerializeObject(myPayload.Letters);
-            Move move = new Move(board, letters);
+            ///string letters = JsonConvert.SerializeObject(myPayload.Letters);
+            Move move = new Move(board, null);
             string jmove = JsonConvert.SerializeObject(move);
             client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
             client.DefaultRequestHeaders.Add("Move", jmove);
@@ -128,33 +136,33 @@ namespace TournamentPlayerExample
         //send letter exchange to server 
         static async Task<Payload> SendExchangeLetters()
         {
+            //initialization
             Payload tempPayload = new Payload();
-
+            client.DefaultRequestHeaders.Clear();
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri(client.BaseAddress.AbsoluteUri + $"api/game/{myPayload.ID}"),
+                RequestUri = new Uri(client.BaseAddress.AbsoluteUri + "api/game/" + myPayload.ID),
                 Method = HttpMethod.Post,
             };
 
-            string Move = JsonConvert.SerializeObject(myPayload.Letters);
+            //adds data to header
+            //string board = JsonConvert.SerializeObject(myPayload.Board);
+            string letters = JsonConvert.SerializeObject(myPayload.Letters);
+            Move move = new Move(null, letters);
+            string jmove = JsonConvert.SerializeObject(move);
             client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
-            client.DefaultRequestHeaders.Add("Move", Move);
+            client.DefaultRequestHeaders.Add("Move", jmove);
 
-
+            //sends data to server
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 tempPayload = await response.Content.ReadAsAsync<Payload>();
             }
 
+            //update the payload variable
             updatePayload(tempPayload, myPayload);
-
             return myPayload;
-
-
-
-
-            // Deserialize the updated product from the response body.
 
         }
 
@@ -181,11 +189,29 @@ namespace TournamentPlayerExample
                     await GetGamestate();
                     Thread.Sleep(100);
                 }
-                Console.WriteLine("I got the board state and letters");
 
+                //print all letters I have in my pocket
+                Console.Write("I got the board state and letters: ");
+                foreach (string s in myPayload.Letters) Console.Write("{0},",s);
+
+
+
+
+
+                //set up new board to send
+                Console.WriteLine("I'm placing CAT on the board but don't have those letters in my pocket so I am going to fail.");
                 myPayload.Board[0, 1, 0] = "C";
                 myPayload.Board[0, 2, 0] = "A";
                 myPayload.Board[0, 3, 0] = "T";
+                
+ /*********************************************************************************
+ This would be the place you would most likely add code to update the board and 
+ send moves to the server
+
+    */
+
+
+
                 //make a move
                 await SendMove();
 
