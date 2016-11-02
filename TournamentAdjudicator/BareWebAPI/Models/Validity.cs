@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using TournamentAdjudicator.Controllers;
 using TournamentAdjudicator.Models;
@@ -31,8 +32,15 @@ namespace TournamentAdjudicator.Models
         static int[] changedHeightsDown = new int[7];
         static int[] changedHeightsRight = new int[7];
 
+        // Stores all of the letters the player had to maker their move with
+        static List<string> playerLetters = new List<string>();
+
         // List of words that were part of the player's move
         static List<string> words = new List<string>();
+
+        // Stores the dictionary being used to check the words played by each player
+        Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
         //-------------------------end fields------------------------
         //-----------------------------------------------------------
 
@@ -57,6 +65,12 @@ namespace TournamentAdjudicator.Models
             set { newBoard = value; }
         }
 
+        public List<string> PlayerLetters
+        {
+            get { return playerLetters; }
+            set { playerLetters = value; }
+        }
+
         public List<string> Words
         {
             get { return words; }
@@ -64,6 +78,38 @@ namespace TournamentAdjudicator.Models
         }
         //-----------------------end Accessors-----------------------
         //-----------------------------------------------------------
+
+
+        //--------------------------------------------------------------------
+        // Class Constructor
+        //--------------------------------------------------------------------
+        public Validity()
+        {
+            int count = 1;
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
+            try
+            {
+                var fileStream = new FileStream(@"..\..\..\dictionary.txt", FileMode.Open, FileAccess.Read);
+                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+                {
+                    string line;
+                    while ((line = streamReader.ReadLine()) != null)
+                    {
+                        dictionary.Add(line, count);
+                        count++;
+                    }
+                }
+                Console.Write("There are ");
+                Console.Write(count);
+                Console.WriteLine(" words in the dictionary.");
+            }
+            catch(FileNotFoundException)
+            {
+                Console.WriteLine("Error, the dictionary.txt file was not found, or is in the wrong directory.");
+            }
+
+        }
 
 
         //--------------------------------------------------------------------
@@ -116,6 +162,8 @@ namespace TournamentAdjudicator.Models
             int heightDifference = 0;
             int newHeight = 0;
             int oldHeight = 0;
+            string newLetter;
+            string oldLetter;
 
             for(int i = 0; i < 10; i++)
             {
@@ -125,6 +173,8 @@ namespace TournamentAdjudicator.Models
                     // on any given turn.
                     newHeight = Int32.Parse(newBoard[1,i,j]);
                     oldHeight = Int32.Parse(oldBoard[1,i,j]);
+                    newLetter = newBoard[0,i,j];
+                    oldLetter = oldBoard[0,i,j];
 
                     heightDifference = newHeight - oldHeight;
                     if((heightDifference > 1) || (heightDifference < 0))
@@ -133,13 +183,6 @@ namespace TournamentAdjudicator.Models
                     // Checks that no stack heights exceed 5
                     if(newHeight > 5)
                         return false;
-
-                    // checks that both levels match
-                    if (!changedSquaresDown[numChangedHeights].Equals(i) ||
-                       !changedSquaresRight[numChangedHeights].Equals(j))
-                    {
-                        return false;
-                    }
 
                     if(!newHeight.Equals(oldHeight))
                     {
@@ -150,6 +193,11 @@ namespace TournamentAdjudicator.Models
                         // Checks that the same letter was not stacked on itself
                         if (oldBoard[0, i, j].Equals(newBoard[0, i, j]))
                             return false;
+                    }
+                    // Check that is the heights are the same the letters are not different
+                    else if(!newLetter.Equals(oldLetter))
+                    {
+                        return false;
                     }
                 }
             }
@@ -225,6 +273,33 @@ namespace TournamentAdjudicator.Models
 
         //--------------------------------------------------------------------
         // Summary:
+        // Checks that the letters played by the player were actually in their
+        // pool of letters
+        //
+        // Output: 
+        // Returns true if all letters played were found in the player's pool
+        // of letters, else returns false
+        //--------------------------------------------------------------------
+        static bool CheckLetters()
+        {
+            bool validLetters = false;
+
+            for (int i = 0; i < numChangedSquares; i++)
+            {
+                foreach (string s in playerLetters)
+                {
+                    validLetters |= s.Equals(newBoard[0, changedSquaresDown[i], changedSquaresRight[i]]);
+                }
+
+                if (!validLetters)
+                    return false;
+            }
+
+            return validLetters;
+        }//end CheckLetters
+
+        //--------------------------------------------------------------------
+        // Summary:
         // Figures out the word that has been played by the player
         //
         // Output: 
@@ -283,7 +358,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Edits the properties the ScoreKeeper will need accordingly
         //--------------------------------------------------------------------
-        static void ScoreKeeperData()
+        static void SendScoreKeeperData()
         {
             
         }// end ScoreKeeperData
@@ -300,8 +375,13 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         public bool CheckMoveValidity()
         {
+            // Find the game squares that were changed by the player, and check
+            // if any invalid game squares were changed
+            // See the comments above the function for more information
             if (!ValidChangedSquares())
                 return false;
+
+            // check if letters layer matches height layer
 
             // If it is the first move, checks that one of the 4 centermost
             // game squares is played on
@@ -311,19 +391,32 @@ namespace TournamentAdjudicator.Models
                     return false;
             }
 
+            // Check that the letters played by the player were in their letter pool.
+            if (!CheckLetters())
+                return false;
+
+            // Check that no invalid moves were performed on stacks
+            // See the comments above the function for more information
             if (!CheckStacks())
                 return false;
 
             // Check that all the changes were made in either 1 row or column
             string moveDirection = CheckRowColumnValidity();
 
+            //
+            // working here now.
+            //
             // Get the word played by the player
-            GetWords(moveDirection);
+            /*GetWords(moveDirection);
 
-            foreach(string s in words)
+            foreach (string s in words)
             {
                 Console.WriteLine(s);
             }
+
+            // Check that all words part of the turn were not 
+            if (!CheckWords())
+                return false;*/
 
             return true;
         }//end CheckMoveValidity
