@@ -154,9 +154,9 @@ namespace TournamentAdjudicator.Models
             board[0, 5, 5] = "h";
             board[0, 6, 5] = "a";
             board[0, 7, 5] = "t";
-            board[0, 5, 6] = "r";
-            board[0, 5, 7] = "e";
-            board[0, 5, 8] = "a";
+            board[0, 5, 6] = "e";
+            board[0, 5, 7] = "a";
+            board[0, 5, 8] = "r";
             board[0, 5, 9] = "t";
             board[0, 7, 5] = "d";
 

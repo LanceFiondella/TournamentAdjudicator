@@ -189,29 +189,27 @@ namespace TournamentPlayerExample
                     await GetGamestate();
                     Thread.Sleep(100);
                 }
+                string lettersString = "";
+                foreach (string letter in myPayload.Letters)
+                {
+                    lettersString += letter;
+                }
+                Console.WriteLine("I got the board state and letters: "+ lettersString);
 
-                //print all letters I have in my pocket
-                Console.Write("I got the board state and letters: ");
-                foreach (string s in myPayload.Letters) Console.Write("{0},",s);
 
-
-
-
-
-                //set up new board to send
-                Console.WriteLine("I'm placing CAT on the board but don't have those letters in my pocket so I am going to fail.");
+                Console.Write("Enter move: ");
+                string move = Console.ReadLine();
+                int i = 4;
+                foreach (char letter in move)
+                {
+                    myPayload.Board[0, 4, i] = letter.ToString();
+                    myPayload.Board[1, 4, i] = (Int32.Parse(myPayload.Board[1, 4, i].ToString())+1).ToString();//I AM REFUSING TO COMMENT THIS LINE
+                    i++;
+                }
+                /*
                 myPayload.Board[0, 1, 0] = "C";
                 myPayload.Board[0, 2, 0] = "A";
-                myPayload.Board[0, 3, 0] = "T";
-                
- /*********************************************************************************
- This would be the place you would most likely add code to update the board and 
- send moves to the server
-
-    */
-
-
-
+                myPayload.Board[0, 3, 0] = "T";*/
                 //make a move
                 await SendMove();
 

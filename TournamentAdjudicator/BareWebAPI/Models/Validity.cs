@@ -16,7 +16,7 @@ namespace TournamentAdjudicator.Models
         static string[, ,] newBoard = new string[2, 10, 10];
 
         // Set to begin at 2 for testing
-        static int moveCount = 2;
+        static int moveCount = 1;
 
         static int[,] moveOrigin = new int[1, 2];
 
