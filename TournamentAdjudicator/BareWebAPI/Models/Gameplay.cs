@@ -72,6 +72,7 @@ namespace TournamentAdjudicator.Models
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
+            moveChecker.PlayerLetters = p.Letters;
 
             //pass in the letters that the current player has
 
