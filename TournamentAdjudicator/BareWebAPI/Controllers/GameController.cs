@@ -83,7 +83,9 @@ namespace TournamentAdjudicator.Controllers
                             var valid = Models.Gameplay.accept_or_reject_move(user); //Fill in player 
                             if (valid)
                             {
-                                return Ok("Move Valid");
+                                Status report = new Status();
+                                report.Letters = user.Letters;
+                                return Ok(report);
                             }
                             else
                             {

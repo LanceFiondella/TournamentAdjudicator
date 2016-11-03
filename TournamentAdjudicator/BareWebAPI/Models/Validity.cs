@@ -184,7 +184,7 @@ namespace TournamentAdjudicator.Models
                     if(newHeight > 5)
                         return false;
 
-                    if(!newHeight.Equals(oldHeight))
+                    if (!newHeight.Equals(oldHeight))
                     {
                         changedHeightsDown[numChangedHeights] = i;
                         changedHeightsRight[numChangedHeights] = j;
@@ -194,8 +194,10 @@ namespace TournamentAdjudicator.Models
                         if (oldBoard[0, i, j].Equals(newBoard[0, i, j]))
                             return false;
                     }
+                    else if ((newLetter == null && oldLetter == null))
+                        return true;
                     // Check that is the heights are the same the letters are not different
-                    else if(!newLetter.Equals(oldLetter))
+                    else if (!newLetter.Equals(oldLetter))
                     {
                         return false;
                     }
