@@ -79,7 +79,7 @@ namespace TournamentAdjudicator.Models
             if(moveChecker.CheckMoveValidity())
             {
                 board = board_temp;
-                Player_Turn = Player_Turn % 4 + 1;
+                Player_Turn = Player_Turn % UserController.Players.Count + 1;
 
                 //is a valid movee
                 return true;
