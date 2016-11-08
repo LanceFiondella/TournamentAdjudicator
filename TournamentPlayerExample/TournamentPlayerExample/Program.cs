@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
@@ -198,8 +199,18 @@ namespace TournamentPlayerExample
 
 
                 Console.Write("Enter move: ");
-                string move = Console.ReadLine();
-                int i = 4;
+                string move = "";
+                
+                string[] moves = new string[7];
+                int i = 0,j=0;
+                
+                do {
+                    move = Console.ReadLine();
+                    moves[i++] = move;
+                }while (move != "");
+
+
+                
                 foreach (char letter in move)
                 {
                     myPayload.Board[0, 4, i] = letter.ToString();
