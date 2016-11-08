@@ -209,15 +209,24 @@ namespace TournamentPlayerExample
                     moves[i++] = move;
                 }while (move != "");
 
+                string[] letNumNum = new string[3];
+                foreach (string m in moves)
+                {
+                    if (m == "") break;
 
-                
+                    letNumNum = m.Split(' ');
+                    myPayload.Board[0, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = letNumNum[0];
+                    myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = (Int32.Parse(myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])].ToString()) + 1).ToString(); 
+                    Console.WriteLine(letNumNum[0]);
+
+                }
+/*
                 foreach (char letter in move)
                 {
                     myPayload.Board[0, 4, i] = letter.ToString();
                     myPayload.Board[1, 4, i] = (Int32.Parse(myPayload.Board[1, 4, i].ToString())+1).ToString();//I AM REFUSING TO COMMENT THIS LINE
                     i++;
                 }
-                /*
                 myPayload.Board[0, 1, 0] = "C";
                 myPayload.Board[0, 2, 0] = "A";
                 myPayload.Board[0, 3, 0] = "T";*/

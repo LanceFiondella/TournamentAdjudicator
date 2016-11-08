@@ -89,13 +89,16 @@ def main():
         sleep(0.1)
 
     print(Letters)
-
-    word = raw_input("Type a word out of these letters")
-
+    play =[]
+    letter = raw_input("Type a letter, an X, and a Y in form \"A 4 5\"")
+    while (letter != ""):
+        play = letter.split(' ')
+        Board[0][int(play[1])][int(play[2])] = play[0]
+        Board[1][int(play[1])][int(play[2])] = str(int(Board[1][int(play[1])][int(play[2])]) + 1)
+        letter = raw_input("Type a letter, an X, and a Y in form \"A 4 5\"")
     i = 4
     for letter in word:
-        Board[0][i][4] = letter
-        Board[1][i][4] = str(1)
+
         i=i+1
     print Board
     raw_input()
