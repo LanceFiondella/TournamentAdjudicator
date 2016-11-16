@@ -180,59 +180,69 @@ namespace TournamentPlayerExample
                 //join the game and get ID and Hash
                 await JoinGame();
                 Console.WriteLine("I am user number {0} with hash code {1}", myPayload.ID, myPayload.Hash);
-
-                //get board state
-                await GetGamestate();
-               
-                //wait until its your turn
-                while (myPayload.Turn != myPayload.ID)
+                while (true)
                 {
+                    //get board state
                     await GetGamestate();
-                    Thread.Sleep(100);
+
+                    //wait until its your turn
+                    while (myPayload.Turn != myPayload.ID)
+                    {
+                        await GetGamestate();
+                        Thread.Sleep(100);
+                    }
+                    string lettersString = "";
+                    foreach (string letter in myPayload.Letters)
+                    {
+                        lettersString += letter;
+                    }
+                    for (int r = 0; r < 10; r++)
+                    {
+                        for (int c = 0; c < 10; c++)
+                        {
+                            Console.Write("{0,-3}", myPayload.Board[0, r, c] == null ? "~" : myPayload.Board[0, r, c]);
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine("I got letters: " + lettersString);
+
+
+                    Console.Write("Enter move: ");
+                    string move = "";
+
+                    string[] moves = new string[7];
+                    int i = 0, j = 0;
+
+                    do
+                    {
+                        move = Console.ReadLine();
+                        moves[i++] = move;
+                    } while (move != "");
+
+                    string[] letNumNum = new string[3];
+                    foreach (string m in moves)
+                    {
+                        if (m == "") break;
+
+                        letNumNum = m.Split(' ');
+                        myPayload.Board[0, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = letNumNum[0];
+                        myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = (Int32.Parse(myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])].ToString()) + 1).ToString();
+                        Console.WriteLine(letNumNum[0]);
+
+                    }
+                    /*
+                                    foreach (char letter in move)
+                                    {
+                                        myPayload.Board[0, 4, i] = letter.ToString();
+                                        myPayload.Board[1, 4, i] = (Int32.Parse(myPayload.Board[1, 4, i].ToString())+1).ToString();//I AM REFUSING TO COMMENT THIS LINE
+                                        i++;
+                                    }
+                                    myPayload.Board[0, 1, 0] = "C";
+                                    myPayload.Board[0, 2, 0] = "A";
+                                    myPayload.Board[0, 3, 0] = "T";*/
+                    //make a move
+                    await SendMove();
                 }
-                string lettersString = "";
-                foreach (string letter in myPayload.Letters)
-                {
-                    lettersString += letter;
-                }
-                Console.WriteLine("I got the board state and letters: "+ lettersString);
-
-
-                Console.Write("Enter move: ");
-                string move = "";
-                
-                string[] moves = new string[7];
-                int i = 0,j=0;
-                
-                do {
-                    move = Console.ReadLine();
-                    moves[i++] = move;
-                }while (move != "");
-
-                string[] letNumNum = new string[3];
-                foreach (string m in moves)
-                {
-                    if (m == "") break;
-
-                    letNumNum = m.Split(' ');
-                    myPayload.Board[0, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = letNumNum[0];
-                    myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = (Int32.Parse(myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])].ToString()) + 1).ToString(); 
-                    Console.WriteLine(letNumNum[0]);
-
-                }
-/*
-                foreach (char letter in move)
-                {
-                    myPayload.Board[0, 4, i] = letter.ToString();
-                    myPayload.Board[1, 4, i] = (Int32.Parse(myPayload.Board[1, 4, i].ToString())+1).ToString();//I AM REFUSING TO COMMENT THIS LINE
-                    i++;
-                }
-                myPayload.Board[0, 1, 0] = "C";
-                myPayload.Board[0, 2, 0] = "A";
-                myPayload.Board[0, 3, 0] = "T";*/
-                //make a move
-                await SendMove();
-
 
             }
             catch (Exception e)
@@ -255,4 +265,4 @@ namespace TournamentPlayerExample
        
 
     }
-}
+} 
