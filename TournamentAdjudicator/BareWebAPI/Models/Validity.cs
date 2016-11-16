@@ -83,7 +83,7 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         // Class Constructor
         //--------------------------------------------------------------------
-        public Validity()
+        /*public Validity()
         {
             int count = 1;
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
@@ -109,7 +109,7 @@ namespace TournamentAdjudicator.Models
                 Console.WriteLine("Error, the dictionary.txt file was not found, or is in the wrong directory.");
             }
 
-        }
+        }*/
 
 
         //--------------------------------------------------------------------
@@ -375,32 +375,32 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns true if the move was a valid one, else it returns false
         //--------------------------------------------------------------------
-        public bool CheckMoveValidity()
+        public bool CheckMoveValidity(bool firstTurn)
         {
             // Find the game squares that were changed by the player, and check
             // if any invalid game squares were changed
             // See the comments above the function for more information
-            if (!ValidChangedSquares())
-                return false;
+            //if (!ValidChangedSquares())
+             //   return false;
 
             // check if letters layer matches height layer
 
             // If it is the first move, checks that one of the 4 centermost
             // game squares is played on
-            if (moveCount == 1)
-            {
-                if (!Check4CenterSquares())
-                    return false;
-            }
+            //if (firstTurn)
+           // {
+              //  if (!Check4CenterSquares())
+                  //  return false;
+            //}
 
             // Check that the letters played by the player were in their letter pool.
-            if (!CheckLetters())
-                return false;
+            //if (!CheckLetters())
+             //   return false;
 
             // Check that no invalid moves were performed on stacks
             // See the comments above the function for more information
-            if (!CheckStacks())
-                return false;
+           // if (!CheckStacks())
+               // return false;
 
             // Check that all the changes were made in either 1 row or column
             string moveDirection = CheckRowColumnValidity();
