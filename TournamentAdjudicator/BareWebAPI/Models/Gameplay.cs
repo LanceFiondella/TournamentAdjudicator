@@ -87,7 +87,7 @@ namespace TournamentAdjudicator.Models
                 Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
                 string[] used;
-                used = used_letters();
+                used = moveChecker.used_letters();
 
                 /*p.Letters.Remove(used_letters);
 
