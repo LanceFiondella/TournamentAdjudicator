@@ -114,6 +114,32 @@ namespace TournamentAdjudicator.Models
 
         //--------------------------------------------------------------------
         // Summary: 
+        // This function should be used to reinitialize the arrays used to 
+        // store the changed game square state on both layers of the game board
+        //
+        // Ouput: 
+        // The function is void, it does not return anything, however it does
+        // reinitialize the changedSquaresDown, changedSquaresRight,
+        // changedHeightsDown, and changedHeightsRight arrays.
+        //--------------------------------------------------------------------
+        static void ReinitChangeTrackers()
+        {
+            // Compare the new and old game boards to see which game squares have been changed
+            for (int i = 0; i < 7; i++)
+            {
+                changedHeightsDown[i] = 0;
+                changedHeightsRight[i] = 0;
+                changedSquaresDown[i] = 0;
+                changedSquaresRight[i] = 0;
+            }
+
+            numChangedHeights = 0;
+            numChangedSquares = 0;
+        }//end FindMove
+
+
+        //--------------------------------------------------------------------
+        // Summary: 
         // Finds all of the game squares that were changed on a single
         // turn. It also checks whether more than 7 tiles were changed on the 
         // current turn(implying that a player played more tiles than possible
@@ -380,30 +406,33 @@ namespace TournamentAdjudicator.Models
             // Find the game squares that were changed by the player, and check
             // if any invalid game squares were changed
             // See the comments above the function for more information
-            //if (!ValidChangedSquares())
-             //   return false;
+            if (!ValidChangedSquares())
+                return false;
 
             // check if letters layer matches height layer
 
             // If it is the first move, checks that one of the 4 centermost
             // game squares is played on
-            //if (firstTurn)
-           // {
-              //  if (!Check4CenterSquares())
-                  //  return false;
-            //}
+            if (firstTurn)
+            {
+                if (!Check4CenterSquares())
+                    return false;
+            }
 
-            // Check that the letters played by the player were in their letter pool.
-            //if (!CheckLetters())
-             //   return false;
+            // Check that the letters played by the player were in their 
+            // letter pool
+            if (!CheckLetters())
+                return false;
 
             // Check that no invalid moves were performed on stacks
             // See the comments above the function for more information
-           // if (!CheckStacks())
-               // return false;
+            if (!CheckStacks())
+                return false;
 
             // Check that all the changes were made in either 1 row or column
             string moveDirection = CheckRowColumnValidity();
+            if (moveDirection == "invalid")
+                return false;
 
             //
             // working here now.
@@ -419,6 +448,10 @@ namespace TournamentAdjudicator.Models
             // Check that all words part of the turn were not 
             if (!CheckWords())
                 return false;*/
+
+            // reinitialize all variables used to store the changes between 
+            // the old and new game boards
+            ReinitChangeTrackers();
 
             return true;
         }//end CheckMoveValidity

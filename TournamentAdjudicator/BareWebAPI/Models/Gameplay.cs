@@ -22,6 +22,8 @@ namespace TournamentAdjudicator.Models
 
         public static List<string> bag = new List<string>();
 
+        //Instantiate the Validity class
+        public static Validity moveChecker = new Validity();
 
         public static string[,,] Board
         {
@@ -68,7 +70,6 @@ namespace TournamentAdjudicator.Models
 
         public static bool accept_or_reject_move(Player p)
         {
-            Validity moveChecker = new Validity();
             // see where this should be done so that
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
@@ -87,7 +88,7 @@ namespace TournamentAdjudicator.Models
                 Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
                 string[] used;
-                used = moveChecker.used_letters();
+                //used = moveChecker.used_letters();
 
                 /*p.Letters.Remove(used_letters);
 
