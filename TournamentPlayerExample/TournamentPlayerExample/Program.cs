@@ -211,11 +211,14 @@ namespace TournamentPlayerExample
                     {
                         lettersString += letter;
                     }
+                    Console.WriteLine("\n   0   1   2   3   4   5   6   7   8   9");
                     for (int r = 0; r < 10; r++)
                     {
+                        Console.Write(r.ToString());
+                        Console.Write("  ");
                         for (int c = 0; c < 10; c++)
                         {
-                            Console.Write("{0,-3}", myPayload.Board[0, r, c] == null ? "~" : myPayload.Board[0, r, c]);
+                            Console.Write("{0,-4}", myPayload.Board[0, r, c] == null ? "~" : myPayload.Board[0, r, c]);
                         }
                         Console.WriteLine();
                     }

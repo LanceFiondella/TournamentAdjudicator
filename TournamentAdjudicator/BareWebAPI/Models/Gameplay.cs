@@ -15,12 +15,15 @@ namespace TournamentAdjudicator.Models
         static int Board_Width = 10;
         public static int Player_Turn;
         public static bool Game_Started = false;
+        public static bool firstTurn = true;
 
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
         static string[,,] board_temp = new string[2, 10, 10];
 
         public static List<string> bag = new List<string>();
 
+        //Instantiate the Validity class
+        public static Validity moveChecker = new Validity();
 
         public static string[,,] Board
         {
@@ -67,19 +70,40 @@ namespace TournamentAdjudicator.Models
 
         public static bool accept_or_reject_move(Player p)
         {
-            Validity moveChecker = new Validity();
             // see where this should be done so that
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
             moveChecker.PlayerLetters = p.Letters;
-
+            moveChecker.MoveCount = Player_Turn;
+            if (p.ID > 1)
+            {
+                firstTurn = false;
+            }
             //pass in the letters that the current player has
 
-            if(moveChecker.CheckMoveValidity())
+            if(moveChecker.CheckMoveValidity(firstTurn))
             {
                 board = board_temp;
                 Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
+
+                string[] used;
+                //used = moveChecker.used_letters();
+
+                /*p.Letters.Remove(used_letters);
+
+                Random rnd = new Random();
+                int start2;
+                int i = 0;
+                while(i < used.count())
+                {
+                    start2 = rnd.Next(0, bag.Count);
+                    p.addSingleLetter(bag[start2]);
+
+
+                    bag.Remove(bag[start2]);
+                }*/
+
 
                 //is a valid movee
                 return true;

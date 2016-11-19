@@ -83,7 +83,7 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         // Class Constructor
         //--------------------------------------------------------------------
-        public Validity()
+        /*public Validity()
         {
             int count = 1;
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
@@ -109,7 +109,33 @@ namespace TournamentAdjudicator.Models
                 Console.WriteLine("Error, the dictionary.txt file was not found, or is in the wrong directory.");
             }
 
-        }
+        }*/
+
+
+        //--------------------------------------------------------------------
+        // Summary: 
+        // This function should be used to reinitialize the arrays used to 
+        // store the changed game square state on both layers of the game board
+        //
+        // Ouput: 
+        // The function is void, it does not return anything, however it does
+        // reinitialize the changedSquaresDown, changedSquaresRight,
+        // changedHeightsDown, and changedHeightsRight arrays.
+        //--------------------------------------------------------------------
+        static void ReinitChangeTrackers()
+        {
+            // Compare the new and old game boards to see which game squares have been changed
+            for (int i = 0; i < 7; i++)
+            {
+                changedHeightsDown[i] = 0;
+                changedHeightsRight[i] = 0;
+                changedSquaresDown[i] = 0;
+                changedSquaresRight[i] = 0;
+            }
+
+            numChangedHeights = 0;
+            numChangedSquares = 0;
+        }//end FindMove
 
 
         //--------------------------------------------------------------------
@@ -375,7 +401,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns true if the move was a valid one, else it returns false
         //--------------------------------------------------------------------
-        public bool CheckMoveValidity()
+        public bool CheckMoveValidity(bool firstTurn)
         {
             // Find the game squares that were changed by the player, and check
             // if any invalid game squares were changed
@@ -387,13 +413,14 @@ namespace TournamentAdjudicator.Models
 
             // If it is the first move, checks that one of the 4 centermost
             // game squares is played on
-            if (moveCount == 1)
+            if (firstTurn)
             {
                 if (!Check4CenterSquares())
                     return false;
             }
 
-            // Check that the letters played by the player were in their letter pool.
+            // Check that the letters played by the player were in their 
+            // letter pool
             if (!CheckLetters())
                 return false;
 
@@ -404,6 +431,8 @@ namespace TournamentAdjudicator.Models
 
             // Check that all the changes were made in either 1 row or column
             string moveDirection = CheckRowColumnValidity();
+            if (moveDirection == "invalid")
+                return false;
 
             //
             // working here now.
@@ -419,6 +448,10 @@ namespace TournamentAdjudicator.Models
             // Check that all words part of the turn were not 
             if (!CheckWords())
                 return false;*/
+
+            // reinitialize all variables used to store the changes between 
+            // the old and new game boards
+            ReinitChangeTrackers();
 
             return true;
         }//end CheckMoveValidity
