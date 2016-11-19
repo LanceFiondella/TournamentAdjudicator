@@ -72,11 +72,26 @@ namespace TournamentPlayerExample
             //only header needed to be added is the hash
             client.DefaultRequestHeaders.Add("Hash", myPayload.Hash);
 
+            bool isValid = false;
+            string tempstring = "";
             //sending the get message
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {//if the message response was a success
-                tempPayload = await response.Content.ReadAsAsync<Payload>();
+                try
+                {
+                    tempPayload = await response.Content.ReadAsAsync<Payload>();
+                    isValid = true;
+                }
+                catch(Exception e)
+                {
+                    isValid = false;
+                }
+                if (!isValid)
+                {
+                    tempstring = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(tempstring);
+                }
             }
 
             //safely update the payload
@@ -241,6 +256,14 @@ namespace TournamentPlayerExample
                                     myPayload.Board[0, 2, 0] = "A";
                                     myPayload.Board[0, 3, 0] = "T";*/
                     //make a move
+                    for (int r = 0; r < 10; r++)
+                    {
+                        for (int c = 0; c < 10; c++)
+                        {
+                            Console.Write("{0,-3}", myPayload.Board[0, r, c] == null ? "~" : myPayload.Board[0, r, c]);
+                        }
+                        Console.WriteLine();
+                    }
                     await SendMove();
                 }
 
