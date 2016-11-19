@@ -79,9 +79,14 @@ namespace TournamentAdjudicator.Models
             if (p.ID > 1)
             {
                 firstTurn = false;
-            }
-            //pass in the letters that the current player has
 
+                //if play sent from different player
+                if (p.ID != Player_Turn)
+                    return false;
+            }
+
+            //pass in the letters that the current player has
+            
             if(moveChecker.CheckMoveValidity(firstTurn))
             {
                 board = board_temp;
