@@ -75,7 +75,6 @@ namespace TournamentAdjudicator.Models
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
             moveChecker.PlayerLetters = p.Letters;
-            moveChecker.MoveCount = Player_Turn;
             if (p.ID > 1)
             {
                 firstTurn = false;
@@ -92,8 +91,7 @@ namespace TournamentAdjudicator.Models
                 board = board_temp;
                 Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
-                string[] used;
-                //used = moveChecker.used_letters();
+                List<string> used = moveChecker.UsedLetters;
 
                 /*p.Letters.Remove(used_letters);
 

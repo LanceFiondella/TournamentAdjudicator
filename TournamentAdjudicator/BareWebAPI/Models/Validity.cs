@@ -16,10 +16,9 @@ namespace TournamentAdjudicator.Models
         static string[, ,] oldBoard = new string[2, 10, 10];
         static string[, ,] newBoard = new string[2, 10, 10];
 
-        // Set to begin at 2 for testing
-        static int moveCount = 1;
-
         static int[,] moveOrigin = new int[1, 2];
+
+        static List<string> usedLetters = new List<string>();
 
         // Stores the coordinates of the changed game squares
         static int numChangedSquares = 0;
@@ -47,10 +46,10 @@ namespace TournamentAdjudicator.Models
 
         //-------------------------Accessors-------------------------
         //-----------------------------------------------------------
-        public int MoveCount
+        public List<string> UsedLetters
         {
-            get { return moveCount; }
-            set { moveCount = value; }
+            get { return usedLetters; }
+            set { usedLetters = value; }
         }
 
         public string[, ,] OldBoard
@@ -135,6 +134,9 @@ namespace TournamentAdjudicator.Models
 
             numChangedHeights = 0;
             numChangedSquares = 0;
+
+            // clear used letters list
+            usedLetters.Clear();
         }//end FindMove
 
 
@@ -362,6 +364,21 @@ namespace TournamentAdjudicator.Models
             }
         }// end GetWord
 
+        //--------------------------------------------------------------------
+        // Summary:
+        // Finds all of the letters played by the player during their move.
+        //
+        // Output: 
+        // returns nothing, but adds the played letters to the string list
+        // usedLetters.
+        //--------------------------------------------------------------------
+        static void GetUsedLetters()
+        {
+            for (int i = 0; i < numChangedSquares; i++)
+            {
+                usedLetters.Add(newBoard[0, changedSquaresDown[i], changedSquaresRight[i]]);
+            }
+        }// end CheckWords
 
         //--------------------------------------------------------------------
         // Summary:
@@ -403,6 +420,10 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         public bool CheckMoveValidity(bool firstTurn)
         {
+            // Reinitialize all variables used to store the changes between 
+            // the old and new game boards to prepare for the next move
+            ReinitChangeTrackers();
+            
             // Find the game squares that were changed by the player, and check
             // if any invalid game squares were changed
             // See the comments above the function for more information
@@ -449,9 +470,9 @@ namespace TournamentAdjudicator.Models
             if (!CheckWords())
                 return false;*/
 
-            // reinitialize all variables used to store the changes between 
-            // the old and new game boards
-            ReinitChangeTrackers();
+            // Find all of the letters that were used by the player during their
+            // move, so that they can removed and replaced with new letters.
+            GetUsedLetters();
 
             return true;
         }//end CheckMoveValidity
