@@ -128,9 +128,9 @@ namespace TournamentAdjudicator.Controllers
                     return Ok("User Auth Failed");
                 }
             }
-            catch
+            catch(Exception e)
             {
-                return Ok("Caught");
+                return Ok(e.Message);
             }
 
            

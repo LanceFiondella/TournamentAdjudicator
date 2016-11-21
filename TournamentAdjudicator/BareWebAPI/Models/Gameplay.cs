@@ -93,22 +93,16 @@ namespace TournamentAdjudicator.Models
 
                 List<string> used_letters = moveChecker.UsedLetters;
 
-                p.Letters.Remove(used_letters);
 
-                Random rnd = new Random();
-                int start2;
-                int i = 0;
-                while(i < used.count())
+                foreach (string letter in used_letters)
                 {
-                    start2 = rnd.Next(0, bag.Count);
-                    p.addSingleLetter(bag[start2]);
-
-
-                    bag.Remove(bag[start2]);
+                    p.Letters.Remove(letter);
                 }
 
+                give_letters(p, used_letters.Count);
 
-                //is a valid movee
+
+                //is a valid move
                 return true;
             }
             else
@@ -330,7 +324,7 @@ namespace TournamentAdjudicator.Models
 
             for(int i = 0;  i < needed; i++)
             {
-                start2 = rnd.Next(0, bag.Count);
+                start2 = rnd.Next(0, bag.Count-1);
                 p.addSingleLetter(bag[start2]);
                 Console.WriteLine("p: " + p.Letters[i]);
                 bag.Remove(p.Letters[i]);
