@@ -53,7 +53,15 @@ namespace TournamentAdjudicator.Controllers
             {
                 return NotFound();
             }
-
+            if (Gameplay.Pass_Count >= 4)
+            {
+                string endgameString = "The game has ended. Final Scores:\n";
+                foreach (Player p in UserController.Players)
+                {
+                    endgameString += "Player " + p.ID + ": " + p.Score+ "\n";
+                }
+                Ok(endgameString);
+            }
             try
             {
                 if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
@@ -100,7 +108,7 @@ namespace TournamentAdjudicator.Controllers
                     }
                     else if (exchange != null)
                     {
-                        //The user has chosen to pass
+                        //The user has chosen to exchange
                         var letter = JsonConvert.DeserializeObject<string[]>(exchange.ToString());
                         if (letter != null)
                         {
@@ -115,6 +123,8 @@ namespace TournamentAdjudicator.Controllers
                     }
                     else
                     {
+                        //Player has passed
+                        Gameplay.pass();
                         return Ok("You have passed.");
                     }
 

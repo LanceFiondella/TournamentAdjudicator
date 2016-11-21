@@ -16,6 +16,7 @@ namespace TournamentAdjudicator.Models
         public static int Player_Turn;
         public static bool Game_Started = false;
         public static bool firstTurn = true;
+        public static int Pass_Count = 0;
 
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
         static string[,,] board_temp = new string[2, 10, 10];
@@ -64,6 +65,7 @@ namespace TournamentAdjudicator.Models
         //only increment playerturn. should we keep track of if players have passed?
         public static void pass()
         {
+            Pass_Count++;
             Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
         }
 
@@ -101,8 +103,9 @@ namespace TournamentAdjudicator.Models
 
                 give_letters(p, used_letters.Count);
 
-
+                
                 //is a valid move
+                Pass_Count = 0;
                 return true;
             }
             else
@@ -110,6 +113,7 @@ namespace TournamentAdjudicator.Models
                 Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
                 //not a valid move, they pass their turn
+                Pass_Count++;
                 return false;
             }
         }
@@ -131,8 +135,8 @@ namespace TournamentAdjudicator.Models
 
                 bag.Remove(bag[start2]);
 
-                Player_Turn = Player_Turn % 4 + 1;
-
+                Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
+                Pass_Count = 0;
                 return true;
 
             }
