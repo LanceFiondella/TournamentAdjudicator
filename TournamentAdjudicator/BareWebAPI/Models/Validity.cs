@@ -44,7 +44,7 @@ namespace TournamentAdjudicator.Models
         static List<string> words = new List<string>();
 
         // Stores the dictionary being used to check the words played by each player
-        Dictionary<string, int> dictionary = new Dictionary<string, int>();
+        static Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
         //-------------------------end fields------------------------
         //-----------------------------------------------------------
@@ -91,7 +91,6 @@ namespace TournamentAdjudicator.Models
         public Validity()
         {
             int count = 1;
-            Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
             try
             {
@@ -398,6 +397,11 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         static bool CheckWords()
         {
+            foreach (string s in words)
+            {
+                if (!dictionary.ContainsKey(s.ToUpper()))
+                    return false;
+            }
 
             return true;
         }// end CheckWords
@@ -463,17 +467,12 @@ namespace TournamentAdjudicator.Models
             if (moveDirection == "invalid")
                 return false;
 
-            /*// Get the word played by the player
+            // Get the word played by the player
             GetWords(moveDirection);
-
-            foreach (string s in words)
-            {
-                Console.WriteLine(s);
-            }
 
             // Check that all words part of the turn were not 
             if (!CheckWords())
-                return false;*/
+                return false;
 
             // Find all of the letters that were used by the player during their
             // move, so that they can removed and replaced with new letters.
