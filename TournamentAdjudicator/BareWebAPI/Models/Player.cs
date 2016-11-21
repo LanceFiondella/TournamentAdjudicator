@@ -12,6 +12,7 @@ namespace TournamentAdjudicator.Models
         private int id;
         private string hash;
         private string exchangeletter;
+        private int score;
 
             public List<string> Letters
             {
@@ -58,6 +59,17 @@ namespace TournamentAdjudicator.Models
                 exchangeletter = value;
             }
         }
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+            set
+            {
+                score = value;
+            }
+        }
 
 
 
@@ -68,6 +80,7 @@ namespace TournamentAdjudicator.Models
             this.ID = id;
             this.Hash = hash;
             this.Letters = letters;
+            this.Score = 0;
 
         }
         public Player()
@@ -76,6 +89,7 @@ namespace TournamentAdjudicator.Models
             this.ID = 1;
             this.Hash = "";
             this.Letters = new List<string>();
+            this.Score = 0;
 
         }
         public Player(int id, string hash)
@@ -84,6 +98,7 @@ namespace TournamentAdjudicator.Models
             this.ID = id;
             this.Hash = hash;
             this.Letters = new List<string>();
+            this.Score = 0;
 
         }
         //called something like player1.addLetters(listOfNewLetters);

@@ -64,7 +64,7 @@ namespace TournamentAdjudicator.Models
         //only increment playerturn. should we keep track of if players have passed?
         public static void pass()
         {
-            Player_Turn = Player_Turn % 4 + 1;
+            Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
         }
 
 
