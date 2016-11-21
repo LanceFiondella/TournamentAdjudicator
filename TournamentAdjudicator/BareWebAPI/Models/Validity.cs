@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
 using TournamentAdjudicator.Controllers;
 using TournamentAdjudicator.Models;
 
@@ -82,14 +88,16 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         // Class Constructor
         //--------------------------------------------------------------------
-        /*public Validity()
+        public Validity()
         {
             int count = 1;
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
             try
             {
-                var fileStream = new FileStream(@"..\..\..\dictionary.txt", FileMode.Open, FileAccess.Read);
+                string path = Path.Combine(HttpRuntime.AppDomainAppPath, "dictionary.txt");
+                var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
                 {
                     string line;
@@ -108,7 +116,7 @@ namespace TournamentAdjudicator.Models
                 Console.WriteLine("Error, the dictionary.txt file was not found, or is in the wrong directory.");
             }
 
-        }*/
+        }
 
 
         //--------------------------------------------------------------------
@@ -455,11 +463,8 @@ namespace TournamentAdjudicator.Models
             if (moveDirection == "invalid")
                 return false;
 
-            //
-            // working here now.
-            //
-            // Get the word played by the player
-            /*GetWords(moveDirection);
+            /*// Get the word played by the player
+            GetWords(moveDirection);
 
             foreach (string s in words)
             {
