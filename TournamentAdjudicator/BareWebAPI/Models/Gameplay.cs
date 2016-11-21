@@ -91,9 +91,9 @@ namespace TournamentAdjudicator.Models
                 board = board_temp;
                 Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
-                List<string> used = moveChecker.UsedLetters;
+                List<string> used_letters = moveChecker.UsedLetters;
 
-                /*p.Letters.Remove(used_letters);
+                p.Letters.Remove(used_letters);
 
                 Random rnd = new Random();
                 int start2;
@@ -105,7 +105,7 @@ namespace TournamentAdjudicator.Models
 
 
                     bag.Remove(bag[start2]);
-                }*/
+                }
 
 
                 //is a valid movee
