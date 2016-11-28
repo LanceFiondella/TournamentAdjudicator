@@ -121,6 +121,8 @@ namespace TournamentPlayerExample
         {
             //initialization
             Payload tempPayload = new Payload();
+            bool isValid = false;
+            string tempstring = "";
             client.DefaultRequestHeaders.Clear();
             var request = new HttpRequestMessage()
             {
@@ -139,10 +141,22 @@ namespace TournamentPlayerExample
             //sends data to server
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
-            {
-                tempPayload = await response.Content.ReadAsAsync<Payload>();
+            {//if the message response was a success
+                try
+                {
+                    tempPayload = await response.Content.ReadAsAsync<Payload>();
+                    isValid = true;
+                }
+                catch (Exception e)
+                {
+                    isValid = false;
+                }
+                if (!isValid)
+                {
+                    tempstring = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(tempstring);
+                }
             }
-
             //update the payload variable
             updatePayload(tempPayload, myPayload);
             return myPayload;
@@ -248,16 +262,7 @@ namespace TournamentPlayerExample
                         Console.WriteLine(letNumNum[0]);
 
                     }
-                    /*
-                                    foreach (char letter in move)
-                                    {
-                                        myPayload.Board[0, 4, i] = letter.ToString();
-                                        myPayload.Board[1, 4, i] = (Int32.Parse(myPayload.Board[1, 4, i].ToString())+1).ToString();//I AM REFUSING TO COMMENT THIS LINE
-                                        i++;
-                                    }
-                                    myPayload.Board[0, 1, 0] = "C";
-                                    myPayload.Board[0, 2, 0] = "A";
-                                    myPayload.Board[0, 3, 0] = "T";*/
+
                     //make a move
                     for (int r = 0; r < 10; r++)
                     {

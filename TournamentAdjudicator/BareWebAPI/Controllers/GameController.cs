@@ -115,7 +115,7 @@ namespace TournamentAdjudicator.Controllers
                     }
                     else
                     {
-                        return Ok("You have passed.");
+                        return Ok("You have passed your turn.");
                     }
 
 
