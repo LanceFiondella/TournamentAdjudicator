@@ -53,7 +53,7 @@ namespace TournamentAdjudicator.Controllers
             {
                 return NotFound();
             }
-            if (Gameplay.Pass_Count >= 4)
+            if (Gameplay.Pass_Count >= UserController.Players.Count)
             {
                 string endgameString = "The game has ended. Final Scores:\n";
                 foreach (Player p in UserController.Players)
@@ -125,7 +125,7 @@ namespace TournamentAdjudicator.Controllers
                     {
                         //Player has passed
                         Gameplay.pass();
-                        return Ok("You have passed.");
+                        return Ok("You have passed your turn.");
                     }
 
 
