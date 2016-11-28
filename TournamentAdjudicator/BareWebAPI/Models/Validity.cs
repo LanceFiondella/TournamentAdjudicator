@@ -144,6 +144,9 @@ namespace TournamentAdjudicator.Models
 
             // clear used letters list
             usedLetters.Clear();
+
+            // empty list of words from previous move
+            words.Clear();
         }//end FindMove
 
 
@@ -211,30 +214,29 @@ namespace TournamentAdjudicator.Models
                     newLetter = newBoard[0,i,j];
                     oldLetter = oldBoard[0,i,j];
 
-                    heightDifference = newHeight - oldHeight;
-                    if((heightDifference > 1) || (heightDifference < 0))
-                        return false;
-
-                    // Checks that no stack heights exceed 5
-                    if(newHeight > 5)
-                        return false;
-
-                    if (!newHeight.Equals(oldHeight))
+                    if (!(newLetter == null && oldLetter == null))
                     {
-                        changedHeightsDown[numChangedHeights] = i;
-                        changedHeightsRight[numChangedHeights] = j;
-                        numChangedHeights++;
+                        heightDifference = newHeight - oldHeight;
+                        if ((heightDifference > 1) || (heightDifference < 0))
+                            return false;
+
+                        // Checks that no stack heights exceed 5
+                        if (newHeight > 5)
+                            return false;
 
                         // Checks that the same letter was not stacked on itself
-                        if (oldBoard[0, i, j].Equals(newBoard[0, i, j]))
+                        if (newLetter.Equals(oldLetter) && heightDifference > 0)
                             return false;
-                    }
-                    else if ((newLetter == null && oldLetter == null))
-                        return true;
-                    // Check that is the heights are the same the letters are not different
-                    else if (!newLetter.Equals(oldLetter))
-                    {
-                        return false;
+
+                        if (!newHeight.Equals(oldHeight))
+                        {
+                            changedHeightsDown[numChangedHeights] = i;
+                            changedHeightsRight[numChangedHeights] = j;
+                            numChangedHeights++;
+                        }
+                        // Check that is the heights are the same the letters are not different
+                        else if (!newLetter.Equals(oldLetter))
+                            return false;
                     }
                 }
             }
@@ -259,6 +261,9 @@ namespace TournamentAdjudicator.Models
 
             bool xBool = false;
             bool yBool = false;
+
+            if (numChangedSquares < 2)
+                return false;
 
             for (int i = 0; i < numChangedSquares; i++)
             {
@@ -303,6 +308,8 @@ namespace TournamentAdjudicator.Models
                 return "right";
             else if (!rowAltered && columnAltered)
                 return "down";
+            else if (numChangedSquares == 1)
+                return "singleLetter";
             else
                 return "invalid";
         }//end CheckRowColumnValidity
@@ -320,12 +327,20 @@ namespace TournamentAdjudicator.Models
         static bool CheckLetters()
         {
             bool validLetters = false;
+            List<string> tempPlayerLetters = playerLetters;
 
             for (int i = 0; i < numChangedSquares; i++)
             {
-                foreach (string s in playerLetters)
+                validLetters = false;
+
+                foreach (string s in tempPlayerLetters)
                 {
                     validLetters |= s.Equals(newBoard[0, changedSquaresDown[i], changedSquaresRight[i]]);
+                    if(validLetters)
+                    {
+                        tempPlayerLetters.Remove(s);
+                        break;
+                    }
                 }
 
                 if (!validLetters)
@@ -355,19 +370,20 @@ namespace TournamentAdjudicator.Models
                     GetTopBottomWords(i, currentSquare);
 
                     if(i == 0)
-                    {
                         GetLeftRightWords(i, currentSquare);
-                    }
                 }
-                else
+                else if (moveDirection == "down")
                 {
                     GetLeftRightWords(i, currentSquare);
 
                     if (i == 0)
-                    {
                         GetTopBottomWords(i, currentSquare);
-                    }
-                }   
+                }
+                else if (moveDirection == "singleLetter")
+                {
+                    GetTopBottomWords(i, currentSquare);
+                    GetLeftRightWords(i, currentSquare);
+                }
             }
         }// end GetWord
 
@@ -470,7 +486,7 @@ namespace TournamentAdjudicator.Models
             // Get the word played by the player
             GetWords(moveDirection);
 
-            // Check that all words part of the turn were not 
+            // Check that all words part of the turn are in the dictionary
             if (!CheckWords())
                 return false;
 
@@ -587,7 +603,7 @@ namespace TournamentAdjudicator.Models
                 myX--;
             }
 
-            return myString;
+            return ReverseString(myString);
         }
 
 
