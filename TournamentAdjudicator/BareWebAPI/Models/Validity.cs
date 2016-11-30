@@ -580,7 +580,7 @@ namespace TournamentAdjudicator.Models
             string myString = "";
             string letter = "";
 
-            while (!(myY.Equals(0)) && ((letter = newBoard[0, myY - 1, myX]) != "-"))
+            while (!(myY.Equals(0)) && ((letter = newBoard[0, myY - 1, myX]) != null))
             {
                 myString += letter;
                 myY--;
@@ -606,7 +606,7 @@ namespace TournamentAdjudicator.Models
             string myString = "";
             string letter = "";
 
-            while (!(myY.Equals(9)) && ((letter = newBoard[0, myY + 1, myX]) != "-"))
+            while (!(myY.Equals(9)) && ((letter = newBoard[0, myY + 1, myX]) != null))
             {
                 myString += letter;
                 myY++;
@@ -632,7 +632,7 @@ namespace TournamentAdjudicator.Models
             string myString = "";
             string letter = "";
 
-            while (!(myX.Equals(9)) && ((letter = newBoard[0, myY, myX + 1]) != "-"))
+            while (!(myX.Equals(9)) && ((letter = newBoard[0, myY, myX + 1]) != null))
             {
                 myString += letter;
                 myX++;
@@ -658,7 +658,7 @@ namespace TournamentAdjudicator.Models
             string myString = "";
             string letter = "";
 
-            while (!(myX.Equals(0)) && ((letter = newBoard[0, myY, myX - 1]) != "-"))
+            while (!(myX.Equals(0)) && ((letter = newBoard[0, myY, myX - 1]) != null))
             {
                 myString += letter;
                 myX--;
