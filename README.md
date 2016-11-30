@@ -20,7 +20,7 @@ The adjudicator for ECE577 upwords tournament
 
 </br></br> Troubleshooting:
 </br> If you cant get visual studio to launch the program in a browser: Close and reopen visual studio(possibly multiple time).
-</br> If you cant get the game going as a single person: Currently all games must have 4 players and this will be updated in the future.
+</br> If you cant get the game going as a single person: Games require at least 2 players and then there is a 10 second window for up to 4 players to join. It will still play with 2 players
 
 </br></br>Regarding Issues:
 </br>Please post your issue here. Telling us in person would also work but here we can track it and support more people with the same issue. If you post here we would like to see:
