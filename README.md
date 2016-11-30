@@ -24,7 +24,7 @@ The adjudicator for ECE577 upwords tournament
 
 </br></br>Regarding Issues:
 </br>Please post your issue here. Telling us in person would also work but here we can track it and support more people with the same issue. If you post here we would like to see:
-* A breif but helpful description of your issue
+* A brief but helpful description of your issue
 * The context with which you are able to reproduce your issue
 * A screenshot of any console or debugging iformation you can find. If we can reproduce your issue, we can't fix it
 
