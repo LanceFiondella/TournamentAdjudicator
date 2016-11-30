@@ -25,6 +25,15 @@ namespace TournamentAdjudicator.Controllers
             {
                 return NotFound();
             }
+            if (Gameplay.Pass_Count >= UserController.Players.Count)
+            {
+                string endgameString = "The game has ended. Final Scores:\n";
+                foreach (Player p in UserController.Players)
+                {
+                    endgameString += "Player " + p.ID + ": " + p.Score + "\n";
+                }
+                Ok(endgameString);
+            }
             Status report = new Status();
             report.Letters = user.Letters;
             report.Score = user.Score;
