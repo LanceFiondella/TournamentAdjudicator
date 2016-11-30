@@ -6,7 +6,7 @@ The adjudicator for ECE577 upwords tournament
 </br>	AI Interface (TCP/IP)-Dan
 </br>	Move Analysis (move interpretation, checking validity)- Keith
 </br>	Score Keeping, Statistics, and Game Recording - Vidhya
-</br>	Tester/System Architect (has to make a test AI)-Bobby
+</br>	Tester/Player Example -Bobby
 
 
 </br>	In order to run the program, we run it using visual studio which launches a web server at http://localhost:62027 
