@@ -37,7 +37,7 @@ namespace TournamentPlayerExample
     public static class GameNetworkCommuncation
     {
         static HttpClient client = new HttpClient();
-        static Payload myPayload = new Payload();
+        public static Payload myPayload = new Payload();
 
         //this function will join the game for the first time and get the ID and Hash
         static async Task<Uri> JoinGame()
@@ -203,7 +203,8 @@ namespace TournamentPlayerExample
         public static async Task RunAsync()
         {
             //set up the client to communicate with server
-            client.BaseAddress = new Uri("http://localhost:62027/");
+            //client.BaseAddress = new Uri("http://localhost:62027/");
+            client.BaseAddress = new Uri("http://georgeisdumb.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

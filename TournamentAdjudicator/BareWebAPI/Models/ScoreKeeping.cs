@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TournamentAdjudicator
+namespace TournamentAdjudicator.Models
 {
     public class ScoreKeeping
     {
         // Vidhya's algorithm for calculating scores
-        // Still needs to be fully tested
+       
         public int CalculateScore(int letterCount, bool OneTileHigh, bool Letters7, bool QuOneTile)
         {
             int result;
@@ -59,6 +59,33 @@ namespace TournamentAdjudicator
 
                 return Score;
    	        }
+        }
+
+        //logs data to log.txt
+        public static void DataLogging(int TeamNum, int Score, string[] words, string[] letters)
+        {
+            //string[] TeamNum = { "Team 1" };
+            //string date = DateTime.Today.ToShortDateString();
+            //DateTime localDate = DateTime.Now;  
+            string timestamp = DateTime.Now.ToString();
+            //int score = ScoreKeeping();
+            //string word = ;
+            //string letters = ;
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("log.txt", true))
+            {
+                file.WriteLine("TeamNum: "+TeamNum);
+                file.WriteLine(timestamp);
+                file.WriteLine(Score);
+                foreach(string word in words)
+                {
+                    file.WriteLine(word);
+                }
+                foreach (string letter in letters)
+                {
+                    file.WriteLine(letters);
+                }
+            }
         }
     }
 }
