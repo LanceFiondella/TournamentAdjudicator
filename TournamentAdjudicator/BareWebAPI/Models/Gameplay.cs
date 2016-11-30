@@ -72,56 +72,76 @@ namespace TournamentAdjudicator.Models
 
         public static bool accept_or_reject_move(Player p)
         {
+            bool passStatus = true;
             // see where this should be done so that
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
 
-            // Proper way to copy contents of one list to another
-            moveChecker.PlayerLetters.Clear();
-            foreach (string s in p.Letters)
-                moveChecker.PlayerLetters.Add(s);
-            
-            if (p.ID > 1)
+
+            for(int i  =0;i<10; i++)
             {
-                firstTurn = false;
-
-                //if play sent from different player
-                if (p.ID != Player_Turn)
-                    return false;
-            }
-
-            //pass in the letters that the current player has
-            
-            if(moveChecker.CheckMoveValidity(firstTurn))
-            {
-                board = board_temp;
-                Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
-
-                List<string> used_letters = moveChecker.UsedLetters;
-
-                // Add the score for the turn to the players running total
-                p.Score += moveChecker.GetTurnScore();
-
-                foreach (string letter in used_letters)
+                for(int j = 0; j < 10; j++)
                 {
-                    p.Letters.Remove(letter);
+                    if (board[0, i, j] != board_temp[0, i, j])
+                        passStatus = false;
                 }
-
-                give_letters(p, used_letters.Count);
-
-                
-                //is a valid move
-                Pass_Count = 0;
+            }
+            if (passStatus)
+            {
+                pass();
                 return true;
             }
+
             else
             {
-                Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
-                //not a valid move, they pass their turn
-                Pass_Count++;
-                return false;
+                // Proper way to copy contents of one list to another
+                moveChecker.PlayerLetters.Clear();
+                foreach (string s in p.Letters)
+                    moveChecker.PlayerLetters.Add(s);
+
+                if (p.ID > 1)
+                {
+                    firstTurn = false;
+
+                    //if play sent from different player
+                    if (p.ID != Player_Turn)
+                        return false;
+                }
+
+                //pass in the letters that the current player has
+
+                if (moveChecker.CheckMoveValidity(firstTurn))
+                {
+                    board = board_temp;
+                    Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
+
+                    List<string> used_letters = moveChecker.UsedLetters;
+
+                    // Add the score for the turn to the players running total
+                    p.Score += moveChecker.GetTurnScore();
+
+                    foreach (string letter in used_letters)
+                    {
+                        p.Letters.Remove(letter);
+                    }
+
+                    give_letters(p, used_letters.Count);
+
+
+                    //is a valid move
+                    Pass_Count = 0;
+                    return true;
+                }
+                else
+                {
+                    Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
+
+                    //not a valid move, they pass their turn
+                    Pass_Count++;
+                    return false;
+                }
             }
         }
 
