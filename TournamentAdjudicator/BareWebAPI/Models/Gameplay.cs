@@ -143,6 +143,8 @@ namespace TournamentAdjudicator.Models
                     return false;
                 }
             }
+
+            
         }
 
         //exchange a single letter instead of a move

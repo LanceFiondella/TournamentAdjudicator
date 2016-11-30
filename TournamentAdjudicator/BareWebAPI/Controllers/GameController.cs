@@ -70,7 +70,9 @@ namespace TournamentAdjudicator.Controllers
                 {
                     endgameString += "Player " + p.ID + ": " + p.Score+ "\n";
                 }
-                Ok(endgameString);
+                return Ok(endgameString);
+
+                
             }
             try
             {
