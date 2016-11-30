@@ -18,6 +18,7 @@ namespace TournamentPlayerExample
         public string[] Letters { get; set; }
         public string[,,] Board { get; set; }
         public int Turn { get; set; }//1,2,3,4
+        public int Score { get; set; }
     }
     //Move class is only used for packaging a move command to send to the server
     public class Move
@@ -114,6 +115,8 @@ namespace TournamentPlayerExample
                 b.Board = a.Board;
             if (a.Turn != 0)
                 b.Turn = a.Turn;
+            if (a.Score != 0)
+                b.Score = a.Score;
         }
 
         //will send the move to the server
@@ -236,8 +239,8 @@ namespace TournamentPlayerExample
                         }
                         Console.WriteLine();
                     }
-                    Console.WriteLine("I got letters: " + lettersString);
-
+                    Console.WriteLine("I got letters: " + lettersString +" and the score is: "+myPayload.Score.ToString());
+                    
 
                     Console.Write("Enter move: ");
                     string move = "";
