@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TournamentAdjudicator
 {
-    public static class ScoreKeeping
+    public class ScoreKeeping
     {
         // Vidhya's algorithm for calculating scores
         // Still needs to be fully tested
-        public static int CalculateScore(int letterCount, bool OneTileHigh, bool Letters7, bool QuOneTile)
+        public int CalculateScore(int letterCount, bool OneTileHigh, bool Letters7, bool QuOneTile)
         {
             int result;
 	        int Score; 

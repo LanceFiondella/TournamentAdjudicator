@@ -76,7 +76,12 @@ namespace TournamentAdjudicator.Models
             // a new instantiation of this class
             moveChecker.NewBoard = board_temp;
             moveChecker.OldBoard = board;
-            moveChecker.PlayerLetters = p.Letters;
+
+            // Proper way to copy contents of one list to another
+            moveChecker.PlayerLetters.Clear();
+            foreach (string s in p.Letters)
+                moveChecker.PlayerLetters.Add(s);
+            
             if (p.ID > 1)
             {
                 firstTurn = false;
@@ -95,6 +100,8 @@ namespace TournamentAdjudicator.Models
 
                 List<string> used_letters = moveChecker.UsedLetters;
 
+                // Add the score for the turn to the players running total
+                p.Score += moveChecker.GetTurnScore();
 
                 foreach (string letter in used_letters)
                 {

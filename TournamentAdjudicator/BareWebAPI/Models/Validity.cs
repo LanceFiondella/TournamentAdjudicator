@@ -31,7 +31,7 @@ namespace TournamentAdjudicator.Models
         static int[] changedSquaresDown = new int[7];
         static int[] changedSquaresRight = new int[7];
 
-        
+
         // Stores the coordinates of the changed stack heights
         static int numChangedHeights = 0;
         static int[] changedHeightsDown = new int[7];
@@ -45,7 +45,6 @@ namespace TournamentAdjudicator.Models
 
         // Stores the dictionary being used to check the words played by each player
         static Dictionary<string, int> dictionary = new Dictionary<string, int>();
-
         //-------------------------end fields------------------------
         //-----------------------------------------------------------
 
@@ -85,18 +84,29 @@ namespace TournamentAdjudicator.Models
         //-----------------------------------------------------------
 
 
+        //----------------Global Class Instantiations----------------
+        //-----------------------------------------------------------
+
+        // Instantiate the ScoreKeeping class
+        public static ScoreKeeping scoreKeeper = new ScoreKeeping();
+
+        //--------------end Global Class Instantiations--------------
+        //-----------------------------------------------------------
+
+
         //--------------------------------------------------------------------
-        // Class Constructor
+        // Class Constructors
         //--------------------------------------------------------------------
+
+        // This class constructor fetches the game dictionary
         public Validity()
         {
             int count = 1;
-
             try
             {
                 string path = Path.Combine(HttpRuntime.AppDomainAppPath, "dictionary.txt");
                 var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-                
+
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
                 {
                     string line;
@@ -110,12 +120,138 @@ namespace TournamentAdjudicator.Models
                 Console.Write(count);
                 Console.WriteLine(" words in the dictionary.");
             }
-            catch(FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 Console.WriteLine("Error, the dictionary.txt file was not found, or is in the wrong directory.");
             }
-
         }
+
+        //--------------------------------------------------------------------
+        // end Class Constructors
+        //--------------------------------------------------------------------
+
+
+        //--------------------------------------------------------------------
+        // Public Methods
+        //--------------------------------------------------------------------
+
+        //--------------------------------------------------------------------
+        // Summary:
+        // Calculates the score for the current turn
+        //
+        // Output: 
+        // Returns an integer with the score for the turn
+        //--------------------------------------------------------------------
+        public int GetTurnScore()
+        {
+            // Initialize the parameters to pass to the Score Keeper
+            int letterCount = 0;
+            bool oneTileHigh;
+            bool letters7;
+            bool QuOneTile;
+
+            // Stores the score for the current turn
+            int score = 0;
+
+            foreach (string s in words)
+            {
+                // Reset the variables for each word
+                oneTileHigh = false;
+                letters7 = false;
+                QuOneTile = false;
+
+                // Counts the number of letters that were played in the turn
+                letterCount = s.Length;
+
+                // Counts the number of tiles that were played directly on the board
+                //
+                // STILL NEEDS IMPLEMENTING
+                //
+                oneTileHigh = false;
+
+                // Checks if all of the player's letters were used in the turn
+                if (usedLetters.Count == 7)
+                    letters7 = true;
+
+                // Check if any words contain "Qu"
+                // Note a word cannot contain Qu unless it contains Q,
+                // for this reason only Q is checked for
+                if (s.Contains("Q"))
+                    QuOneTile = true;
+
+                // Calculate the score for the current word and add it to the total
+                // for the turn thus far
+                score += scoreKeeper.CalculateScore(letterCount, oneTileHigh, letters7, QuOneTile);
+            }
+
+            return score;
+
+        }// end ScoreKeeperData
+
+
+        //--------------------------------------------------------------------
+        // Summary:
+        // The function to be called from outside the class to check the
+        // validity of a move once the OldBoard and NewBoard Properties
+        // have been updated to reflect the changes made by a player
+        //
+        // Output: 
+        // Returns true if the move was a valid one, else it returns false
+        //--------------------------------------------------------------------
+        public bool CheckMoveValidity(bool firstTurn)
+        {
+            // Reinitialize all variables used to store the changes between 
+            // the old and new game boards to prepare for the next move
+            ReinitChangeTrackers();
+
+            // Find the game squares that were changed by the player, and check
+            // if any invalid game squares were changed
+            // See the comments above the function for more information
+            if (!ValidChangedSquares())
+                return false;
+
+            // check if letters layer matches height layer
+
+            // If it is the first move, checks that one of the 4 centermost
+            // game squares is played on
+            if (firstTurn)
+            {
+                if (!Check4CenterSquares())
+                    return false;
+            }
+
+            // Check that the letters played by the player were in their 
+            // letter pool
+            if (!CheckLetters())
+                return false;
+
+            // Check that no invalid moves were performed on stacks
+            // See the comments above the function for more information
+            if (!CheckStacks())
+                return false;
+
+            // Check that all the changes were made in either 1 row or column
+            string moveDirection = CheckRowColumnValidity();
+            if (moveDirection == "invalid")
+                return false;
+
+            // Get the word played by the player
+            GetWords(moveDirection);
+
+            // Check that all words part of the turn are in the dictionary
+            if (!CheckWords())
+                return false;
+
+            // Find all of the letters that were used by the player during their
+            // move, so that they can removed and replaced with new letters.
+            GetUsedLetters();
+
+            return true;
+        }//end CheckMoveValidity
+
+        //--------------------------------------------------------------------
+        // end Public Methods
+        //--------------------------------------------------------------------
 
 
         //--------------------------------------------------------------------
@@ -165,11 +301,11 @@ namespace TournamentAdjudicator.Models
         static bool ValidChangedSquares()
         {
             // Compare the new and old game boards to see which game squares have been changed
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                for(int j = 0; j < 10; j++)
+                for (int j = 0; j < 10; j++)
                 {
-                    if(oldBoard[1,i,j] != newBoard[1,i,j])
+                    if (oldBoard[1, i, j] != newBoard[1, i, j])
                     {
                         changedSquaresDown[numChangedSquares] = i;
                         changedSquaresRight[numChangedSquares] = j;
@@ -203,16 +339,16 @@ namespace TournamentAdjudicator.Models
             string newLetter;
             string oldLetter;
 
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                for(int j = 0; j < 10; j++)
+                for (int j = 0; j < 10; j++)
                 {
                     // Checks that more than one letter was not played on a stack
                     // on any given turn.
-                    newHeight = Int32.Parse(newBoard[1,i,j]);
-                    oldHeight = Int32.Parse(oldBoard[1,i,j]);
-                    newLetter = newBoard[0,i,j];
-                    oldLetter = oldBoard[0,i,j];
+                    newHeight = Int32.Parse(newBoard[1, i, j]);
+                    oldHeight = Int32.Parse(oldBoard[1, i, j]);
+                    newLetter = newBoard[0, i, j];
+                    oldLetter = oldBoard[0, i, j];
 
                     if (!(newLetter == null && oldLetter == null))
                     {
@@ -276,7 +412,7 @@ namespace TournamentAdjudicator.Models
                 if (X.Equals(4) || X.Equals(5))
                     xBool = true;
             }
-            
+
             return (xBool && yBool);
         } // end Check4CenterSquares
 
@@ -296,11 +432,11 @@ namespace TournamentAdjudicator.Models
         {
             bool rowAltered = false;
             bool columnAltered = false;
-            for(int i = 1; i < numChangedSquares; i++)
+            for (int i = 1; i < numChangedSquares; i++)
             {
                 if (changedSquaresRight[i] != changedSquaresRight[i - 1])
                     rowAltered = true;
-                else if(changedSquaresDown[i] != changedSquaresDown[i - 1])
+                else if (changedSquaresDown[i] != changedSquaresDown[i - 1])
                     columnAltered = true;
             }
 
@@ -336,7 +472,7 @@ namespace TournamentAdjudicator.Models
                 foreach (string s in tempPlayerLetters)
                 {
                     validLetters |= s.Equals(newBoard[0, changedSquaresDown[i], changedSquaresRight[i]]);
-                    if(validLetters)
+                    if (validLetters)
                     {
                         tempPlayerLetters.Remove(s);
                         break;
@@ -361,7 +497,7 @@ namespace TournamentAdjudicator.Models
         {
             string currentSquare;
 
-            for(int i = 0; i < numChangedSquares; i++)
+            for (int i = 0; i < numChangedSquares; i++)
             {
                 currentSquare = newBoard[0, changedSquaresDown[i], changedSquaresRight[i]];
 
@@ -369,7 +505,7 @@ namespace TournamentAdjudicator.Models
                 {
                     GetTopBottomWords(i, currentSquare);
 
-                    if(i == 0)
+                    if (i == 0)
                         GetLeftRightWords(i, currentSquare);
                 }
                 else if (moveDirection == "down")
@@ -423,81 +559,6 @@ namespace TournamentAdjudicator.Models
         }// end CheckWords
 
 
-        //--------------------------------------------------------------------
-        // Summary:
-        // Assembles data gather about the move into the format expected by the
-        // ScoreKeeper
-        //
-        // Output: 
-        // Edits the properties the ScoreKeeper will need accordingly
-        //--------------------------------------------------------------------
-        static void SendScoreKeeperData()
-        {
-            
-        }// end ScoreKeeperData
-
-
-        //--------------------------------------------------------------------
-        // Summary:
-        // The function to be called from outside the class to check the
-        // validity of a move once the OldBoard and NewBoard Properties
-        // have been updated to reflect the changes made by a player
-        //
-        // Output: 
-        // Returns true if the move was a valid one, else it returns false
-        //--------------------------------------------------------------------
-        public bool CheckMoveValidity(bool firstTurn)
-        {
-            // Reinitialize all variables used to store the changes between 
-            // the old and new game boards to prepare for the next move
-            ReinitChangeTrackers();
-            
-            // Find the game squares that were changed by the player, and check
-            // if any invalid game squares were changed
-            // See the comments above the function for more information
-            if (!ValidChangedSquares())
-                return false;
-
-            // check if letters layer matches height layer
-
-            // If it is the first move, checks that one of the 4 centermost
-            // game squares is played on
-            if (firstTurn)
-            {
-                if (!Check4CenterSquares())
-                    return false;
-            }
-
-            // Check that the letters played by the player were in their 
-            // letter pool
-            if (!CheckLetters())
-                return false;
-
-            // Check that no invalid moves were performed on stacks
-            // See the comments above the function for more information
-            if (!CheckStacks())
-                return false;
-
-            // Check that all the changes were made in either 1 row or column
-            string moveDirection = CheckRowColumnValidity();
-            if (moveDirection == "invalid")
-                return false;
-
-            // Get the word played by the player
-            GetWords(moveDirection);
-
-            // Check that all words part of the turn are in the dictionary
-            if (!CheckWords())
-                return false;
-
-            // Find all of the letters that were used by the player during their
-            // move, so that they can removed and replaced with new letters.
-            GetUsedLetters();
-
-            return true;
-        }//end CheckMoveValidity
-
-
         //----------------------------------------------------------------------
         //-------------------------Game Square Surrounds------------------------
         //----------------------------------------------------------------------
@@ -519,7 +580,7 @@ namespace TournamentAdjudicator.Models
             string myString = "";
             string letter = "";
 
-            while (!(myY.Equals(0)) && ((letter = newBoard[0, myY-1, myX]) != "-"))
+            while (!(myY.Equals(0)) && ((letter = newBoard[0, myY - 1, myX]) != "-"))
             {
                 myString += letter;
                 myY--;
@@ -669,23 +730,6 @@ namespace TournamentAdjudicator.Models
             char[] tempChar = myString.ToCharArray();
             Array.Reverse(tempChar);
             return new string(tempChar);
-        }
-
-
-        //---------------------------------------------------------------
-        //-------------------------Method Testing------------------------
-        //---------------------------------------------------------------
-
-        // Used to test newly developed methods
-        public string MethodTester()
-        {   
-            //string wordP1 = CheckAbove(5, 5);
-            //string wordP2 = CheckBelow(5, 5);
-            //string wordP3 = CheckRight(5, 5);
-            //string wordP4 = CheckLeft(5, 5);
-
-            //return wordP1 + wordP2 + "   " + wordP3 + wordP4;
-            return "";
         }
     }
 }
