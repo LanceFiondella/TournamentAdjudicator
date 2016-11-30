@@ -27,6 +27,7 @@ namespace TournamentAdjudicator.Controllers
             }
             Status report = new Status();
             report.Letters = user.Letters;
+            report.Score = user.Score;
             try
             {
                 if (Request.Headers.GetValues("Hash").ElementAt(0).ToString().Equals(user.Hash))
@@ -155,6 +156,7 @@ namespace TournamentAdjudicator.Controllers
         public List<string> Letters { get; set; }
 
         public int Turn = Gameplay.Player_Turn;
+        public int Score;
 
     }
 }
