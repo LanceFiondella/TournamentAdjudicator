@@ -51,11 +51,7 @@ namespace TournamentAdjudicator.Controllers
                     Players = tempList;
                 }
                 catch { }
-                if (newid >= 4 && !Gameplay.Game_Started)
-                {
-                    Gameplay.initalize_bag();
-                    Gameplay.initial_draw();
-                }
+
                 return Ok(newplayer);
             }else{
                 return NotFound();

@@ -26,9 +26,10 @@ namespace TournamentAdjudicator
             //Starts the game after 10 seconds if 2 or more players in game.
             if (!Gameplay.Game_Started && UserController.Players != null && UserController.Players.Count > 1)
             {
+                Gameplay.Game_Started = true;
                 Gameplay.initalize_bag();
                 Gameplay.initial_draw();
-                Gameplay.Game_Started = true;
+
             }
         }
     }

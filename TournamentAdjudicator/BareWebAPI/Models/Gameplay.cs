@@ -359,8 +359,8 @@ namespace TournamentAdjudicator.Models
             {
                 start2 = rnd.Next(0, bag.Count-1);
                 p.addSingleLetter(bag[start2]);
-                Console.WriteLine("p: " + p.Letters[i]);
-                bag.Remove(p.Letters[i]);
+                //Console.WriteLine("p: " + p.Letters[i]);
+                bag.Remove(bag[start2]);
             }
         }
 
