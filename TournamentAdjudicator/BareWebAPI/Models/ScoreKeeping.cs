@@ -54,7 +54,7 @@ namespace TournamentAdjudicator.Models
         }
 
         //logs data to log.txt
-        public static void DataLogging(int TeamNum, int Score, string[] words, string[] letters)
+        public void DataLogging(int TeamNum, int Score, List<string> words, List<string> letters)
         {
             //string[] TeamNum = { "Team 1" };
             //string date = DateTime.Today.ToShortDateString();

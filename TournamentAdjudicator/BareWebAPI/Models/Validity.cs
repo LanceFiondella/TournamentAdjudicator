@@ -103,6 +103,8 @@ namespace TournamentAdjudicator.Models
         // This class constructor fetches the game dictionary
         public Validity()
         {
+            ScoreKeeping scoreKeeper = new ScoreKeeping();
+
             int count = 1;
             try
             {
@@ -144,16 +146,13 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns an integer with the score for the turn
         //--------------------------------------------------------------------
-        public int GetTurnScore()
+        static void GetTurnScore(Player p)
         {
             // Initialize the parameters to pass to the Score Keeper
             //int letterCount = 0;
             //bool[] oneTileHigh = { false, false, false, false, false, false, false };
             //bool letters7;
             //bool QuOneTile;
-
-            // Stores the score for the current turn
-            int score = 0;
 
             List<Letter> newletters = new List<Letter>();
             foreach (Letter l in letters)
@@ -163,14 +162,16 @@ namespace TournamentAdjudicator.Models
             }
 
             foreach (Letter l in newletters)
-                score += l.height;
+                p.Score += l.height;
             for (int i = 0; i < 7; i++)
             {
-                if (Int32.Parse(NewBoard[1, changedHeightsDown[i], changedHeightsRight[i]]) == 1)
-                    score++;
+                if (Int32.Parse(newBoard[1, changedHeightsDown[i], changedHeightsRight[i]]) == 1)
+                    p.Score++;
             }
             if (usedLetters.Count == 7)
-                score += 20;
+                p.Score += 20;
+
+            scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters);
             /*
             foreach (string s in words)
             {
@@ -206,9 +207,7 @@ namespace TournamentAdjudicator.Models
                 score += scoreKeeper.CalculateScore(letterCount, oneTileHigh, letters7, QuOneTile);
             }
             */
-            return score;
-
-        }// end ScoreKeeperData
+        }// end GetTurnScore
 
 
         //--------------------------------------------------------------------
@@ -220,7 +219,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns true if the move was a valid one, else it returns false
         //--------------------------------------------------------------------
-        public bool CheckMoveValidity(bool firstTurn)
+        public bool CheckMoveValidity(bool firstTurn, Player player)
         {
             // Reinitialize all variables used to store the changes between 
             // the old and new game boards to prepare for the next move
@@ -267,6 +266,9 @@ namespace TournamentAdjudicator.Models
             // Find all of the letters that were used by the player during their
             // move, so that they can removed and replaced with new letters.
             GetUsedLetters();
+
+            // Calculate the score the player deserves for the move they made
+            GetTurnScore(player);
 
             return true;
         }//end CheckMoveValidity
@@ -488,7 +490,9 @@ namespace TournamentAdjudicator.Models
         static bool CheckLetters()
         {
             bool validLetters = false;
-            List<string> tempPlayerLetters = playerLetters;
+            List<string> tempPlayerLetters = new List<string>();
+            foreach(string s in playerLetters)
+                tempPlayerLetters.Add(s);
 
             for (int i = 0; i < numChangedSquares; i++)
             {

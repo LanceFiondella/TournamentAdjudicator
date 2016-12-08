@@ -1,0 +1,20 @@
+TeamNum: 1
+Timestamp: 12/7/2016 11:53:35 PM
+Team Score: 8
+Playable Letters: 
+P N E I U Qu I 
+Words Played: 
+PINE
+
+**********************************
+
+TeamNum: 2
+Timestamp: 12/7/2016 11:54:00 PM
+Team Score: 5
+Playable Letters: 
+B N E I D V A 
+Words Played: 
+DIP
+
+**********************************
+
