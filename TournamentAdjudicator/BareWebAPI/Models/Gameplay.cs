@@ -16,6 +16,7 @@ namespace TournamentAdjudicator.Models
         public static int Player_Turn;
         public static bool Game_Started = false;
         public static bool firstTurn = true;
+        public static bool validFirstMove = false;
         public static int Pass_Count = 0;
 
         static string[,,] board = new string[2, 10, 10]; // [letter assigned(1)/letter height(2) ,x,y]
@@ -101,7 +102,7 @@ namespace TournamentAdjudicator.Models
                 foreach (string s in p.Letters)
                     moveChecker.PlayerLetters.Add(s);
 
-                if (p.ID > 1)
+                if (p.ID > 1 && validFirstMove)
                 {
                     firstTurn = false;
 
@@ -110,17 +111,13 @@ namespace TournamentAdjudicator.Models
                         return false;
                 }
 
-                //pass in the letters that the current player has
-
-                if (moveChecker.CheckMoveValidity(firstTurn))
+                if (moveChecker.CheckMoveValidity(firstTurn, p))
                 {
+                    validFirstMove = true;
                     board = board_temp;
                     Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
                     List<string> used_letters = moveChecker.UsedLetters;
-
-                    // Add the score for the turn to the players running total
-                    p.Score += moveChecker.GetTurnScore();
 
                     foreach (string letter in used_letters)
                     {
