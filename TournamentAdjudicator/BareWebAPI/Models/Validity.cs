@@ -153,37 +153,24 @@ namespace TournamentAdjudicator.Models
             //bool[] oneTileHigh = { false, false, false, false, false, false, false };
             //bool letters7;
             //bool QuOneTile;
-
-            List<Letter> newletters = new List<Letter>();
-            foreach (Letter l in letters)
-            {    
-                if (!newletters.Exists(q => q.x == l.x && q.y ==l.y))
-                    newletters.Add(l);
-            }
             int oneTileHigh = 0;
-            foreach (Letter l in newletters)
+           // List<Letter> newletters = new List<Letter>();
+            foreach (Letter l in letters)
             {
                 p.Score += l.height;
                 oneTileHigh+=l.height;
-
             }
-            /*
-            for (int i = 0; i < 7; i++)
-            {
-                if (Int32.Parse(newBoard[1, changedHeightsDown[i], changedHeightsRight[i]]) == 1)
-                    p.Score++;
-            }*/
-            if (oneTileHigh == newletters.Count)
+            if (oneTileHigh == letters.Count)
             {
                 p.Score += oneTileHigh;
-                if(newletters.Exists(q => q.l == "Qu"))p.Score+=2;
+                if(letters.Exists(q => q.l == "Qu"))p.Score+=2;
 
             }
             if (usedLetters.Count == 7)
                 p.Score += 20;
 
-            //scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters);
-            //DOES NOT WORK YET
+            scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters);
+           
             
             
             /*

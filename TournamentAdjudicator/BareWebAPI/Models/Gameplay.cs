@@ -53,7 +53,7 @@ namespace TournamentAdjudicator.Models
 
         public static bool turn(int id)
         {
-            if(Player_Turn == id)
+            if (Player_Turn == id)
             {
                 return true;
             }
@@ -80,9 +80,9 @@ namespace TournamentAdjudicator.Models
             moveChecker.OldBoard = board;
 
 
-            for(int i  =0;i<10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                for(int j = 0; j < 10; j++)
+                for (int j = 0; j < 10; j++)
                 {
                     if (board[0, i, j] != board_temp[0, i, j])
                         passStatus = false;
@@ -141,7 +141,7 @@ namespace TournamentAdjudicator.Models
                 }
             }
 
-            
+
         }
 
         //exchange a single letter instead of a move
@@ -197,9 +197,9 @@ namespace TournamentAdjudicator.Models
         // Initialize heights to "0"
         public static void init_board()
         {
-            for(int i = 0; i < Board_Height; i++)
+            for (int i = 0; i < Board_Height; i++)
             {
-                for(int j = 0; j < Board_Width; j++)
+                for (int j = 0; j < Board_Width; j++)
                 {
                     board[0, i, j] = "-";
                     board[1, i, j] = "0";
@@ -209,20 +209,20 @@ namespace TournamentAdjudicator.Models
             Player_Turn = 1;
         }
 
-        public static void Print_Board(string[, ,] myBoard, int level)
+        public static void Print_Board(string[,,] myBoard, int level)
         {
             Console.Write(" ");
             Console.Write(" ");
             Console.Write(" ");
             Console.Write(" ");
             Console.Write(" ");
-            for (int i = 0; i < Board_Height+1; i++)
+            for (int i = 0; i < Board_Height + 1; i++)
             {
-                for (int j = 0; j < Board_Width+1; j++)
+                for (int j = 0; j < Board_Width + 1; j++)
                 {
                     if (i == 0)
                     {
-                        if(!(j.Equals(10)))
+                        if (!(j.Equals(10)))
                         {
                             Console.Write(" ");
                             Console.Write(" ");
@@ -235,7 +235,7 @@ namespace TournamentAdjudicator.Models
                     {
                         Console.Write(" ");
                         Console.Write(" ");
-                        Console.Write(i-1);
+                        Console.Write(i - 1);
                         Console.Write(" ");
                         Console.Write(" ");
                     }
@@ -243,7 +243,7 @@ namespace TournamentAdjudicator.Models
                     {
                         Console.Write(" ");
                         Console.Write(" ");
-                        Console.Write(myBoard[level, i-1, j-1]);
+                        Console.Write(myBoard[level, i - 1, j - 1]);
                         Console.Write(" ");
                         Console.Write(" ");
                     }
@@ -258,7 +258,7 @@ namespace TournamentAdjudicator.Models
         public static void initalize_bag()
         {
 
-            for(int i = 0; i <= 9; i++)
+            for (int i = 0; i <= 9; i++)
             {
                 for (int j = 0; j <= 9; j++)
                 {
@@ -331,7 +331,7 @@ namespace TournamentAdjudicator.Models
             }
         }
 
-     
+
         public static void initial_draw()
         {
             //give all players 7 tiles
@@ -343,7 +343,7 @@ namespace TournamentAdjudicator.Models
             //start game
             Player_Turn = 1;
 
- 
+
         }
 
         public static void give_letters(Player p, int needed)
@@ -352,9 +352,9 @@ namespace TournamentAdjudicator.Models
             int start2;
 
 
-            for(int i = 0;  i < needed; i++)
+            for (int i = 0; i < needed; i++)
             {
-                start2 = rnd.Next(0, bag.Count-1);
+                start2 = rnd.Next(0, bag.Count - 1);
                 p.addSingleLetter(bag[start2]);
                 //Console.WriteLine("p: " + p.Letters[i]);
                 bag.Remove(bag[start2]);
