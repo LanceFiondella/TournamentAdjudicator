@@ -160,18 +160,32 @@ namespace TournamentAdjudicator.Models
                 if (!newletters.Exists(q => q.x == l.x && q.y ==l.y))
                     newletters.Add(l);
             }
-
+            int oneTileHigh = 0;
             foreach (Letter l in newletters)
+            {
                 p.Score += l.height;
+                oneTileHigh+=l.height;
+
+            }
+            /*
             for (int i = 0; i < 7; i++)
             {
                 if (Int32.Parse(newBoard[1, changedHeightsDown[i], changedHeightsRight[i]]) == 1)
                     p.Score++;
+            }*/
+            if (oneTileHigh == newletters.Count)
+            {
+                p.Score += oneTileHigh;
+                if(newletters.Exists(q => q.l == "Qu"))p.Score+=2;
+
             }
             if (usedLetters.Count == 7)
                 p.Score += 20;
 
-            scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters);
+            //scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters);
+            //DOES NOT WORK YET
+            
+            
             /*
             foreach (string s in words)
             {
@@ -531,7 +545,7 @@ namespace TournamentAdjudicator.Models
             {
                 
                 currentSquare = newBoard[0, changedSquaresDown[i], changedSquaresRight[i]];
-                if(currentSquare!=null)letters.Add(new Letter(currentSquare, changedSquaresRight[i], changedSquaresDown[i], Int32.Parse(newBoard[1, changedSquaresDown[i], changedSquaresRight[i]])));
+                if(currentSquare!=null&&i==0)letters.Add(new Letter(currentSquare, changedSquaresRight[i], changedSquaresDown[i], Int32.Parse(newBoard[1, changedSquaresDown[i], changedSquaresRight[i]])));
 
                 if (moveDirection == "right")
                 {
