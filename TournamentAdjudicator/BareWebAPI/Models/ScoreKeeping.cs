@@ -10,14 +10,18 @@ namespace TournamentAdjudicator.Models
     {
         // Vidhya's algorithm for calculating scores
        
-        public int CalculateScore(int letterCount, bool OneTileHigh, bool Letters7, bool QuOneTile)
+        public int CalculateScore(int letterCount, bool[] OneTileHigh, bool Letters7, bool QuOneTile)
         {
             int result;
-	        int Score; 
-            
-            if(OneTileHigh && QuOneTile)
-   	        {
-     	        result=(letterCount*2)+2;
+	        int Score;
+
+            if (QuOneTile) { 
+
+                result = letterCount;
+                foreach (bool l in OneTileHigh)
+                {
+                    if (l) result += 1;
+                }
 			    if(Letters7)
 				{
 				    Score=result+20;
@@ -29,26 +33,14 @@ namespace TournamentAdjudicator.Models
 
                 return Score;
    	        }	
-                 
-            else if(OneTileHigh)
-   	        {
-     	        result=letterCount*2;
-			    if(Letters7)
-				{
-					Score=result+20;
-                }
-                else
-			    {
-			        Score=result;
-                }
-
-                return Score;
-   	        }	
-	
             else
    	        {
                 result=letterCount;
-		        if(Letters7)
+                foreach (bool l in OneTileHigh)
+                {
+                    if (l) result += 1;
+                }
+                if (Letters7)
 		        {
 	    	        Score=result+20;
                 }

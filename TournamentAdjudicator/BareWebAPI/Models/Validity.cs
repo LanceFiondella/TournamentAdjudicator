@@ -26,6 +26,8 @@ namespace TournamentAdjudicator.Models
 
         static List<string> usedLetters = new List<string>();
 
+        static List<Letter> letters = new List<Letter>();
+
         // Stores the coordinates of the changed game squares
         static int numChangedSquares = 0;
         static int[] changedSquaresDown = new int[7];
@@ -146,17 +148,33 @@ namespace TournamentAdjudicator.Models
         {
             // Initialize the parameters to pass to the Score Keeper
             int letterCount = 0;
-            bool oneTileHigh;
+            bool[] oneTileHigh = { false, false, false, false, false, false, false };
             bool letters7;
             bool QuOneTile;
 
             // Stores the score for the current turn
             int score = 0;
-
+            
+            List<Letter> newletters = new List<Letter>();
+            foreach (Letter l in letters)
+            {    
+                if (!newletters.Exists(q => q.x == l.x && q.y ==l.y))
+                    newletters.Add(l);
+            }
+            foreach (Letter l in newletters)
+                score += l.height;
+            for (int i = 0; i < 7; i++)
+            {
+                if (Int32.Parse(NewBoard[1, changedHeightsDown[i], changedHeightsRight[i]]) == 1)
+                    score++;
+            }
+            if (usedLetters.Count == 7)
+                score += 20;
+            /*
             foreach (string s in words)
             {
                 // Reset the variables for each word
-                oneTileHigh = false;
+                
                 letters7 = false;
                 QuOneTile = false;
 
@@ -164,10 +182,13 @@ namespace TournamentAdjudicator.Models
                 letterCount = s.Length;
 
                 // Counts the number of tiles that were played directly on the board
-                //
-                // STILL NEEDS IMPLEMENTING
-                //
-                oneTileHigh = false;
+                for (int i = 0; i < 7; i++)
+                {
+                if (Int32.Parse(NewBoard[1, changedHeightsDown[i], changedHeightsRight[i]]) == 1)
+                    oneTileHigh[i]=true;
+                }
+                
+             
 
                 // Checks if all of the player's letters were used in the turn
                 if (usedLetters.Count == 7)
@@ -183,7 +204,7 @@ namespace TournamentAdjudicator.Models
                 // for the turn thus far
                 score += scoreKeeper.CalculateScore(letterCount, oneTileHigh, letters7, QuOneTile);
             }
-
+            */
             return score;
 
         }// end ScoreKeeperData
@@ -283,6 +304,9 @@ namespace TournamentAdjudicator.Models
 
             // empty list of words from previous move
             words.Clear();
+
+            // empty list of words from previous move
+            letters.Clear();
         }//end FindMove
 
 
@@ -497,9 +521,12 @@ namespace TournamentAdjudicator.Models
         {
             string currentSquare;
 
+
             for (int i = 0; i < numChangedSquares; i++)
             {
+                
                 currentSquare = newBoard[0, changedSquaresDown[i], changedSquaresRight[i]];
+                if(currentSquare!=null)letters.Add(new Letter(currentSquare, changedSquaresRight[i], changedSquaresDown[i], Int32.Parse(newBoard[1, changedSquaresDown[i], changedSquaresRight[i]])));
 
                 if (moveDirection == "right")
                 {
@@ -580,8 +607,10 @@ namespace TournamentAdjudicator.Models
             string myString = "";
             string letter = "";
 
+           
             while (!(myY.Equals(0)) && ((letter = newBoard[0, myY - 1, myX]) != null))
             {
+                letters.Add(new Letter(letter, myX, myY - 1, Int32.Parse(newBoard[1, myY - 1, myX])));
                 myString += letter;
                 myY--;
             }
@@ -605,9 +634,10 @@ namespace TournamentAdjudicator.Models
             int myY = Y;
             string myString = "";
             string letter = "";
-
+            
             while (!(myY.Equals(9)) && ((letter = newBoard[0, myY + 1, myX]) != null))
             {
+                letters.Add(new Letter(letter, myX, myY + 1, Int32.Parse(newBoard[1, myY + 1, myX])));
                 myString += letter;
                 myY++;
             }
@@ -631,9 +661,10 @@ namespace TournamentAdjudicator.Models
             int myY = Y;
             string myString = "";
             string letter = "";
-
+            
             while (!(myX.Equals(9)) && ((letter = newBoard[0, myY, myX + 1]) != null))
             {
+                letters.Add(new Letter(letter, myX+1, myY, Int32.Parse(newBoard[1, myY, myX+1])));
                 myString += letter;
                 myX++;
             }
@@ -660,6 +691,7 @@ namespace TournamentAdjudicator.Models
 
             while (!(myX.Equals(0)) && ((letter = newBoard[0, myY, myX - 1]) != null))
             {
+                letters.Add(new Letter(letter, myX-1, myY, Int32.Parse(newBoard[1, myY, myX-1])));
                 myString += letter;
                 myX--;
             }
@@ -730,6 +762,20 @@ namespace TournamentAdjudicator.Models
             char[] tempChar = myString.ToCharArray();
             Array.Reverse(tempChar);
             return new string(tempChar);
+        }
+    }
+    public class Letter
+    {
+        public string l;
+        public int x;
+        public int y;
+        public int height;
+        public Letter(string l, int x, int y,int height)
+        {
+            this.l = l;
+            this.x = x;
+            this.y = y;
+            this.height = height;
         }
     }
 }

@@ -261,6 +261,7 @@ namespace TournamentPlayerExample
                         if (m == "") break;
 
                         letNumNum = m.Split(' ');
+                        if(letNumNum[0]!="Qu") letNumNum[0] = letNumNum[0].ToUpper();
                         myPayload.Board[0, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = letNumNum[0];
                         myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])] = (Int32.Parse(myPayload.Board[1, Int32.Parse(letNumNum[1]), Int32.Parse(letNumNum[2])].ToString()) + 1).ToString();
                         Console.WriteLine(letNumNum[0]);
@@ -268,6 +269,7 @@ namespace TournamentPlayerExample
                     }
 
                     //make a move
+                    /*
                     for (int r = 0; r < 10; r++)
                     {
                         for (int c = 0; c < 10; c++)
@@ -276,6 +278,8 @@ namespace TournamentPlayerExample
                         }
                         Console.WriteLine();
                     }
+                    */
+
                     await SendMove();
                 }
 
