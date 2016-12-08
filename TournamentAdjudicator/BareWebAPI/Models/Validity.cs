@@ -147,20 +147,21 @@ namespace TournamentAdjudicator.Models
         public int GetTurnScore()
         {
             // Initialize the parameters to pass to the Score Keeper
-            int letterCount = 0;
-            bool[] oneTileHigh = { false, false, false, false, false, false, false };
-            bool letters7;
-            bool QuOneTile;
+            //int letterCount = 0;
+            //bool[] oneTileHigh = { false, false, false, false, false, false, false };
+            //bool letters7;
+            //bool QuOneTile;
 
             // Stores the score for the current turn
             int score = 0;
-            
+
             List<Letter> newletters = new List<Letter>();
             foreach (Letter l in letters)
             {    
                 if (!newletters.Exists(q => q.x == l.x && q.y ==l.y))
                     newletters.Add(l);
             }
+
             foreach (Letter l in newletters)
                 score += l.height;
             for (int i = 0; i < 7; i++)
