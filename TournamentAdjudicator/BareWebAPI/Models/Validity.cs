@@ -146,69 +146,41 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns an integer with the score for the turn
         //--------------------------------------------------------------------
-        static void GetTurnScore(Player p)
+        static void GetTurnScore(Player p, bool invalidMove, string errorMsg)
         {
-            // Initialize the parameters to pass to the Score Keeper
-            //int letterCount = 0;
-            //bool[] oneTileHigh = { false, false, false, false, false, false, false };
-            //bool letters7;
-            //bool QuOneTile;
-            int oneTileHigh = 0;
-           // List<Letter> newletters = new List<Letter>();
-            foreach (Letter l in letters)
+            if (!invalidMove)
             {
-                p.Score += l.height;
-                oneTileHigh+=l.height;
-            }
-            if (oneTileHigh == letters.Count)
-            {
-                p.Score += oneTileHigh;
-                if(letters.Exists(q => q.l == "Qu"))p.Score+=2;
-
-            }
-            if (usedLetters.Count == 7)
-                p.Score += 20;
-
-            scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters);
-           
-            
-            
-            /*
-            foreach (string s in words)
-            {
-                // Reset the variables for each word
-                
-                letters7 = false;
-                QuOneTile = false;
-
-                // Counts the number of letters that were played in the turn
-                letterCount = s.Length;
-
-                // Counts the number of tiles that were played directly on the board
-                for (int i = 0; i < 7; i++)
+                int oneTileHigh = 0;
+                foreach (Letter l in letters)
                 {
-                if (Int32.Parse(NewBoard[1, changedHeightsDown[i], changedHeightsRight[i]]) == 1)
-                    oneTileHigh[i]=true;
+                    p.Score += l.height;
+                    oneTileHigh += l.height;
                 }
-                
-             
+                if (oneTileHigh == letters.Count)
+                {
+                    p.Score += oneTileHigh;
+                    if (letters.Exists(q => q.l == "Qu")) p.Score += 2;
 
-                // Checks if all of the player's letters were used in the turn
+                }
                 if (usedLetters.Count == 7)
-                    letters7 = true;
-
-                // Check if any words contain "Qu"
-                // Note a word cannot contain Qu unless it contains Q,
-                // for this reason only Q is checked for
-                if (s.Contains("Q"))
-                    QuOneTile = true;
-
-                // Calculate the score for the current word and add it to the total
-                // for the turn thus far
-                score += scoreKeeper.CalculateScore(letterCount, oneTileHigh, letters7, QuOneTile);
+                    p.Score += 20;
             }
-            */
+
+            scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters, invalidMove, errorMsg);
         }// end GetTurnScore
+
+
+        //--------------------------------------------------------------------
+        // Summary:
+        // Log when a player decides to pass
+        //
+        // Output: 
+        // Logs that the player passed to the GameLog file
+        //--------------------------------------------------------------------
+        public void LogPassMove(Player p)
+        {
+            scoreKeeper.LogPass(p.ID, p.Score, p.Letters);
+        }// end LogPassMove
 
 
         //--------------------------------------------------------------------
@@ -222,6 +194,9 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         public bool CheckMoveValidity(bool firstTurn, Player player)
         {
+            bool invalidMove = false;
+            string errorMsg = "";
+
             // Reinitialize all variables used to store the changes between 
             // the old and new game boards to prepare for the next move
             ReinitChangeTrackers();
@@ -230,7 +205,10 @@ namespace TournamentAdjudicator.Models
             // if any invalid game squares were changed
             // See the comments above the function for more information
             if (!ValidChangedSquares())
-                return false;
+            {
+                invalidMove = true;
+                errorMsg = "Some of the changed game squares were invalid.";
+            }
 
             // check if letters layer matches height layer
 
@@ -238,40 +216,55 @@ namespace TournamentAdjudicator.Models
             // game squares is played on
             if (firstTurn)
             {
-                if (!Check4CenterSquares())
-                    return false;
+                if (!Check4CenterSquares() && !invalidMove)
+                {
+                    invalidMove = true;
+                    errorMsg = "An invalid First Move was made.";
+                }
             }
 
             // Check that the letters played by the player were in their 
             // letter pool
-            if (!CheckLetters())
-                return false;
+            if (!CheckLetters() && !invalidMove)
+            {
+                invalidMove = true;
+                errorMsg = "Letter(s) played were not from the player's letter pool.";
+            }
 
             // Check that no invalid moves were performed on stacks
             // See the comments above the function for more information
-            if (!CheckStacks())
-                return false;
+            if (!CheckStacks() && !invalidMove)
+            {
+                invalidMove = true;
+                errorMsg = "An error was encountered with a stack.";
+            }
 
             // Check that all the changes were made in either 1 row or column
             string moveDirection = CheckRowColumnValidity();
-            if (moveDirection == "invalid")
-                return false;
+            if (moveDirection == "invalid" && !invalidMove)
+            {
+                invalidMove = true;
+                errorMsg = "The direction of the move could not be determined.";
+            }
 
             // Get the word played by the player
             GetWords(moveDirection);
 
             // Check that all words part of the turn are in the dictionary
-            if (!CheckWords())
-                return false;
+            if (!CheckWords() && !invalidMove)
+            {
+                invalidMove = true;
+                errorMsg = "Word(s) played were not found within the dictionary.";
+            }
 
             // Find all of the letters that were used by the player during their
             // move, so that they can removed and replaced with new letters.
             GetUsedLetters();
 
             // Calculate the score the player deserves for the move they made
-            GetTurnScore(player);
+            GetTurnScore(player, invalidMove, errorMsg);
 
-            return true;
+            return !invalidMove;
         }//end CheckMoveValidity
 
         //--------------------------------------------------------------------

@@ -91,6 +91,7 @@ namespace TournamentAdjudicator.Models
             if (passStatus)
             {
                 pass();
+                moveChecker.LogPassMove(p);
                 return true;
             }
 
