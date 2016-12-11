@@ -332,7 +332,7 @@ namespace TournamentAdjudicator.Models
                         changedSquaresRight[numChangedSquares] = j;
                         numChangedSquares++;
 
-                        if (numChangedSquares >= 7)
+                        if (numChangedSquares > 7)
                             return false;
                     }
                 }
