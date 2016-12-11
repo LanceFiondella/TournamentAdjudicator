@@ -1,0 +1,84 @@
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 9:58:20 PM
+Team Score: 6
+Playable Letters: 
+S Y L M S K E 
+Word(s) Played: 
+YES
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 9:59:08 PM
+Team Score: 8
+Playable Letters: 
+A W N L S W E 
+Word(s) Played: 
+LEAN
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 3
+Timestamp: 12/10/2016 9:59:52 PM
+Team Score: 6
+Playable Letters: 
+I Y R L S B E 
+Word(s) Played: 
+BIN
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 10:00:37 PM
+Team Score: 12
+Playable Letters: 
+L M S K A T H 
+Word(s) Played: 
+BAT
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 10:03:36 PM
+Team Score: 19
+Playable Letters: 
+W S W E I D U 
+Word(s) Played: 
+LEAD
+BID
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 3
+Timestamp: 12/10/2016 10:05:24 PM
+Team Score: 14
+Playable Letters: 
+Y R L S E X B 
+Word(s) Played: 
+IS
+AS
+
+**********************************
+
+PASS
+
+TeamNum: 1
+Timestamp: 12/10/2016 10:05:46 PM
+Team Score: 12
+Playable Letters: 
+L M S K H A V 
+
+**********************************
+

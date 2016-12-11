@@ -1,0 +1,49 @@
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 10:21:24 PM
+Team Score: 6
+Playable Letters: 
+P A T U I T P 
+Word(s) Played: 
+PIT
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 10:22:10 PM
+Team Score: 8
+Playable Letters: 
+B O D D O T B 
+Word(s) Played: 
+BOOT
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 3
+Timestamp: 12/10/2016 10:23:36 PM
+Team Score: 10
+Playable Letters: 
+B A L L A U H 
+Word(s) Played: 
+BOOL
+PILL
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 10:24:22 PM
+Team Score: 14
+Playable Letters: 
+A U T P K A C 
+Word(s) Played: 
+PACK
+
+**********************************
+

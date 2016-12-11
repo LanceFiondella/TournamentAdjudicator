@@ -39,6 +39,12 @@ namespace TournamentAdjudicator.Models
         static int[] changedHeightsDown = new int[7];
         static int[] changedHeightsRight = new int[7];
 
+
+        // Stores the points to be added to a player's score to double count
+        // the stack/letter that is the intersection point between two words.
+        static int intersectionPoints = 0;
+
+
         // Stores all of the letters the player had to maker their move with
         static List<string> playerLetters = new List<string>();
 
@@ -160,10 +166,11 @@ namespace TournamentAdjudicator.Models
                 {
                     p.Score += oneTileHigh;
                     if (letters.Exists(q => q.l == "Qu")) p.Score += 2;
-
                 }
                 if (usedLetters.Count == 7)
                     p.Score += 20;
+
+                p.Score += intersectionPoints;
             }
 
             scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters, invalidMove, errorMsg);
@@ -304,6 +311,8 @@ namespace TournamentAdjudicator.Models
 
             // empty list of words from previous move
             letters.Clear();
+
+            intersectionPoints = 0;
         }//end FindMove
 
 
@@ -519,31 +528,44 @@ namespace TournamentAdjudicator.Models
         static void GetWords(string moveDirection)
         {
             string currentSquare;
-
+            int currentHeight = 0;
+            bool wordFound;
 
             for (int i = 0; i < numChangedSquares; i++)
             {
                 
                 currentSquare = newBoard[0, changedSquaresDown[i], changedSquaresRight[i]];
-                if(currentSquare!=null&&i==0)letters.Add(new Letter(currentSquare, changedSquaresRight[i], changedSquaresDown[i], Int32.Parse(newBoard[1, changedSquaresDown[i], changedSquaresRight[i]])));
+                currentHeight = Int32.Parse(newBoard[1, changedSquaresDown[i], changedSquaresRight[i]]);
+                Letter currentLetter = new Letter(currentSquare, changedSquaresRight[i], changedSquaresDown[i], currentHeight);
+                if(currentSquare!=null && i==0)
+                    letters.Add(currentLetter);
 
                 if (moveDirection == "right")
                 {
-                    GetTopBottomWords(i, currentSquare);
+                    wordFound = GetTopBottomWords(i, currentSquare);
+                    if (wordFound)
+                        intersectionPoints += currentLetter.height;
 
                     if (i == 0)
                         GetLeftRightWords(i, currentSquare);
                 }
                 else if (moveDirection == "down")
                 {
-                    GetLeftRightWords(i, currentSquare);
+                    wordFound = GetLeftRightWords(i, currentSquare);
+                    if (wordFound)
+                        intersectionPoints += currentLetter.height;
 
                     if (i == 0)
                         GetTopBottomWords(i, currentSquare);
                 }
                 else if (moveDirection == "singleLetter")
                 {
-                    GetTopBottomWords(i, currentSquare);
+                    wordFound = GetTopBottomWords(i, currentSquare);
+                    // if single letter play only want to check for 
+                    // intersection points once
+                    if (wordFound)
+                        intersectionPoints += currentLetter.height;
+
                     GetLeftRightWords(i, currentSquare);
                 }
             }
@@ -707,7 +729,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns nothing, but it does update the list of words for the turn
         //--------------------------------------------------------------------
-        static void GetLeftRightWords(int i, string currentSquare)
+        static bool GetLeftRightWords(int i, string currentSquare)
         {
             string leftStr;
             string rightStr;
@@ -720,7 +742,12 @@ namespace TournamentAdjudicator.Models
 
             word = leftStr + rightStr;
             if (!word.Equals(""))
+            {
                 words.Add(word);
+                return true;
+            }
+
+            return false;
         }
 
 
@@ -732,7 +759,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns nothing, but it does update the list of words for the turn
         //--------------------------------------------------------------------
-        static void GetTopBottomWords(int i, string currentSquare)
+        static bool GetTopBottomWords(int i, string currentSquare)
         {
             string aboveStr;
             string belowStr;
@@ -745,7 +772,12 @@ namespace TournamentAdjudicator.Models
 
             word = aboveStr + belowStr;
             if (!word.Equals(""))
+            {
                 words.Add(word);
+                return true;
+            }
+
+            return false;
         }
 
 
