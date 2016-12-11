@@ -1,0 +1,133 @@
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 11:03:03 PM
+Team Score: 8
+Playable Letters: 
+I R D Qu I C L 
+Word(s) Played: 
+QuID
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 11:03:43 PM
+Team Score: 4
+Playable Letters: 
+O T M J A C N 
+Word(s) Played: 
+MID
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 3
+Timestamp: 12/10/2016 11:04:24 PM
+Team Score: 4
+Playable Letters: 
+O U T X I C D 
+Word(s) Played: 
+MID
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 11:05:15 PM
+Team Score: 18
+Playable Letters: 
+R I C L N I R 
+Word(s) Played: 
+RID
+RID
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 11:05:40 PM
+Team Score: 10
+Playable Letters: 
+O T J A C N U 
+Word(s) Played: 
+DOT
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+Word(s) played were not found within the dictionary.
+
+TeamNum: 3
+Timestamp: 12/10/2016 11:06:23 PM
+Team Score: 4
+Playable Letters: 
+O U T X C P G 
+Word(s) Played: 
+PURID
+
+**********************************
+
+PASS
+
+TeamNum: 1
+Timestamp: 12/10/2016 11:07:06 PM
+Team Score: 18
+Playable Letters: 
+I C L N I R A 
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 11:08:16 PM
+Team Score: 16
+Playable Letters: 
+J A C N U O S 
+Word(s) Played: 
+SOD
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 3
+Timestamp: 12/10/2016 11:08:46 PM
+Team Score: 12
+Playable Letters: 
+O U T X C P G 
+Word(s) Played: 
+PUTRID
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 11:09:15 PM
+Team Score: 26
+Playable Letters: 
+I C L N I R A 
+Word(s) Played: 
+CLIP
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 11:09:57 PM
+Team Score: 22
+Playable Letters: 
+J A C N U N Y 
+Word(s) Played: 
+CAN
+
+**********************************
+

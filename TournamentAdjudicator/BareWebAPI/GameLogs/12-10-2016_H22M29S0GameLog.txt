@@ -1,0 +1,54 @@
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/10/2016 10:29:44 PM
+Team Score: 8
+Playable Letters: 
+H I O T M G N 
+Word(s) Played: 
+MOTH
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/10/2016 10:30:19 PM
+Team Score: 8
+Playable Letters: 
+H A I L N H U 
+Word(s) Played: 
+MAIL
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+Word(s) played were not found within the dictionary.
+
+TeamNum: 3
+Timestamp: 12/10/2016 10:30:44 PM
+Team Score: 0
+Playable Letters: 
+P I O M T G D 
+Word(s) Played: 
+GAIL
+GOTH
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+Word(s) played were not found within the dictionary.
+
+TeamNum: 1
+Timestamp: 12/10/2016 10:31:30 PM
+Team Score: 8
+Playable Letters: 
+I G N Y E R D 
+Word(s) Played: 
+NAIL
+NOTH
+
+**********************************
+
