@@ -145,21 +145,34 @@ namespace TournamentAdjudicator.Models
             if (p.Letters.Contains(p.ExchangeLetter))
             {
                 p.Letters.Remove(p.ExchangeLetter);
-                bag.Add(p.ExchangeLetter);
-                Random rnd = new Random();
-                int start2;
+
+                if (bag.Count > 0)
+                {
+
+                    Random rnd = new Random();
+                    int start2;
 
 
 
-                start2 = rnd.Next(0, bag.Count);
-                p.addSingleLetter(bag[start2]);
+                    start2 = rnd.Next(0, bag.Count);
+                    p.addSingleLetter(bag[start2]);
 
-                bag.Remove(bag[start2]);
+                    bag.Remove(bag[start2]);
 
-                Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
-                Pass_Count = 0;
-                return true;
+                    //moved the adding back in till after they remove a letter
+                    bag.Add(p.ExchangeLetter);
 
+                    Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
+                    Pass_Count = 0;
+
+                    return true;
+                }
+                else
+                {
+                    Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
+                    Pass_Count++;
+                    return false;
+                }
             }
 
             else return false;

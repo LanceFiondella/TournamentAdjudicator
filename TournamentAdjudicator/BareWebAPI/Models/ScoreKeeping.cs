@@ -13,6 +13,7 @@ namespace TournamentAdjudicator.Models
     {
         public static bool endgame = false;
         static string path = "";
+        static int turnNum = 0;
         public ScoreKeeping()
         {
             string pathEnd = DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString()
@@ -42,7 +43,7 @@ namespace TournamentAdjudicator.Models
                     file.WriteLine(errorMsg);
                     file.WriteLine();
                 }
-
+                file.WriteLine("Turn: " + turnNum++);
                 file.WriteLine("TeamNum: " + TeamNum);
                 file.WriteLine("Timestamp: " + timestamp);
                 file.WriteLine("Team Score: " + Score);
@@ -72,6 +73,7 @@ namespace TournamentAdjudicator.Models
             {
                 file.WriteLine("PASS");
                 file.WriteLine();
+                file.WriteLine("Turn: " + turnNum++);
                 file.WriteLine("TeamNum: " + TeamNum);
                 file.WriteLine("Timestamp: " + timestamp);
                 file.WriteLine("Team Score: " + Score);
@@ -98,6 +100,7 @@ namespace TournamentAdjudicator.Models
                 file.WriteLine("**********************************");
                 file.WriteLine("THE GAME HAS ENDED.");
                 file.WriteLine("Timestamp: " + timestamp);
+                file.WriteLine("Number of turns: " + turnNum);
                 foreach (Player p in players)
                 {
                     file.WriteLine();
