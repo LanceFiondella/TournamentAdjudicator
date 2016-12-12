@@ -105,10 +105,15 @@ namespace TournamentAdjudicator.Controllers
                     string[,,] dict =null;
                     string[] letter = null;
                     if (move != null)
-                        dict = JsonConvert.DeserializeObject<string[,,]>(move.ToString());
+                        try {
+                            dict = JsonConvert.DeserializeObject<string[,,]>(move.ToString());
+                        }
+                        catch { return Ok("Something went wrong in deserializing for a board play"); }
                     if (exchange != null)
-                        letter = JsonConvert.DeserializeObject<string[]>(exchange.ToString());
-
+                        try {
+                            letter = JsonConvert.DeserializeObject<string[]>(exchange.ToString());
+                        }
+                        catch { return Ok("Something went wrong in deserializing for an exchange play"); }
 
                     if (dict != null)
                     {
