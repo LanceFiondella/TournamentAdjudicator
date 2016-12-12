@@ -85,5 +85,36 @@ namespace TournamentAdjudicator.Models
                 file.WriteLine();
             }
         }
+        public void LogEndGame()
+        {
+            string timestamp = DateTime.Now.ToString();
+            List<Player> players = TournamentAdjudicator.Controllers.UserController.Players;
+            Player winner = players.Find(q => q.Score == players.Max(p => p.Score));
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+            {
+                file.WriteLine("**********************************");
+                file.WriteLine("The game has ended.");
+                file.WriteLine("Timestamp: " + timestamp);
+                foreach (Player p in players)
+                {
+                    file.WriteLine();
+                    file.WriteLine("TeamNum: " + p.ID + " had a score of: " + p.Score);
+                    if (p.Letters.Count > 0)
+                    {
+                        file.Write("Letters remaining in hand: ");
+                        foreach (string letter in p.Letters)
+                        {
+                            file.Write(letter + " ");
+                        }
+                    }
+                    file.WriteLine();
+                }
+                file.WriteLine();
+                file.WriteLine("The winner is: " + winner.ID);
+
+                file.WriteLine("**********************************");
+            }
+        }
     }
 }

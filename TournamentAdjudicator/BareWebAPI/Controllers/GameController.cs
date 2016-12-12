@@ -31,7 +31,10 @@ namespace TournamentAdjudicator.Controllers
                 foreach (Player p in UserController.Players)
                 {
                     endgameString += "Player " + p.ID + ": " + p.Score + "\n";
+                    
                 }
+                Player winner = UserController.Players.Find(q => q.Score == UserController.Players.Max(p => p.Score));
+                endgameString += "The winner is Player " + winner.ID + "!";
               return Ok(endgameString);
             }
             Status report = new Status();
