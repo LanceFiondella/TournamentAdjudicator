@@ -204,6 +204,7 @@ namespace TournamentPlayerExample
         {
             //set up the client to communicate with server
             client.BaseAddress = new Uri("http://localhost:62027/");
+            //client.BaseAddress = new Uri("http://192.168.1.2:62027/");
             //client.BaseAddress = new Uri("http://georgeisdumb.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
