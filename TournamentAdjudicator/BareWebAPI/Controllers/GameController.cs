@@ -15,6 +15,7 @@ namespace TournamentAdjudicator.Controllers
 {
     public class GameController : ApiController
     {
+        
  
         [HttpGet]
         public IHttpActionResult GetGame(int id)
@@ -35,6 +36,13 @@ namespace TournamentAdjudicator.Controllers
                 }
                 Player winner = UserController.Players.Find(q => q.Score == UserController.Players.Max(p => p.Score));
                 endgameString += "The winner is Player " + winner.ID + "!";
+               
+                if (!ScoreKeeping.endgame)
+                {
+                    ScoreKeeping.LogEndGame();
+                    ScoreKeeping.endgame = true;
+                }
+
               return Ok(endgameString);
             }
             Status report = new Status();

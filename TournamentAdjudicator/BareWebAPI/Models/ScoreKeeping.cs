@@ -11,6 +11,7 @@ namespace TournamentAdjudicator.Models
 {
     public class ScoreKeeping
     {
+        public static bool endgame = false;
         static string path = "";
         public ScoreKeeping()
         {
@@ -85,7 +86,7 @@ namespace TournamentAdjudicator.Models
                 file.WriteLine();
             }
         }
-        public void LogEndGame()
+        public static void LogEndGame()
         {
             string timestamp = DateTime.Now.ToString();
             List<Player> players = TournamentAdjudicator.Controllers.UserController.Players;
@@ -94,7 +95,8 @@ namespace TournamentAdjudicator.Models
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
             {
                 file.WriteLine("**********************************");
-                file.WriteLine("The game has ended.");
+                file.WriteLine("**********************************");
+                file.WriteLine("THE GAME HAS ENDED.");
                 file.WriteLine("Timestamp: " + timestamp);
                 foreach (Player p in players)
                 {
@@ -111,8 +113,8 @@ namespace TournamentAdjudicator.Models
                     file.WriteLine();
                 }
                 file.WriteLine();
-                file.WriteLine("The winner is: " + winner.ID);
-
+                file.WriteLine("The winner is Player " + winner.ID);
+                file.WriteLine("**********************************");
                 file.WriteLine("**********************************");
             }
         }
