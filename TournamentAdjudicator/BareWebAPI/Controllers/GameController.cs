@@ -26,9 +26,23 @@ namespace TournamentAdjudicator.Controllers
             {
                 return NotFound();
             }
+
+            //end game
             if (Gameplay.Pass_Count >= UserController.Players.Count)
             {
                 string endgameString = "The game has ended. Final Scores:\n";
+
+
+                if (!ScoreKeeping.endgame)
+                {
+                    foreach (Player p in UserController.Players)
+                    {
+                        p.Score -= p.Letters.Count * 5;
+                    }
+                    ScoreKeeping.LogEndGame();
+                    ScoreKeeping.endgame = true;
+                }
+
                 foreach (Player p in UserController.Players)
                 {
                     endgameString += "Player " + p.ID + ": " + p.Score + "\n";
@@ -37,11 +51,7 @@ namespace TournamentAdjudicator.Controllers
                 Player winner = UserController.Players.Find(q => q.Score == UserController.Players.Max(p => p.Score));
                 endgameString += "The winner is Player " + winner.ID + "!";
                
-                if (!ScoreKeeping.endgame)
-                {
-                    ScoreKeeping.LogEndGame();
-                    ScoreKeeping.endgame = true;
-                }
+                
 
               return Ok(endgameString);
             }
