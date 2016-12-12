@@ -44,6 +44,11 @@ namespace TournamentAdjudicator.Models
         // the stack/letter that is the intersection point between two words.
         static int intersectionPoints = 0;
 
+        // stores the letters that could be covering a word
+        static string coveredWord = "";
+        static int[] coveredWordDown = new int[7];
+        static int[] coveredWordRight = new int[7];
+        static int coveredCount = 0;
 
         // Stores all of the letters the player had to maker their move with
         static List<string> playerLetters = new List<string>();
@@ -257,6 +262,27 @@ namespace TournamentAdjudicator.Models
             // Get the word played by the player
             GetWords(moveDirection);
 
+            if (!firstTurn && !invalidMove)
+            {
+                if (!CheckForNullGaps(moveDirection) && !invalidMove)
+                {
+                    invalidMove = true;
+                    errorMsg = "Empty squares found between tiles.";
+                }
+
+                if (!CheckConnectionCount() && !invalidMove)
+                {
+                    invalidMove = true;
+                    errorMsg = "Illegally placed tile on board.";
+                }
+
+                if (!CheckForCoveredWords(moveDirection) && !invalidMove)
+                {
+                    invalidMove = true;
+                    errorMsg = "Illegally covered a word on the board.";
+                }
+            }
+
             // Check that all words part of the turn are in the dictionary
             if (!CheckWords() && !invalidMove)
             {
@@ -298,10 +324,15 @@ namespace TournamentAdjudicator.Models
                 changedHeightsRight[i] = 0;
                 changedSquaresDown[i] = 0;
                 changedSquaresRight[i] = 0;
+                coveredWordDown[i] = 0;
+                coveredWordRight[i] = 0;
             }
 
             numChangedHeights = 0;
             numChangedSquares = 0;
+            coveredCount = 0;
+
+            coveredWord = "";
 
             // clear used letters list
             usedLetters.Clear();
@@ -403,6 +434,14 @@ namespace TournamentAdjudicator.Models
                         // Check that is the heights are the same the letters are not different
                         else if (!newLetter.Equals(oldLetter))
                             return false;
+
+                        if (newLetter != oldLetter && newLetter != null && oldLetter != null)
+                        {
+                            coveredWord += newLetter;
+                            coveredWordRight[coveredCount] = j;
+                            coveredWordDown[coveredCount] = i;
+                            coveredCount++;
+                        }
                     }
                 }
             }
@@ -465,15 +504,15 @@ namespace TournamentAdjudicator.Models
             for (int i = 1; i < numChangedSquares; i++)
             {
                 if (changedSquaresRight[i] != changedSquaresRight[i - 1])
-                    rowAltered = true;
-                else if (changedSquaresDown[i] != changedSquaresDown[i - 1])
                     columnAltered = true;
+                else if (changedSquaresDown[i] != changedSquaresDown[i - 1])
+                    rowAltered = true;
             }
 
             if (rowAltered && !columnAltered)
-                return "right";
-            else if (!rowAltered && columnAltered)
                 return "down";
+            else if (!rowAltered && columnAltered)
+                return "right";
             else if (numChangedSquares == 1)
                 return "singleLetter";
             else
@@ -518,6 +557,136 @@ namespace TournamentAdjudicator.Models
             return validLetters;
         }//end CheckLetters
 
+
+        //--------------------------------------------------------------------
+        // Summary:
+        //
+        // Output: 
+        //--------------------------------------------------------------------
+        static bool CheckForNullGaps(string moveDirection)
+        {
+            int gap;
+
+            for (int i = 1; i < numChangedSquares; i++)
+            {
+                if(moveDirection == "right")
+                {
+                    if((changedSquaresRight[i] - 1) != changedSquaresRight[i-1])
+                    {
+                        gap = 1;
+                        do
+                        {                  //should all be same
+                            if (newBoard[0, changedSquaresDown[i], changedSquaresRight[i] - gap] == null)
+                                return false;
+                            gap++;
+                        }
+                        while ((changedSquaresRight[i] - gap) != changedSquaresRight[i - 1]);                        
+                    }
+                }
+                else if (moveDirection == "down")
+                {
+                    if ((changedSquaresDown[i] - 1) != changedSquaresDown[i - 1])
+                    {
+                        gap = 1;
+                        do
+                        {                                                //should all be same
+                            if (newBoard[0, changedSquaresDown[i] - gap, changedSquaresRight[i]] == null)
+                                return false;
+                            gap++;
+                        }
+                        while ((changedSquaresDown[i] - gap) != changedSquaresDown[i - 1]);
+                    }
+                }
+            }
+
+            return true;
+        }// end CheckForNullGaps
+
+
+        //--------------------------------------------------------------------
+        // Summary:
+        //
+        // Output: 
+        //--------------------------------------------------------------------
+        static bool CheckConnectionCount()
+        {
+            int numConnections = 0;
+            int aboveCor, belowCor, leftCor, rightCor;
+            string above = null, below = null, right = null, left = null;
+
+            for (int i = 0; i < numChangedSquares; i++)
+            {
+                if ((belowCor = changedSquaresDown[i] + 1) <= 9)
+                    below = oldBoard[0, belowCor, changedSquaresRight[i]];
+
+                if ((aboveCor = changedSquaresDown[i] - 1) >= 0)
+                    above = oldBoard[0, aboveCor, changedSquaresRight[i]];
+
+                if ((rightCor = changedSquaresRight[i] + 1) <= 9)
+                    right = oldBoard[0, changedSquaresDown[i], rightCor];
+
+                if ((leftCor = changedSquaresRight[i] - 1) >= 0)
+                    left = oldBoard[0, changedSquaresDown[i], leftCor];
+
+                if (left != null)
+                    numConnections++;
+                if (right != null)
+                    numConnections++;
+                if (below != null)
+                    numConnections++;
+                if (above != null)
+                    numConnections++;
+            }
+
+            if (numConnections >= words.Count)
+                return true;
+            else
+                return false;
+        }// end CheckConnectionsCount
+
+
+        //--------------------------------------------------------------------
+        // Summary:
+        //
+        // Output: 
+        //--------------------------------------------------------------------
+        static bool CheckForCoveredWords(string moveDirection)
+        {
+            string letterAfter = "";
+            string letterBefore = "";
+            int aboveCor, belowCor, leftCor, rightCor;
+            bool nullCaps = false;
+
+            if(moveDirection == "right")
+            {
+                if((rightCor = (coveredWordRight[coveredCount] + 1)) <= 9)
+                    letterAfter = oldBoard[0, coveredWordDown[coveredCount], rightCor];
+
+                if ((leftCor = (coveredWordRight[0] - 1)) >= 0)
+                    letterBefore = oldBoard[0, coveredWordDown[coveredCount], leftCor];
+
+                if (letterBefore == null && letterAfter == null)
+                    nullCaps = true;
+            }
+            if(moveDirection == "down")
+            {
+                if ((belowCor = (coveredWordDown[coveredCount] + 1)) <= 9)
+                    letterAfter = oldBoard[0, belowCor, coveredWordRight[coveredCount]];
+
+                if ((aboveCor = (coveredWordDown[0] - 1)) >= 0)
+                    letterBefore = oldBoard[0, aboveCor, coveredWordRight[coveredCount]];
+
+                if (letterBefore == null && letterAfter == null)
+                    nullCaps = true;
+            }
+
+            if (nullCaps && words.Contains(coveredWord))
+                return false;
+            else
+                return true;
+        }// end CheckForCoveredWords
+
+
         //--------------------------------------------------------------------
         // Summary:
         // Figures out the word that has been played by the player
@@ -542,31 +711,31 @@ namespace TournamentAdjudicator.Models
 
                 if (moveDirection == "right")
                 {
-                    wordFound = GetTopBottomWords(i, currentSquare);
+                    wordFound = GetTopBottomWords(i, currentSquare, true);
                     if (wordFound)
                         intersectionPoints += currentLetter.height;
 
                     if (i == 0)
-                        GetLeftRightWords(i, currentSquare);
+                        GetLeftRightWords(i, currentSquare, true);
                 }
                 else if (moveDirection == "down")
                 {
-                    wordFound = GetLeftRightWords(i, currentSquare);
+                    wordFound = GetLeftRightWords(i, currentSquare, true);
                     if (wordFound)
                         intersectionPoints += currentLetter.height;
 
                     if (i == 0)
-                        GetTopBottomWords(i, currentSquare);
+                        GetTopBottomWords(i, currentSquare, true);
                 }
                 else if (moveDirection == "singleLetter")
                 {
-                    wordFound = GetTopBottomWords(i, currentSquare);
+                    wordFound = GetTopBottomWords(i, currentSquare, true);
                     // if single letter play only want to check for 
                     // intersection points once
                     if (wordFound)
                         intersectionPoints += currentLetter.height;
 
-                    GetLeftRightWords(i, currentSquare);
+                    GetLeftRightWords(i, currentSquare, true);
                 }
             }
         }// end GetWord
@@ -729,7 +898,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns nothing, but it does update the list of words for the turn
         //--------------------------------------------------------------------
-        static bool GetLeftRightWords(int i, string currentSquare)
+        static bool GetLeftRightWords(int i, string currentSquare, bool addToWordList)
         {
             string leftStr;
             string rightStr;
@@ -741,7 +910,7 @@ namespace TournamentAdjudicator.Models
                 leftStr += currentSquare;
 
             word = leftStr + rightStr;
-            if (!word.Equals(""))
+            if (!word.Equals("") && addToWordList)
             {
                 words.Add(word);
                 return true;
@@ -759,7 +928,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns nothing, but it does update the list of words for the turn
         //--------------------------------------------------------------------
-        static bool GetTopBottomWords(int i, string currentSquare)
+        static bool GetTopBottomWords(int i, string currentSquare, bool addToWordList)
         {
             string aboveStr;
             string belowStr;
@@ -771,7 +940,7 @@ namespace TournamentAdjudicator.Models
                 aboveStr += currentSquare;
 
             word = aboveStr + belowStr;
-            if (!word.Equals(""))
+            if (!word.Equals("") && addToWordList)
             {
                 words.Add(word);
                 return true;
