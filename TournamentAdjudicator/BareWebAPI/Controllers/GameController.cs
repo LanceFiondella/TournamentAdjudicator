@@ -102,10 +102,17 @@ namespace TournamentAdjudicator.Controllers
                         move = null;
                         exchange = null;
                     }
-
+                    string[,,] dict =null;
+                    string[] letter = null;
                     if (move != null)
+                        dict = JsonConvert.DeserializeObject<string[,,]>(move.ToString());
+                    if (exchange != null)
+                        letter = JsonConvert.DeserializeObject<string[]>(exchange.ToString());
+
+
+                    if (dict != null)
                     {
-                        var dict = JsonConvert.DeserializeObject<string[, ,]>(move.ToString());
+                        //var dict = JsonConvert.DeserializeObject<string[, ,]>(move.ToString());
                         if (dict != null)
                         {
                             //Send the data to the move checkers
@@ -129,10 +136,9 @@ namespace TournamentAdjudicator.Controllers
                         }
 
                     }
-                    else if (exchange != null)
+                    else if (letter != null)
                     {
                         //The user has chosen to exchange
-                        var letter = JsonConvert.DeserializeObject<string[]>(exchange.ToString());
                         if (letter != null)
                         {
                             //letters stuff here

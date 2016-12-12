@@ -241,8 +241,8 @@ namespace TournamentPlayerExample
                         Console.WriteLine();
                     }
                     Console.WriteLine("I got letters: " + lettersString +" and the score is: "+myPayload.Score.ToString());
-                    
 
+#if false
                     Console.Write("Enter move: ");
                     string move = "";
 
@@ -281,6 +281,12 @@ namespace TournamentPlayerExample
                     */
 
                     await SendMove();
+#else
+
+                    string move = Console.ReadLine();
+                    myPayload.Letters = new string[] { move };
+                    await SendExchangeLetters();
+#endif
                 }
 
             }
