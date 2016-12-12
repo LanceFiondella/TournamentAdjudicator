@@ -254,6 +254,15 @@ namespace TournamentAdjudicator.Models
                 errorMsg = "The direction of the move could not be determined.";
             }
 
+            if(!firstTurn)
+            {
+                if(!CheckConnections(moveDirection))
+                {
+                    invalidMove = true;
+                    errorMsg = "Empty squares found between tiles.";
+                }
+            }
+
             // Get the word played by the player
             GetWords(moveDirection);
 
@@ -465,15 +474,15 @@ namespace TournamentAdjudicator.Models
             for (int i = 1; i < numChangedSquares; i++)
             {
                 if (changedSquaresRight[i] != changedSquaresRight[i - 1])
-                    rowAltered = true;
-                else if (changedSquaresDown[i] != changedSquaresDown[i - 1])
                     columnAltered = true;
+                else if (changedSquaresDown[i] != changedSquaresDown[i - 1])
+                    rowAltered = true;
             }
 
             if (rowAltered && !columnAltered)
-                return "right";
-            else if (!rowAltered && columnAltered)
                 return "down";
+            else if (!rowAltered && columnAltered)
+                return "right";
             else if (numChangedSquares == 1)
                 return "singleLetter";
             else
@@ -518,6 +527,52 @@ namespace TournamentAdjudicator.Models
             return validLetters;
         }//end CheckLetters
 
+
+        //--------------------------------------------------------------------
+        // Summary:
+        //
+        // Output: 
+        //--------------------------------------------------------------------
+        static bool CheckConnections(string moveDirection)
+        {
+            int gap;
+
+            for (int i = 1; i < numChangedSquares; i++)
+            {
+                if(moveDirection == "right")
+                {
+                    if((changedSquaresRight[i] - 1) != changedSquaresRight[i-1])
+                    {
+                        gap = 1;
+                        do
+                        {                  //should all be same
+                            if (newBoard[0, changedSquaresDown[i], changedSquaresRight[i] - gap] == null)
+                                return false;
+                            gap++;
+                        }
+                        while ((changedSquaresRight[i] - gap) != changedSquaresRight[i - 1]);                        
+                    }
+                }
+                else if (moveDirection == "down")
+                {
+                    if ((changedSquaresDown[i] - 1) != changedSquaresDown[i - 1])
+                    {
+                        gap = 1;
+                        do
+                        {                                                //should all be same
+                            if (newBoard[0, changedSquaresDown[i] - gap, changedSquaresRight[i]] == null)
+                                return false;
+                            gap++;
+                        }
+                        while ((changedSquaresDown[i] - gap) != changedSquaresDown[i - 1]);
+                    }
+                }
+            }
+
+            return true;
+        }// end CheckConnections
+
+
         //--------------------------------------------------------------------
         // Summary:
         // Figures out the word that has been played by the player
@@ -542,31 +597,31 @@ namespace TournamentAdjudicator.Models
 
                 if (moveDirection == "right")
                 {
-                    wordFound = GetTopBottomWords(i, currentSquare);
+                    wordFound = GetTopBottomWords(i, currentSquare, true);
                     if (wordFound)
                         intersectionPoints += currentLetter.height;
 
                     if (i == 0)
-                        GetLeftRightWords(i, currentSquare);
+                        GetLeftRightWords(i, currentSquare, true);
                 }
                 else if (moveDirection == "down")
                 {
-                    wordFound = GetLeftRightWords(i, currentSquare);
+                    wordFound = GetLeftRightWords(i, currentSquare, true);
                     if (wordFound)
                         intersectionPoints += currentLetter.height;
 
                     if (i == 0)
-                        GetTopBottomWords(i, currentSquare);
+                        GetTopBottomWords(i, currentSquare, true);
                 }
                 else if (moveDirection == "singleLetter")
                 {
-                    wordFound = GetTopBottomWords(i, currentSquare);
+                    wordFound = GetTopBottomWords(i, currentSquare, true);
                     // if single letter play only want to check for 
                     // intersection points once
                     if (wordFound)
                         intersectionPoints += currentLetter.height;
 
-                    GetLeftRightWords(i, currentSquare);
+                    GetLeftRightWords(i, currentSquare, true);
                 }
             }
         }// end GetWord
@@ -729,7 +784,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns nothing, but it does update the list of words for the turn
         //--------------------------------------------------------------------
-        static bool GetLeftRightWords(int i, string currentSquare)
+        static bool GetLeftRightWords(int i, string currentSquare, bool addToWordList)
         {
             string leftStr;
             string rightStr;
@@ -741,7 +796,7 @@ namespace TournamentAdjudicator.Models
                 leftStr += currentSquare;
 
             word = leftStr + rightStr;
-            if (!word.Equals(""))
+            if (!word.Equals("") && addToWordList)
             {
                 words.Add(word);
                 return true;
@@ -759,7 +814,7 @@ namespace TournamentAdjudicator.Models
         // Output: 
         // Returns nothing, but it does update the list of words for the turn
         //--------------------------------------------------------------------
-        static bool GetTopBottomWords(int i, string currentSquare)
+        static bool GetTopBottomWords(int i, string currentSquare, bool addToWordList)
         {
             string aboveStr;
             string belowStr;
@@ -771,7 +826,7 @@ namespace TournamentAdjudicator.Models
                 aboveStr += currentSquare;
 
             word = aboveStr + belowStr;
-            if (!word.Equals(""))
+            if (!word.Equals("") && addToWordList)
             {
                 words.Add(word);
                 return true;

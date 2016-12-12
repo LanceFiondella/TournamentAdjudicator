@@ -242,7 +242,7 @@ namespace TournamentPlayerExample
                     }
                     Console.WriteLine("I got letters: " + lettersString +" and the score is: "+myPayload.Score.ToString());
 
-#if false
+#if true
                     Console.Write("Enter move: ");
                     string move = "";
 
