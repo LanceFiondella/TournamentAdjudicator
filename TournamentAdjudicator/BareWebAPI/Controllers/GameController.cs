@@ -125,7 +125,7 @@ namespace TournamentAdjudicator.Controllers
                         }
                         else
                         {
-                            return Ok("Something went wrong in deserializing");
+                            return Ok("Something went wrong in deserializing for a board play");
                         }
 
                     }
@@ -136,11 +136,13 @@ namespace TournamentAdjudicator.Controllers
                         if (letter != null)
                         {
                             //letters stuff here
-                            return Ok("You decided to turn in: "+string.Join("",letter));
+                            user.ExchangeLetter = letter[0];
+                            Gameplay.exchange_move(user);
+                            return Ok("You decided to turn in: "+string.Join("",letter) + "your new letters are:" + string.Join("", user.Letters));
                         }
                         else
                         {
-                            return Ok("Something went wrong in deserializing");
+                            return Ok("Something went wrong in deserializing for an exchange move");
                         }
 
                     }
