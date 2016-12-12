@@ -254,17 +254,23 @@ namespace TournamentAdjudicator.Models
                 errorMsg = "The direction of the move could not be determined.";
             }
 
-            if(!firstTurn)
+            // Get the word played by the player
+            GetWords(moveDirection);
+
+            if (!firstTurn)
             {
-                if(!CheckConnections(moveDirection))
+                if (!CheckForNullGaps(moveDirection))
                 {
                     invalidMove = true;
                     errorMsg = "Empty squares found between tiles.";
                 }
-            }
 
-            // Get the word played by the player
-            GetWords(moveDirection);
+                if (!CheckConnectionCount())
+                {
+                    invalidMove = true;
+                    errorMsg = "Illegally placed tile on board.";
+                }
+            }
 
             // Check that all words part of the turn are in the dictionary
             if (!CheckWords() && !invalidMove)
@@ -533,7 +539,7 @@ namespace TournamentAdjudicator.Models
         //
         // Output: 
         //--------------------------------------------------------------------
-        static bool CheckConnections(string moveDirection)
+        static bool CheckForNullGaps(string moveDirection)
         {
             int gap;
 
@@ -570,7 +576,43 @@ namespace TournamentAdjudicator.Models
             }
 
             return true;
-        }// end CheckConnections
+        }// end CheckForNullGaps
+
+
+        //--------------------------------------------------------------------
+        // Summary:
+        //
+        // Output: 
+        //--------------------------------------------------------------------
+        static bool CheckConnectionCount()
+        {
+            int numConnections = 0;
+            int aboveCor, belowCor, leftCor, rightCor;
+            string above = null, below = null, right = null, left = null;
+
+            for (int i = 0; i < numChangedSquares; i++)
+            {
+                if ((belowCor = changedSquaresDown[i] + 1) <= 9)
+                    below = oldBoard[0, belowCor, changedSquaresRight[i]];
+
+                if ((aboveCor = changedSquaresDown[i] - 1) >= 0)
+                    above = oldBoard[0, aboveCor, changedSquaresRight[i]];
+
+                if ((rightCor = changedSquaresRight[i] + 1) <= 9)
+                    right = oldBoard[0, changedSquaresDown[i], rightCor];
+
+                if ((leftCor = changedSquaresRight[i] - 1) >= 0)
+                    left = oldBoard[0, changedSquaresDown[i], leftCor];
+
+                if (left != null || right != null || above != null || below != null)
+                    numConnections++;
+            }
+
+            if (numConnections >= words.Count)
+                return true;
+            else
+                return false;
+        }// end CheckConnectionsCount
 
 
         //--------------------------------------------------------------------

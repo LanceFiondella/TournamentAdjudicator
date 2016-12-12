@@ -1,0 +1,52 @@
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/12/2016 6:21:40 AM
+Team Score: 6
+Playable Letters: 
+C I O O B E E 
+Word(s) Played: 
+BEE
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+Illegally placed tile on board.
+
+TeamNum: 2
+Timestamp: 12/12/2016 6:21:56 AM
+Team Score: 0
+Playable Letters: 
+C A I I B O O 
+Word(s) Played: 
+BOO
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 1
+Timestamp: 12/12/2016 6:22:17 AM
+Team Score: 12
+Playable Letters: 
+C I O O I H F 
+Word(s) Played: 
+BOO
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+Illegally placed tile on board.
+
+TeamNum: 2
+Timestamp: 12/12/2016 6:22:44 AM
+Team Score: 0
+Playable Letters: 
+C A I I B O O 
+Word(s) Played: 
+BOO
+
+**********************************
+
