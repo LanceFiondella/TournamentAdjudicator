@@ -291,7 +291,7 @@ namespace TournamentAdjudicator.Models
         //--------------------------------------------------------------------
         static void ReinitChangeTrackers()
         {
-            // Compare the new and old game boards to see which game squares have been changed
+            // Reinit arrays
             for (int i = 0; i < 7; i++)
             {
                 changedHeightsDown[i] = 0;

@@ -1,0 +1,40 @@
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+Word(s) played were not found within the dictionary.
+
+TeamNum: 1
+Timestamp: 12/11/2016 6:39:34 PM
+Team Score: 0
+Playable Letters: 
+I Qu X L U O O 
+Word(s) Played: 
+QuO
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/11/2016 6:39:57 PM
+Team Score: 6
+Playable Letters: 
+O J K M D A A 
+Word(s) Played: 
+MAD
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+An invalid First Move was made.
+
+TeamNum: 1
+Timestamp: 12/11/2016 6:40:31 PM
+Team Score: 0
+Playable Letters: 
+I Qu X L U O O 
+Word(s) Played: 
+MOD
+
+**********************************
+

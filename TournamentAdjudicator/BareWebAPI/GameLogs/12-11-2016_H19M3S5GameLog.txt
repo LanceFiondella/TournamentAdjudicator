@@ -1,0 +1,36 @@
+PASS
+
+TeamNum: 1
+Timestamp: 12/11/2016 7:04:10 PM
+Team Score: 0
+Playable Letters: 
+O A O Z O H I 
+
+**********************************
+
+VALID MOVE!
+
+TeamNum: 2
+Timestamp: 12/11/2016 7:04:50 PM
+Team Score: 6
+Playable Letters: 
+A S A K A P O 
+Word(s) Played: 
+SAP
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+An invalid First Move was made.
+
+TeamNum: 1
+Timestamp: 12/11/2016 7:05:09 PM
+Team Score: 0
+Playable Letters: 
+O A O Z O H I 
+Word(s) Played: 
+ZAP
+
+**********************************
+

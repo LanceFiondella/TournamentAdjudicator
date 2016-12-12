@@ -103,18 +103,12 @@ namespace TournamentAdjudicator.Models
                 foreach (string s in p.Letters)
                     moveChecker.PlayerLetters.Add(s);
 
-                if (p.ID > 1 && validFirstMove)
-                {
-                    firstTurn = false;
-
-                    //if play sent from different player
-                    if (p.ID != Player_Turn)
+                if (p.ID != Player_Turn)
                         return false;
-                }
 
                 if (moveChecker.CheckMoveValidity(firstTurn, p))
                 {
-                    validFirstMove = true;
+                    firstTurn = false;
                     board = board_temp;
                     Player_Turn = (Player_Turn % UserController.Players.Count) + 1;
 
