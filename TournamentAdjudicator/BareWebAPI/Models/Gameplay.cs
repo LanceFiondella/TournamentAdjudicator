@@ -341,9 +341,9 @@ namespace TournamentAdjudicator.Models
 
         }
 
-        // for debug only
-        /*static string[] desiredLetters = 
-        {"P","E","E","R","S","U","B","O","L","E","S","J","K","D","A","M","P","S","A","K","D","A"};
+        /*// for debug only
+        static string[] desiredLetters = 
+        {"P","E","B","I","N","U","B","O","L","E","W","J","K","D","F","U","R","S","A","K","D","A"};
         //{"P","E","E","R","L","E","B","B","A"};
         //1   2   3   4   5   6   7   1   2   3   4   5   6   7   1   2   3   4   5   6   7   1   2   3   4   5   6   7
         static int desiredMarker = 0;

@@ -44,6 +44,11 @@ namespace TournamentAdjudicator.Models
         // the stack/letter that is the intersection point between two words.
         static int intersectionPoints = 0;
 
+        // stores the letters that could be covering a word
+        static string coveredWord = "";
+        static int[] coveredWordDown = new int[7];
+        static int[] coveredWordRight = new int[7];
+        static int coveredCount = 0;
 
         // Stores all of the letters the player had to maker their move with
         static List<string> playerLetters = new List<string>();
@@ -257,18 +262,24 @@ namespace TournamentAdjudicator.Models
             // Get the word played by the player
             GetWords(moveDirection);
 
-            if (!firstTurn)
+            if (!firstTurn && !invalidMove)
             {
-                if (!CheckForNullGaps(moveDirection))
+                if (!CheckForNullGaps(moveDirection) && !invalidMove)
                 {
                     invalidMove = true;
                     errorMsg = "Empty squares found between tiles.";
                 }
 
-                if (!CheckConnectionCount())
+                if (!CheckConnectionCount() && !invalidMove)
                 {
                     invalidMove = true;
                     errorMsg = "Illegally placed tile on board.";
+                }
+
+                if (!CheckForCoveredWords(moveDirection) && !invalidMove)
+                {
+                    invalidMove = true;
+                    errorMsg = "Illegally covered a word on the board.";
                 }
             }
 
@@ -313,10 +324,15 @@ namespace TournamentAdjudicator.Models
                 changedHeightsRight[i] = 0;
                 changedSquaresDown[i] = 0;
                 changedSquaresRight[i] = 0;
+                coveredWordDown[i] = 0;
+                coveredWordRight[i] = 0;
             }
 
             numChangedHeights = 0;
             numChangedSquares = 0;
+            coveredCount = 0;
+
+            coveredWord = "";
 
             // clear used letters list
             usedLetters.Clear();
@@ -418,6 +434,14 @@ namespace TournamentAdjudicator.Models
                         // Check that is the heights are the same the letters are not different
                         else if (!newLetter.Equals(oldLetter))
                             return false;
+
+                        if (newLetter != oldLetter && newLetter != null && oldLetter != null)
+                        {
+                            coveredWord += newLetter;
+                            coveredWordRight[coveredCount] = j;
+                            coveredWordDown[coveredCount] = i;
+                            coveredCount++;
+                        }
                     }
                 }
             }
@@ -604,7 +628,13 @@ namespace TournamentAdjudicator.Models
                 if ((leftCor = changedSquaresRight[i] - 1) >= 0)
                     left = oldBoard[0, changedSquaresDown[i], leftCor];
 
-                if (left != null || right != null || above != null || below != null)
+                if (left != null)
+                    numConnections++;
+                if (right != null)
+                    numConnections++;
+                if (below != null)
+                    numConnections++;
+                if (above != null)
                     numConnections++;
             }
 
@@ -613,6 +643,48 @@ namespace TournamentAdjudicator.Models
             else
                 return false;
         }// end CheckConnectionsCount
+
+
+        //--------------------------------------------------------------------
+        // Summary:
+        //
+        // Output: 
+        //--------------------------------------------------------------------
+        static bool CheckForCoveredWords(string moveDirection)
+        {
+            string letterAfter = "";
+            string letterBefore = "";
+            int aboveCor, belowCor, leftCor, rightCor;
+            bool nullCaps = false;
+
+            if(moveDirection == "right")
+            {
+                if((rightCor = (coveredWordRight[coveredCount] + 1)) <= 9)
+                    letterAfter = oldBoard[0, coveredWordDown[coveredCount], rightCor];
+
+                if ((leftCor = (coveredWordRight[0] - 1)) >= 0)
+                    letterBefore = oldBoard[0, coveredWordDown[coveredCount], leftCor];
+
+                if (letterBefore == null && letterAfter == null)
+                    nullCaps = true;
+            }
+            if(moveDirection == "down")
+            {
+                if ((belowCor = (coveredWordDown[coveredCount] + 1)) <= 9)
+                    letterAfter = oldBoard[0, belowCor, coveredWordRight[coveredCount]];
+
+                if ((aboveCor = (coveredWordDown[0] - 1)) >= 0)
+                    letterBefore = oldBoard[0, aboveCor, coveredWordRight[coveredCount]];
+
+                if (letterBefore == null && letterAfter == null)
+                    nullCaps = true;
+            }
+
+            if (nullCaps && words.Contains(coveredWord))
+                return false;
+            else
+                return true;
+        }// end CheckForCoveredWords
 
 
         //--------------------------------------------------------------------
