@@ -178,7 +178,7 @@ namespace TournamentAdjudicator.Models
                 p.Score += intersectionPoints;
             }
 
-            scoreKeeper.DataLogging(p.ID, p.Score, words, playerLetters, invalidMove, errorMsg);
+            scoreKeeper.DataLogging(newBoard, p.ID, p.Score, words, playerLetters, invalidMove, errorMsg);
         }// end GetTurnScore
 
 

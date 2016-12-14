@@ -25,11 +25,11 @@ namespace TournamentAdjudicator.Models
         }
 
         //logs data to log.txt
-        public void DataLogging(int TeamNum, int Score, List<string> words, List<string> letters, bool invalidMove, string errorMsg)
+        public void DataLogging(string[,,] Board, int TeamNum, int Score, List<string> words, List<string> letters, bool invalidMove, string errorMsg)
         {
             string timestamp = DateTime.Now.ToString();
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true, Encoding.UTF8))
             {
                 if (!invalidMove)
                 {
@@ -48,6 +48,9 @@ namespace TournamentAdjudicator.Models
                 file.WriteLine("Timestamp: " + timestamp);
                 file.WriteLine("Team Score: " + Score);
                 file.WriteLine("Playable Letters: ");
+
+                
+
                 foreach (string letter in letters)
                 {
                     file.Write(letter + " ");
@@ -58,6 +61,46 @@ namespace TournamentAdjudicator.Models
                 {
                     file.WriteLine(word);
                 }
+
+
+                file.WriteLine();
+                file.WriteLine("Board:");
+                file.WriteLine("\n      0    1    2    3    4    5    6    7    8    9");
+                for (int r = 0; r < 10; r++)
+                {
+                    file.Write(r.ToString() + "  ");
+
+                    for (int c = 0; c < 10; c++)
+                    {
+                        string tmp = " ";
+                        switch (Board[1, r, c])
+                        {
+                            case "1":
+                                tmp = "₁";
+                                break;
+                            case "2":
+                                tmp = "₂";
+                                break;
+                            case "3":
+                                tmp = "₃";
+                                break;
+                            case "4":
+                                tmp = "₄";
+                                break;
+                            case "5":
+                                tmp = "₅";
+                                break;
+                            default:
+                                tmp = " ";
+                                break;
+                        }
+                        file.Write("{0,4}", Board[0, r, c] == null ? "~" : Board[0, r, c]);
+                        file.Write(tmp);
+                    }
+                    file.WriteLine();
+                }
+
+
                 file.WriteLine();
                 file.WriteLine("**********************************");
                 file.WriteLine();
@@ -69,7 +112,7 @@ namespace TournamentAdjudicator.Models
         {
             string timestamp = DateTime.Now.ToString();
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true, Encoding.UTF8))
             {
                 file.WriteLine("PASS");
                 file.WriteLine();
@@ -94,7 +137,7 @@ namespace TournamentAdjudicator.Models
             List<Player> players = TournamentAdjudicator.Controllers.UserController.Players;
             Player winner = players.Find(q => q.Score == players.Max(p => p.Score));
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true, Encoding.UTF8))
             {
                 file.WriteLine("**********************************");
                 file.WriteLine("**********************************");
