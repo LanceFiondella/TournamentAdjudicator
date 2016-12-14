@@ -354,13 +354,13 @@ namespace TournamentAdjudicator.Models
 
         }
 
+
         public static void give_letters(Player p, int needed)
         {
             Random rnd = new Random();
             int start2;
             if (bag.Count > 0)
             {
-
                 for (int i = 0; i < needed; i++)
                 {
                     start2 = rnd.Next(0, bag.Count - 1);
@@ -372,6 +372,37 @@ namespace TournamentAdjudicator.Models
             
         }
 
+        /*// for debug only
+        static string[] desiredLetters = 
+        {"M","K","H","N","I","I","O","M","Z","P","R","A","O","A","S","H","D","S","F","E"};
+        //{"P","E","E","R","L","E","B","B","A"};
+        //1   2   3   4   5   6   7   1   2   3   4   5   6   7   1   2   3   4   5   6   7   1   2   3   4   5   6   7
+        static int desiredMarker = 0;
+        static int desiredLettersSize = desiredLetters.Length;
+        public static void give_letters(Player p, int needed)
+        {
+            Random rnd = new Random();
+            int start2;
 
+            for (int i = 0; i < needed; i++)
+            {
+                if (desiredMarker < desiredLettersSize)
+                {
+                    if (bag.Contains(desiredLetters[desiredMarker]))
+                    {
+                        p.addSingleLetter(desiredLetters[desiredMarker]);
+                        bag.Remove(desiredLetters[desiredMarker]);
+                        desiredMarker++;
+                    }
+                }
+                else
+                {
+                    start2 = rnd.Next(0, bag.Count - 1);
+                    p.addSingleLetter(bag[start2]);
+                    //Console.WriteLine("p: " + p.Letters[i]);
+                    bag.Remove(bag[start2]);
+                }
+            }
+        }*/
     }
 }
