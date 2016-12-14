@@ -638,7 +638,7 @@ namespace TournamentAdjudicator.Models
                     numConnections++;
             }
 
-            if (numConnections >= words.Count)
+            if (numConnections >= 1)
                 return true;
             else
                 return false;
