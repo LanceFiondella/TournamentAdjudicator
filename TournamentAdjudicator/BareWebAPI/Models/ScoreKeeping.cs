@@ -135,6 +135,7 @@ namespace TournamentAdjudicator.Models
         {
             string timestamp = DateTime.Now.ToString();
             List<Player> players = TournamentAdjudicator.Controllers.UserController.Players;
+            string[,,] Board = Gameplay.Board;
             Player winner = players.Find(q => q.Score == players.Max(p => p.Score));
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true, Encoding.UTF8))
@@ -155,6 +156,43 @@ namespace TournamentAdjudicator.Models
                         {
                             file.Write(letter + " ");
                         }
+                    }
+                    file.WriteLine();
+                }
+                file.WriteLine();
+                file.WriteLine();
+                file.WriteLine("Board:");
+                file.WriteLine("\n      0    1    2    3    4    5    6    7    8    9");
+                for (int r = 0; r < 10; r++)
+                {
+                    file.Write(r.ToString() + "  ");
+
+                    for (int c = 0; c < 10; c++)
+                    {
+                        string tmp = " ";
+                        switch (Board[1, r, c])
+                        {
+                            case "1":
+                                tmp = "₁";
+                                break;
+                            case "2":
+                                tmp = "₂";
+                                break;
+                            case "3":
+                                tmp = "₃";
+                                break;
+                            case "4":
+                                tmp = "₄";
+                                break;
+                            case "5":
+                                tmp = "₅";
+                                break;
+                            default:
+                                tmp = " ";
+                                break;
+                        }
+                        file.Write("{0,4}", Board[0, r, c] == null ? "~" : Board[0, r, c]);
+                        file.Write(tmp);
                     }
                     file.WriteLine();
                 }
