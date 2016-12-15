@@ -28,7 +28,7 @@ namespace TournamentAdjudicator.Controllers
             }
 
             //end game
-            if (Gameplay.Pass_Count >= UserController.Players.Count)
+            if (Gameplay.Pass_Count >= UserController.Players.Count && UserController.Players.Count >1)
             {
                 string endgameString = "The game has ended. Final Scores:\n";
 

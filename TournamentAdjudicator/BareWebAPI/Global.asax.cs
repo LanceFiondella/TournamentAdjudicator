@@ -22,7 +22,7 @@ namespace TournamentAdjudicator
 
             System.Timers.Timer bTimer = new System.Timers.Timer();
             bTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent2);
-            bTimer.Interval = 10000;
+            bTimer.Interval = 10;
             bTimer.Enabled = true;
         }
         private static void OnTimedEvent2(object source, ElapsedEventArgs e)
