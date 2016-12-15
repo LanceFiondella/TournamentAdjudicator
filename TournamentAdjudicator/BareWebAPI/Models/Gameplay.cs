@@ -209,7 +209,7 @@ namespace TournamentAdjudicator.Models
             {
                 for (int j = 0; j < Board_Width; j++)
                 {
-                    board[0, i, j] = "-";
+                    board[0, i, j] = null;
                     board[1, i, j] = "0";
                 }
             }
@@ -265,11 +265,12 @@ namespace TournamentAdjudicator.Models
 
         public static void initalize_bag()
         {
-
+            bag.Clear();
             for (int i = 0; i <= 9; i++)
             {
                 for (int j = 0; j <= 9; j++)
                 {
+                    board[0, i, j] = null;
                     board[1, i, j] = "0";
                 }
             }

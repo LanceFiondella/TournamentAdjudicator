@@ -59,6 +59,11 @@ namespace TournamentAdjudicator.Controllers
             
 
         }
+        public static void init()
+        {
+            players = 0;
+            Players.Clear();
+        }
 
     }
 

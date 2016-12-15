@@ -41,6 +41,7 @@ namespace TournamentAdjudicator.Controllers
                     }
                     ScoreKeeping.LogEndGame();
                     ScoreKeeping.endgame = true;
+
                 }
 
                 foreach (Player p in UserController.Players)
