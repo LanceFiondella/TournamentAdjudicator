@@ -16,12 +16,19 @@ namespace TournamentAdjudicator.Models
         static int turnNum = 0;
         public ScoreKeeping()
         {
+            init();
+        }
+        public static void init()
+        {
             string pathEnd = DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString()
                                 + "-" + DateTime.Now.Year.ToString() + "_" + "H" + DateTime.Now.Hour.ToString()
                                 + "M" + DateTime.Now.Minute.ToString() + "S" + DateTime.Now.Second.ToString()
                                 + "GameLog.txt";
 
             path = Path.Combine(HttpRuntime.AppDomainAppPath, "GameLogs", pathEnd);
+
+            turnNum = 0;
+
         }
 
         //logs data to log.txt
@@ -104,6 +111,7 @@ namespace TournamentAdjudicator.Models
                 file.WriteLine();
                 file.WriteLine("**********************************");
                 file.WriteLine();
+                file.Close();
             }
         }
 
@@ -129,6 +137,7 @@ namespace TournamentAdjudicator.Models
                 file.WriteLine();
                 file.WriteLine("**********************************");
                 file.WriteLine();
+                file.Close();
             }
         }
         public static void LogEndGame()
@@ -200,6 +209,7 @@ namespace TournamentAdjudicator.Models
                 file.WriteLine("The winner is Player " + winner.ID);
                 file.WriteLine("**********************************");
                 file.WriteLine("**********************************");
+                file.Close();
             }
         }
     }

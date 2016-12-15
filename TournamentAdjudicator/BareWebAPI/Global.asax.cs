@@ -31,20 +31,23 @@ namespace TournamentAdjudicator
             if (ScoreKeeping.endgame)
             {
                 Gameplay.Game_Started = false;
+                ScoreKeeping.endgame = false;
+                
+                ScoreKeeping.init();
+                Gameplay.init();
                 UserController.init();
-
-
             }
         }
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             //Starts the game after 10 seconds if 2 or more players in game.
-            if (!Gameplay.Game_Started && UserController.Players != null && UserController.Players.Count > 1)
+            if (!Gameplay.Game_Started && UserController.Players != null && UserController.Players.Count > 1 && !ScoreKeeping.endgame)
             {
-                ScoreKeeping.endgame = false;
+                
                 Gameplay.Game_Started = true;
                 Gameplay.initalize_bag();
                 Gameplay.initial_draw();
+
 
             }
         }

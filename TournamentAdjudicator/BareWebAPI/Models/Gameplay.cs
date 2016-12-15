@@ -63,6 +63,13 @@ namespace TournamentAdjudicator.Models
             }
         }
 
+        public static void init()
+        {
+            firstTurn = true;
+            validFirstMove = false;
+            Pass_Count = 0;
+        }
+
         //only increment playerturn. should we keep track of if players have passed?
         public static void pass()
         {
