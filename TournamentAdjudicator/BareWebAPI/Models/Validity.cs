@@ -48,13 +48,15 @@ namespace TournamentAdjudicator.Models
         static string coveredWord = "";
         static int[] coveredWordDown = new int[7];
         static int[] coveredWordRight = new int[7];
-        static int coveredCount = 0;
+        static int coveredCount = -1;
 
         // Stores all of the letters the player had to maker their move with
         static List<string> playerLetters = new List<string>();
 
         // List of words that were part of the player's move
         static List<string> words = new List<string>();
+        static List<string> topBottomWords = new List<string>();
+        static List<string> leftRightWords = new List<string>();
 
         // Stores the dictionary being used to check the words played by each player
         static Dictionary<string, int> dictionary = new Dictionary<string, int>();
@@ -330,7 +332,7 @@ namespace TournamentAdjudicator.Models
 
             numChangedHeights = 0;
             numChangedSquares = 0;
-            coveredCount = 0;
+            coveredCount = -1;
 
             coveredWord = "";
 
@@ -339,6 +341,8 @@ namespace TournamentAdjudicator.Models
 
             // empty list of words from previous move
             words.Clear();
+            topBottomWords.Clear();
+            leftRightWords.Clear();
 
             // empty list of words from previous move
             letters.Clear();
@@ -437,10 +441,10 @@ namespace TournamentAdjudicator.Models
 
                         if (newLetter != oldLetter && newLetter != null && oldLetter != null)
                         {
+                            coveredCount++;
                             coveredWord += newLetter;
                             coveredWordRight[coveredCount] = j;
-                            coveredWordDown[coveredCount] = i;
-                            coveredCount++;
+                            coveredWordDown[coveredCount] = i;                            
                         }
                     }
                 }
@@ -657,33 +661,40 @@ namespace TournamentAdjudicator.Models
             int aboveCor, belowCor, leftCor, rightCor;
             bool nullCaps = false;
 
-            if(moveDirection == "right")
+            if (coveredWord != "")
             {
-                if((rightCor = (coveredWordRight[coveredCount] + 1)) <= 9)
-                    letterAfter = oldBoard[0, coveredWordDown[coveredCount], rightCor];
+                if (moveDirection == "right")
+                {
+                    if ((rightCor = (coveredWordRight[coveredCount] + 1)) <= 9)
+                        letterAfter = oldBoard[0, coveredWordDown[coveredCount], rightCor];
 
-                if ((leftCor = (coveredWordRight[0] - 1)) >= 0)
-                    letterBefore = oldBoard[0, coveredWordDown[coveredCount], leftCor];
+                    if ((leftCor = (coveredWordRight[0] - 1)) >= 0)
+                        letterBefore = oldBoard[0, coveredWordDown[coveredCount], leftCor];
 
-                if (letterBefore == null && letterAfter == null)
-                    nullCaps = true;
+                    if (letterBefore == null && letterAfter == null)
+                        nullCaps = true;
+                }
+
+                if (moveDirection == "down")
+                {
+                    if ((belowCor = (coveredWordDown[coveredCount] + 1)) <= 9)
+                        letterAfter = oldBoard[0, belowCor, coveredWordRight[coveredCount]];
+
+                    if ((aboveCor = (coveredWordDown[0] - 1)) >= 0)
+                        letterBefore = oldBoard[0, aboveCor, coveredWordRight[coveredCount]];
+
+                    if (letterBefore == null && letterAfter == null)
+                        nullCaps = true;
+                }
+
+                if (moveDirection == "right" && nullCaps && leftRightWords.Contains(coveredWord))
+                    return false;
+
+                if (moveDirection == "down" && nullCaps && topBottomWords.Contains(coveredWord))
+                    return false;
             }
-            if(moveDirection == "down")
-            {
-                if ((belowCor = (coveredWordDown[coveredCount] + 1)) <= 9)
-                    letterAfter = oldBoard[0, belowCor, coveredWordRight[coveredCount]];
 
-                if ((aboveCor = (coveredWordDown[0] - 1)) >= 0)
-                    letterBefore = oldBoard[0, aboveCor, coveredWordRight[coveredCount]];
-
-                if (letterBefore == null && letterAfter == null)
-                    nullCaps = true;
-            }
-
-            if (nullCaps && words.Contains(coveredWord))
-                return false;
-            else
-                return true;
+            return true;
         }// end CheckForCoveredWords
 
 
@@ -913,6 +924,7 @@ namespace TournamentAdjudicator.Models
             if (!word.Equals("") && addToWordList)
             {
                 words.Add(word);
+                leftRightWords.Add(word);
                 return true;
             }
 
@@ -943,6 +955,7 @@ namespace TournamentAdjudicator.Models
             if (!word.Equals("") && addToWordList)
             {
                 words.Add(word);
+                topBottomWords.Add(word);
                 return true;
             }
 
