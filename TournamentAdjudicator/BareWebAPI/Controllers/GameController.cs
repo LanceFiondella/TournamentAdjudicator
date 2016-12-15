@@ -71,10 +71,10 @@ namespace TournamentAdjudicator.Controllers
             }
             catch
             {
-                Ok("User Auth Failed");
+                Ok("User Auth Failed: Bad Header");
             }
 
-            return Ok("User Auth Failed");
+            return Ok("User Auth Failed: Invalid Hash");
         }
 
         [HttpPost]
