@@ -68,6 +68,7 @@ namespace TournamentAdjudicator.Models
             firstTurn = true;
             validFirstMove = false;
             Pass_Count = 0;
+            Player_Turn = 0;
         }
 
         //only increment playerturn. should we keep track of if players have passed?
