@@ -1,0 +1,56 @@
+﻿VALID MOVE!
+
+Turn: 0
+TeamNum: 1
+Timestamp: 12/15/2016 11:57:27 AM
+Team Score: 12
+Playable Letters: 
+Qu R U S H I O 
+Word(s) Played: 
+QuRUSH
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+1     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+2     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+3     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+4     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+5     ~    ~    ~    ~    ~   Qu₁   R₁   U₁   S₁   H₁
+6     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+7     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+%%%%% ERROR INVALID MOVE!!! %%%%%
+Error Message: 
+Word(s) played were not found within the dictionary.
+
+Turn: 1
+TeamNum: 2
+Timestamp: 12/15/2016 11:57:49 AM
+Team Score: 0
+Playable Letters: 
+I T P R A O A 
+Word(s) Played: 
+uQIT
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+1     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+2     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+3     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+4     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+5     ~    ~    ~    ~    ~   Qu₁   R₁   U₁   S₁   H₁
+6     ~    ~    ~    ~    ~    I₁   ~    ~    ~    ~ 
+7     ~    ~    ~    ~    ~    T₁   ~    ~    ~    ~ 
+8     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+

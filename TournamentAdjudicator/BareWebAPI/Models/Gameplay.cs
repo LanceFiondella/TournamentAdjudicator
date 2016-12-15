@@ -369,12 +369,11 @@ namespace TournamentAdjudicator.Models
                     bag.Remove(bag[start2]);
                 }
             }
-            
         }
 
         /*// for debug only
         static string[] desiredLetters = 
-        {"M","K","H","N","I","I","O","M","Z","P","R","A","O","A","S","H","D","S","F","E"};
+        {"Qu","R","U","S","H","I","O","I","T","P","R","A","O","A","S","H","D","S","F","E"};
         //{"P","E","E","R","L","E","B","B","A"};
         //1   2   3   4   5   6   7   1   2   3   4   5   6   7   1   2   3   4   5   6   7   1   2   3   4   5   6   7
         static int desiredMarker = 0;

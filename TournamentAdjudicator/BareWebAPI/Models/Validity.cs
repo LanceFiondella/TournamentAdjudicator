@@ -974,6 +974,12 @@ namespace TournamentAdjudicator.Models
         {
             char[] tempChar = myString.ToCharArray();
             Array.Reverse(tempChar);
+            int qIndex = Array.FindIndex(tempChar, t => t.Equals('Q'));
+            if(qIndex > -1)
+            {
+                tempChar[qIndex] = 'u';
+                tempChar[qIndex-1] = 'Q';
+            }
             return new string(tempChar);
         }
     }
