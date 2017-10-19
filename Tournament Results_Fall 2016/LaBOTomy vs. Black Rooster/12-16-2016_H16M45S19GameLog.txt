@@ -1,0 +1,1021 @@
+﻿VALID MOVE!
+
+Turn: 0
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:39
+Team Score: 8
+Playable Letters: 
+C P C E G A O 
+Word(s) Played: 
+GAPO
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+1     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+2     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+3     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+7     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 1
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:42
+Team Score: 14
+Playable Letters: 
+C B D E H A I 
+Word(s) Played: 
+BIGHEAD
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+1     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+2     ~    ~    ~    B₁   ~    ~    ~    ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    ~    ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   ~    ~    ~    ~    ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   ~    ~    ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 2
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:42
+Team Score: 18
+Playable Letters: 
+C C E M T N E 
+Word(s) Played: 
+EMCEE
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+1     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+2     ~    ~    ~    B₁   ~    ~    ~    ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    ~    ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   ~    ~    ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 3
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:42
+Team Score: 24
+Playable Letters: 
+C O W A F M K 
+Word(s) Played: 
+WACKO
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    ~    ~    ~    W₁   ~    ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    ~    ~    B₁   ~    ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   ~    ~    ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 4
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:42
+Team Score: 24
+Playable Letters: 
+C T N D O M F 
+Word(s) Played: 
+DOT
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    ~    ~    ~    W₁   ~    ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    ~    ~    B₁   ~    ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   O₁   T₁   ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 5
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:43
+Team Score: 34
+Playable Letters: 
+O F M T E T A 
+Word(s) Played: 
+AMOWT
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    ~    ~    B₁   ~    ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   O₁   T₁   ~    ~    ~    ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 6
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:43
+Team Score: 31
+Playable Letters: 
+C N D M F G I 
+Word(s) Played: 
+DOMING
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    ~    ~    B₁   ~    ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   O₁   M₂   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 7
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:43
+Team Score: 42
+Playable Letters: 
+F E T N H P U 
+Word(s) Played: 
+PUBE
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   O₁   M₂   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 8
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:44
+Team Score: 39
+Playable Letters: 
+C D F W U A S 
+Word(s) Played: 
+DOSING
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   O₁   S₃   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 9
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:44
+Team Score: 51
+Playable Letters: 
+F T N H O L L 
+Word(s) Played: 
+DOLING
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    ~    ~    D₁   O₁   L₄   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 10
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:44
+Team Score: 51
+Playable Letters: 
+C D F W U A A 
+Word(s) Played: 
+FUDDLING
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    F₁   U₁   D₁   D₂   L₄   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 11
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:45
+Team Score: 65
+Playable Letters: 
+F T N H O L Y 
+Word(s) Played: 
+HODDLING
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     ~    H₂   O₂   D₁   D₂   L₄   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 12
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:45
+Team Score: 68
+Playable Letters: 
+C W A A D T E 
+Word(s) Played: 
+TWADDLING
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    ~    ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    ~    ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    ~    ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    ~    ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 13
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:46
+Team Score: 75
+Playable Letters: 
+F T N L Y B A 
+Word(s) Played: 
+APTLY
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   M₁   C₁   E₁   E₁   ~    ~ 
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 14
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:46
+Team Score: 79
+Playable Letters: 
+C A D E F N L 
+Word(s) Played: 
+ELANCED
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   L₂   A₂   N₂   C₂   E₁   D₁
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 15
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:47
+Team Score: 89
+Playable Letters: 
+F N B T R L C 
+Word(s) Played: 
+ENABLED
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   N₃   A₂   B₃   L₃   E₁   D₁
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   ~ 
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 16
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:47
+Team Score: 97
+Playable Letters: 
+F G S B R U D 
+Word(s) Played: 
+TWADDLINGS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   N₃   A₂   B₃   L₃   E₁   D₁
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 17
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:48
+Team Score: 107
+Playable Letters: 
+F T R C N O S 
+Word(s) Played: 
+ECARTES
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    ~    ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   C₄   A₂   R₄   T₄   E₁   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 18
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:48
+Team Score: 110
+Playable Letters: 
+F G B R U D R 
+Word(s) Played: 
+RAPTLY
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   C₄   A₂   R₄   T₄   E₁   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 19
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:48
+Team Score: 129
+Playable Letters: 
+F N O M X R K 
+Word(s) Played: 
+ENAMORS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   A₃   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 20
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:49
+Team Score: 129
+Playable Letters: 
+F G B U D R I 
+Word(s) Played: 
+TWIDDLINGS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   ~    ~    ~ 
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 21
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:49
+Team Score: 137
+Playable Letters: 
+F X K D Y S E 
+Word(s) Played: 
+KEDS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    ~    ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    ~    ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    ~    ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 22
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:49
+Team Score: 137
+Playable Letters: 
+F G B U D R J 
+Word(s) Played: 
+RUDD
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    ~    ~    ~ 
+6     ~    ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 23
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:50
+Team Score: 144
+Playable Letters: 
+F X K Y O Z L 
+Word(s) Played: 
+KO
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     ~    ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    ~ 
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    ~ 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 24
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:50
+Team Score: 142
+Playable Letters: 
+F G B J I S I 
+Word(s) Played: 
+SISS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     ~    ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     ~    ~    ~    A₁   ~    ~    ~    ~    ~    I₁
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     ~    ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 25
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:50
+Team Score: 152
+Playable Letters: 
+F X Y O Z L U 
+Word(s) Played: 
+FUTZ
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    I₁
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 26
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:51
+Team Score: 150
+Playable Letters: 
+F G B J I U I 
+Word(s) Played: 
+SUSS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    A₁   M₁   O₁   W₁   T₁   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    U₂
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 27
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:51
+Team Score: 160
+Playable Letters: 
+X Y O L H S M 
+Word(s) Played: 
+SHOWY
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   A₁   P₁   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    U₂
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 28
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:52
+Team Score: 156
+Playable Letters: 
+F G B J I I O 
+Word(s) Played: 
+GOBO
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    R₁   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    A₁   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    T₁   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   B₂   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    U₂
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 29
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:52
+Team Score: 169
+Playable Letters: 
+X O L M I N Qu 
+Word(s) Played: 
+MOPILY
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    M₂   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    O₂   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    I₂   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   B₂   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    U₂
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 30
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:52
+Team Score: 163
+Playable Letters: 
+F G J I I V P 
+Word(s) Played: 
+GOGO
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    M₂   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    O₂   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    P₁   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    I₂   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   G₃   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    U₂
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 31
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:53
+Team Score: 186
+Playable Letters: 
+X L N Qu E R E 
+Word(s) Played: 
+EERILY
+RUBE
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    E₃   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    E₃   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    R₂   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    I₂   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   G₃   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    U₂
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+VALID MOVE!
+
+Turn: 32
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:53
+Team Score: 173
+Playable Letters: 
+F J I I V P 
+Word(s) Played: 
+SISS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    E₃   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    E₃   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    R₂   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    I₂   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   G₃   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    I₃
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    ~    ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+PASS
+
+Turn: 33
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:54
+Team Score: 186
+Playable Letters: 
+X L N Qu 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 34
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:54
+Team Score: 179
+Playable Letters: 
+F J I V P 
+Word(s) Played: 
+IF
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    E₃   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    E₃   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    R₂   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    I₂   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   G₃   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    I₃
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    F₁   ~    ~    ~    ~    ~    ~    S₁
+
+**********************************
+
+PASS
+
+Turn: 35
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:54
+Team Score: 186
+Playable Letters: 
+X L N Qu 
+
+**********************************
+
+VALID MOVE!
+
+Turn: 36
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:54
+Team Score: 186
+Playable Letters: 
+J I V P 
+Word(s) Played: 
+GI
+IS
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    E₃   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    E₃   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    R₂   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    I₂   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   G₃   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    I₃
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    F₁   ~    ~    ~    ~    ~    I₁   S₁
+
+**********************************
+
+PASS
+
+Turn: 37
+TeamNum: 2
+Timestamp: 12/16/2016 16:45:55
+Team Score: 186
+Playable Letters: 
+X L N Qu 
+
+**********************************
+
+PASS
+
+Turn: 38
+TeamNum: 1
+Timestamp: 12/16/2016 16:45:55
+Team Score: 186
+Playable Letters: 
+J V P 
+
+**********************************
+
+**********************************
+**********************************
+THE GAME HAS ENDED.
+Timestamp: 12/16/2016 16:45:55
+Number of turns: 39
+
+TeamNum: 1 had a score of: 156
+Letters remaining in hand: J V P 
+
+TeamNum: 2 had a score of: 146
+Letters remaining in hand: X L N Qu 
+
+
+Board:
+
+      0    1    2    3    4    5    6    7    8    9
+0     ~    E₃   ~    S₂   H₂   O₁   W₁   Y₂   ~    ~ 
+1     ~    E₃   ~    ~    ~    ~    A₁   ~    R₁   ~ 
+2     ~    R₂   U₁   B₁   E₁   ~    C₁   ~    U₁   ~ 
+3     ~    I₂   ~    I₁   ~    ~    K₁   E₁   D₁   S₁
+4     ~    L₁   ~    G₁   O₂   G₃   O₁   ~    D₁   ~ 
+5     ~    Y₁   ~    H₁   ~    ~    ~    K₁   ~    ~ 
+6     F₁   ~    ~    E₁   N₅   A₂   M₅   O₅   R₂   S₂
+7     U₁   ~    ~    A₁   ~    ~    ~    ~    ~    I₃
+8     T₁   W₃   I₄   D₁   D₂   L₄   I₁   N₁   G₁   S₁
+9     Z₁   ~    F₁   ~    ~    ~    ~    ~    I₁   S₁
+
+The winner is Player 1
+**********************************
+**********************************
